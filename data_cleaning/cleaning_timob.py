@@ -7,7 +7,7 @@ import numpy as np
 df = pd.read_csv('C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/datasets/jiradataset_issues.csv')
 
 #Selecting project
-df_project = df[df['project'] == 'apstud']
+df_project = df[df['project'] == 'timob']
 
 #Filtering out only user stories that have been compleated
 story_done = df_project[(df_project['fields.issuetype.name'] == 'Story') & (df_project['fields.status.statusCategory.name'] == 'Done')]
@@ -56,5 +56,5 @@ project_save = project_save[project_save.suitable_title_length != 0]
 project_output = project_save[['fields.description',  'key']]
 print(len(project_output))
 
-#Writing 119 rows of cleaned data to a csv
-project_output.to_csv("C://Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/cleaned_input_data/jira-apstud-allus.csv", sep=',', encoding='utf-8', doublequote = True, header=False, index=False, line_terminator=",\n")
+#Writing 188 rows of cleaned data to a csv
+project_output.to_csv("C://Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/cleaned_input_data/jira-timob-allus.csv", sep=',', encoding='utf-8', doublequote = True, header=False, index=False, line_terminator=",\n")

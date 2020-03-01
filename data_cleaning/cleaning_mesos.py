@@ -56,5 +56,5 @@ project_save = project_save[project_save.suitable_title_length != 0]
 project_output = project_save[['fields.description',  'key']]
 print(len(project_output))
 
-#Writing 26 rows of cleaned data to a csv
+#Writing 14 rows of cleaned data to a csv
 project_output.to_csv("C://Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/cleaned_input_data/jira-mesos-allus.csv", sep=',', encoding='utf-8', doublequote = True, header=False, index=False, line_terminator=",\n")
