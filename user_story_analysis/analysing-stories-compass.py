@@ -38,7 +38,7 @@ quality_df["minor"] = quality_df["severity"].apply(lambda x: 1 if x == "minor" e
 quality_df["medium"] = quality_df["severity"].apply(lambda x: 1 if x == "medium" else 0)
 
 #Grouping the data using key field and summarising the penalties and the number of errors.
-q = quality_df[["key", "penalty", "high", "minor"]].groupby(['key']).sum()
+q = quality_df[["key", "penalty", "high", "minor", "medium"]].groupby(['key']).sum()
 q = q.reset_index()
 
 
@@ -70,7 +70,9 @@ quality = quality[quality.quality.notnull()]
 # quality['fields.created'] = pd.to_datetime(quality['fields.created'], utc=True)
 # quality = quality.set_index(pd.DatetimeIndex(quality['fields.created']))
 
-quality.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/outputreading_scripts/compass/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
+#Writing keys and quality scores to csv
+quality_scores = quality.drop_duplicates(subset='key', keep="first")
+quality_scores[["key", "quality"]].to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/quality_scores_data/compass-quality-scores.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
 
 
 # SM = semi month end frequency (15th and end of month)

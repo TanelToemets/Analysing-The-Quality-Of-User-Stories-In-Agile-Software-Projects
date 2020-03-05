@@ -73,6 +73,9 @@ quality = quality[quality.quality.notnull()]
 # quality['fields.created'] = pd.to_datetime(quality['fields.created'], utc=True)
 # quality = quality.set_index(pd.DatetimeIndex(quality['fields.created']))
 
+#Writing keys and quality scores to csv
+quality_scores = quality.drop_duplicates(subset='key', keep="first")
+quality_scores[["key", "quality"]].to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/quality_scores_data/dnn-quality-scores.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
 
 
 #SM --> semi month (15th and end of month)
