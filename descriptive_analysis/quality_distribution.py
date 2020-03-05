@@ -2,8 +2,10 @@ import pandas as pd
 from matplotlib import pyplot
 import matplotlib.ticker as ticker
 
+project = 'timob'
+
 #Read the quality scores
-df = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/quality_scores_data/xd-quality-scores.csv")
+df = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/quality_scores_data/{0}-quality-scores.csv".format(project))
 print(len(df))
 
 #Grouping and counting the quality values
