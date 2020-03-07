@@ -5,14 +5,27 @@ import datetime
 #Possible projects
 #xd 
 #dnn
-#compass #failed
+#COMPASS
 #apstud
-#mesos #failed
+#mesos
 #mule
-#nexus #failed
+#nexus
 #timob
 #tistud
-project = 'dnn'
+
+project = "nexus"
+
+projects = {
+    "xd":      ("fields.issuetype.name",  "fields.status.name",                 "Done",      "jiradataset_issues.csv",        "project",    "fields.created"),
+	"dnn":     ("fields.issuetype.name",  "fields.status.statusCategory.name",  "Done",      "jiradataset_issues.csv",        "project",    "fields.created"),
+    "COMPASS": ("issuetype.name",         "status.statusCategory.name",         "Done",      "compass_issues_extracted.csv",  "project.key", "created"),
+	"apstud":  ("fields.issuetype.name",  "fields.status.statusCategory.name",  "Done",      "jiradataset_issues.csv",        "project",     "fields.created"),
+    "mesos":  ("fields.issuetype.name",  "fields.status.statusCategory.name",  "Done",      "jiradataset_issues.csv",        "project",     "fields.created"),
+    "mule":    ("fields.issuetype.name",  "fields.status.statusCategory.name",  "Complete",  "jiradataset_issues.csv",        "project",     "fields.created"),
+    "nexus":   ("fields.issuetype.name",  "fields.status.statusCategory.name",  "Done",      "jiradataset_issues.csv",        "project",     "fields.created"),
+    "timob":   ("fields.issuetype.name",  "fields.status.statusCategory.name",  "Done",      "jiradataset_issues.csv",        "project",     "fields.created"),
+    "tistud":  ("fields.issuetype.name",  "fields.status.statusCategory.name",  "Done",      "jiradataset_issues.csv",        "project",     "fields.created"),
+}
 
 #Read the stories (AQUSA input)
 stories_project = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/cleaned_input_data/jira-{0}-allus.csv".format(project), names=['title', 'key', 'z'])
@@ -31,14 +44,19 @@ print(len(quality_df))
 df_text = quality_df[['key', 'title', 'role', 'means', 'ends']].drop_duplicates()
 print(len(df_text))
 
-df_text['text_len'] = df_text['title'].str.len()
-df_text['role_len'] = df_text['role'].str.len()
-df_text['means_len'] = df_text['means'].str.len()
-df_text['ends_len'] = df_text['ends'].str.len()
+def manage_nullvalues(current_column, len_column):
+    if (pd.isnull(df_text[current_column]).all()):
+        df_text[len_column] = 0
+    else:
+        df_text[len_column] = df_text[current_column].str.len()    
+
+manage_nullvalues('title', 'text_len')
+manage_nullvalues('role', 'role_len')
+manage_nullvalues('means', 'means_len')
+manage_nullvalues('ends', 'ends_len')
 
 df_text = df_text.drop(['title', 'role', 'means', 'ends'], axis=1)
 df_text = df_text.fillna(0)
-
 
 #Quantifying the quality
 quality_df["penalty"] = quality_df["severity"].apply(lambda x: 1/6 if x == "high" else 1/12 if x == "minor" else 1/9 if x =="medium" else 0)
@@ -72,12 +90,14 @@ quality_df = quality_df.fillna(0)
 
 
 #Merging the data from initial dataset (dates and quality scores)
-initial_dataset = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/datasets/jiradataset_issues.csv")
-initial_dataset = initial_dataset[initial_dataset['project'] == '{0}'.format(project)]
+initial_dataset = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/datasets/"+projects['{0}'.format(project)][3] )
+initial_dataset = initial_dataset[initial_dataset[projects['{0}'.format(project)][4]] == '{0}'.format(project)]
 
 print(len(quality_df))
-quality = pd.merge(initial_dataset[["key", "fields.created"]], quality_df, on='key', how='outer')
+quality = pd.merge(initial_dataset[["key", projects['{0}'.format(project)][5]]], quality_df, on='key', how='outer')
 quality = quality[quality.quality.notnull()]
+
+#Formating datetime and indexing. Needed for resampling
 # quality['fields.created'] = pd.to_datetime(quality['fields.created'], utc=True)
 # quality = quality.set_index(pd.DatetimeIndex(quality['fields.created']))
 
@@ -93,6 +113,6 @@ quality_scores[["key", "quality"]].to_csv("C:/Users/Tanel/Documents/Ylikool/Magi
 # pyplot.show()
 
 #Alternative
-pyplot.plot(quality['fields.created'],quality['quality'])
+pyplot.plot(quality[projects['{0}'.format(project)][5]],quality['quality'])
 pyplot.gcf().autofmt_xdate()
 pyplot.show()
