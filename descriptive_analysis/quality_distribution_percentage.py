@@ -2,7 +2,17 @@ import pandas as pd
 from matplotlib import pyplot
 import matplotlib.ticker as ticker
 
-project = 'timob'
+#Possible projects
+#xd 
+#dnn
+#compass #failed
+#apstud
+#mesos #failed
+#mule
+#nexus #failed
+#timob
+#tistud
+project = 'compass'
 
 #Read the quality scores
 df = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/quality_scores_data/{0}-quality-scores.csv".format(project))
