@@ -7,7 +7,7 @@ import numpy as np
 df = pd.read_csv('C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/datasets/compass_issues_extracted.csv')
 
 #Selecting project
-df_project = df[df['project.name'] == 'Compass ']
+df_project = df[df['project.key'] == 'COMPASS']
 
 #Filtering out only user stories that have been compleated
 story_done = df_project[(df_project['issuetype.name'] == 'Story') & (df_project['status.statusCategory.name'] == 'Done')]
