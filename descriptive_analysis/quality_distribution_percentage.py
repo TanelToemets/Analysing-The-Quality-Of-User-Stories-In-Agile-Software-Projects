@@ -5,14 +5,14 @@ import matplotlib.ticker as ticker
 #Possible projects
 #xd 
 #dnn
-#compass #failed
+#compass
 #apstud
-#mesos #failed
+#mesos
 #mule
-#nexus #failed
+#nexus
 #timob
 #tistud
-project = 'compass'
+project = 'nexus'
 
 #Read the quality scores
 df = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/quality_scores_data/{0}-quality-scores.csv".format(project))
