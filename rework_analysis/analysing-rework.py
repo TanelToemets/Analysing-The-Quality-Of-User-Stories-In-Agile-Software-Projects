@@ -15,12 +15,24 @@ import datetime
 #dnn          +
 #COMPASS      -
 #apstud       +
-#mesos        -
+#mesos        +
 #mule         +
-#nexus        -
+#nexus        +
 #timob        +       
 #tistud       +
-project = 'tistud'
+project = 'dnn'
+
+projects = {
+    "xd":      ("Done",  "In Progress" ), #65 Currently only Done -> In Progress ||Other: In Progress -> In PR | In Progress -> To Do | In PR -> In Progress | In PR -> To Do
+	"dnn":     ("XXXX", "Reopened"     ), #128 | Fine
+    "COMPASS": ("XXXX", "XXXX"         ), #NO DATA 
+	"apstud":  ("XXXX", "Reopened"     ), #49  |#Many are going from a Closed to Closed? | Otherwise fine
+    "mesos":   ("XXXX", "Reopened"     ), #0   |Reopened state exists but none of the stories we are analysing have this state 
+    "mule":    ("Closed", "Reopened"   ), #4   | Fine
+    "nexus":   ("XXXX", "XXXX"         ), #0   |Reopened state and Closed->Open states exists but none of the stories we are analysing have this state 
+    "timob":   ("Closed", "Reopened"   ), #7   |#Two are going from a Closed to Closed?  | Otherwise fine
+    "tistud":  ("Closed", "Reopened"   ), #178 |#Many are going from a Closed to Closed? | Otherwise fine
+}
 
 #Read changelog file for rework data
 changelog_df = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/datasets/jiradataset_changelog.csv")
@@ -37,8 +49,10 @@ print(len(rework_df))
 #Selecting the project
 rework_df = rework_df[rework_df['field'] == 'status']
 
-#Selecting only Reopened stories
-rework_df = rework_df[rework_df['toString'] == 'Reopened']
+#rework_df = rework_df[rework_df['fromString'] == projects['{0}'.format(project)][0]]
+#Selecting Reopened stories
+rework_df = rework_df[rework_df['toString'] == projects['{0}'.format(project)][1]]
+print(len(rework_df))
 
 #Formating and indexing creationtime
 rework_df['created'] = pd.to_datetime(rework_df['created'], utc=True)
