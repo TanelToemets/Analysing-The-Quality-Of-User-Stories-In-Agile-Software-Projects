@@ -47,6 +47,7 @@ for x in project_list:
     print ("{0} {1} {2}".format(x, "Nr of stories after cleaning:", len(project_cleaned)))
 
     #Number of bugs
+    #Takeing only rows with issuetype Bug and status Done/Complete
     project_bugs = df_project[(df_project[projects['{0}'.format(x)][0]] == 'Bug') & (df_project[projects['{0}'.format(x)][1]] == projects['{0}'.format(x)][2])] 
     #Removing duplicate bugs by issutype, statusCategory, creation time and key     
     project_bugs = project_bugs[[projects['{0}'.format(x)][0], projects['{0}'.format(x)][1], projects['{0}'.format(x)][5], 'key']].drop_duplicates()    
