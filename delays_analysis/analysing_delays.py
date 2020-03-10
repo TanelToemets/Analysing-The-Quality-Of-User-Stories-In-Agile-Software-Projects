@@ -48,7 +48,7 @@ print(len(delays_df))
 #Remove duplicates
 delays_df = delays_df.drop_duplicates(subset='key', keep="first")
 
-#Indexing esolutiondate
+#Indexing resolutiondate
 delays_df = delays_df.set_index(pd.DatetimeIndex(delays_df['fields.resolutiondate']))
 
 #Printing nr of stories that needed rework
