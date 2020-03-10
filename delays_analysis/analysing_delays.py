@@ -13,7 +13,7 @@ import datetime
 #timob        +       
 #tistud       +
 
-project = "tistud"
+project = "timob"
 
 #Read sprints file
 sprints_df = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/datasets/jiradataset_sprints.csv")
@@ -48,8 +48,7 @@ print(len(delays_df))
 #Remove duplicates
 delays_df = delays_df.drop_duplicates(subset='key', keep="first")
 
-#Indexing endDate and resolutiondate
-delays_df = delays_df.set_index(pd.DatetimeIndex(delays_df['sprint.endDate']))
+#Indexing esolutiondate
 delays_df = delays_df.set_index(pd.DatetimeIndex(delays_df['fields.resolutiondate']))
 
 #Printing nr of stories that needed rework
