@@ -2,7 +2,18 @@ import pandas as pd
 from matplotlib import pyplot
 import datetime
 
-project = "dnn"
+#Possible projects
+#xd           +
+#dnn          +
+#COMPASS      -
+#apstud       +
+#mesos        +
+#mule         +
+#nexus        +
+#timob        +       
+#tistud       +
+
+project = "tistud"
 
 #Read sprints file
 sprints_df = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/datasets/jiradataset_sprints.csv")
@@ -42,7 +53,7 @@ delays_df = delays_df.set_index(pd.DatetimeIndex(delays_df['sprint.endDate']))
 delays_df = delays_df.set_index(pd.DatetimeIndex(delays_df['fields.resolutiondate']))
 
 #Printing nr of stories that needed rework
-print ("{0} {1} {2}".format(project, "Nr of stories that needed rewor:", len(delays_df)))
+print ("{0} {1} {2}".format(project, "Nr of stories that needed rework:", len(delays_df)))
 
 #Plotting delays
 delays_df['delay_nr'] = 1
