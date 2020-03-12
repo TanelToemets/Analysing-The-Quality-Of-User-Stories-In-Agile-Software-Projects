@@ -13,7 +13,7 @@ import datetime
 #timob
 #tistud
 
-project = "nexus"
+project = "mesos"
 
 projects = {
     "xd":      ("fields.issuetype.name",  "fields.status.name",                 "Done",      "jiradataset_issues.csv",        "project",    "fields.created"),
@@ -98,8 +98,8 @@ quality = pd.merge(initial_dataset[["key", projects['{0}'.format(project)][5]]],
 quality = quality[quality.quality.notnull()]
 
 #Formating datetime and indexing. Needed for resampling
-# quality['fields.created'] = pd.to_datetime(quality['fields.created'], utc=True)
-# quality = quality.set_index(pd.DatetimeIndex(quality['fields.created']))
+quality['fields.created'] = pd.to_datetime(quality['fields.created'], utc=True)
+quality = quality.set_index(pd.DatetimeIndex(quality['fields.created']))
 
 #Writing keys and quality scores to csv
 quality_scores = quality.drop_duplicates(subset='key', keep="first")
@@ -108,11 +108,11 @@ quality_scores[["key", "quality"]].to_csv("C:/Users/Tanel/Documents/Ylikool/Magi
 
 # #SM --> semi month (15th and end of month)
 # #W  --> week
-# quality.resample('W')['quality'].mean().plot()
+quality.resample('W')['quality'].mean().plot()
 # #quality['20150101':'20160101'].resample('SM')['quality'].mean().plot()
-# pyplot.show()
+pyplot.show()
 
 #Alternative
-pyplot.plot(quality[projects['{0}'.format(project)][5]],quality['quality'])
-pyplot.gcf().autofmt_xdate()
-pyplot.show()
+# pyplot.plot(quality[projects['{0}'.format(project)][5]],quality['quality'])
+# pyplot.gcf().autofmt_xdate()
+# pyplot.show()
