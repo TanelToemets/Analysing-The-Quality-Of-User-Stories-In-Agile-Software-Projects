@@ -27,7 +27,7 @@ projects = {
 
 #print(projects["dnn"][1])
 
-project_list = ['xd', 'dnn', 'COMPASS', 'apstud', 'mule', 'timob', 'tistud']
+project_list = ['xd', 'dnn', 'COMPASS', 'apstud', 'mesos', 'mule', 'nexus', 'timob', 'tistud']
 for x in project_list:
 
     #Getting user story data
