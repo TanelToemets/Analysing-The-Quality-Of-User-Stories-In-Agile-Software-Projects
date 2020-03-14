@@ -13,7 +13,7 @@ import datetime
 #timob
 #tistud
 
-project = "nexus"
+project = "COMPASS"
 
 projects = {
     "xd":      ("fields.issuetype.name",  "fields.status.name",                 "Done",      "jiradataset_issues.csv",        "project",    "fields.created"),
@@ -39,6 +39,7 @@ print(len(quality_project))
 quality_df = pd.merge(stories_project, quality_project, how='left', left_on='title', right_on='title')
 print(len(quality_df))
 
+quality_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
 
 #Calculating the length of the text
 df_text = quality_df[['key', 'title', 'role', 'means', 'ends']].drop_duplicates()
@@ -98,8 +99,8 @@ quality = pd.merge(initial_dataset[["key", projects['{0}'.format(project)][5]]],
 quality = quality[quality.quality.notnull()]
 
 #Formating datetime and indexing. Needed for resampling
-# quality['fields.created'] = pd.to_datetime(quality['fields.created'], utc=True)
-# quality = quality.set_index(pd.DatetimeIndex(quality['fields.created']))
+quality['fields.created'] = pd.to_datetime(quality[projects['{0}'.format(project)][5]], utc=True)
+quality = quality.set_index(pd.DatetimeIndex(quality[projects['{0}'.format(project)][5]]))
 
 #Writing keys and quality scores to csv
 quality_scores = quality.drop_duplicates(subset='key', keep="first")
@@ -108,11 +109,13 @@ quality_scores[["key", "quality"]].to_csv("C:/Users/Tanel/Documents/Ylikool/Magi
 
 # #SM --> semi month (15th and end of month)
 # #W  --> week
-# quality.resample('W')['quality'].mean().plot()
-# #quality['20150101':'20160101'].resample('SM')['quality'].mean().plot()
-# pyplot.show()
+# #Q  --> quarter
+# #Y  --> year
+quality.resample('Y')['quality'].mean().plot()
+#quality['20150101':'20160101'].resample('SM')['quality'].mean().plot()
+pyplot.show()
 
 #Alternative
-pyplot.plot(quality[projects['{0}'.format(project)][5]],quality['quality'])
-pyplot.gcf().autofmt_xdate()
-pyplot.show()
+# pyplot.plot(quality[projects['{0}'.format(project)][5]],quality['quality'])
+# pyplot.gcf().autofmt_xdate()
+# pyplot.show()
