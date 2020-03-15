@@ -51,6 +51,18 @@ project_save['fields.description'] = project_save['fields.description'].str.spli
 
 #Remove links to web
 project_save['fields.description'] = project_save['fields.description'].apply(lambda x: re.sub('http[s]?://\S+', ' ', str(x)))
+#Remove jar file extensions
+project_save['fields.description'] = project_save['fields.description'].apply(lambda x: re.sub('\s+.*.jar\s*', ' ', str(x)))
+#Remove code examples
+project_save['fields.description'] = project_save['fields.description'].apply(lambda x: re.sub('"{code(.*){code}"', ' ', str(x)))
+#Remove curly bracets
+project_save['fields.description'] = project_save['fields.description'].apply(lambda x: re.sub('{{(.*)}}', ' ', str(x)))
+#Remove another type of curly bracets
+project_save['fields.description'] = project_save['fields.description'].apply(lambda x: re.sub('{(.*)}', ' ', str(x)))
+#Remove paths
+project_save['fields.description'] = project_save['fields.description'].apply(lambda x: re.sub('\S+?(?=\/)\/\S*\/\S*', ' ', str(x)))
+#Remove word longer than 19 characters
+project_save['fields.description'] = project_save['fields.description'].apply(lambda x: re.sub('.\S{19,}.', ' ', str(x)))
 #Remove curly brackets and everything in them
 project_save['fields.description'] = project_save['fields.description'].apply(lambda x: re.sub('\s*{.*}\s*', ' ', str(x)))
 #Remove exclamation marks and everything between them (used for image files, for example !GettingStarted.png! )

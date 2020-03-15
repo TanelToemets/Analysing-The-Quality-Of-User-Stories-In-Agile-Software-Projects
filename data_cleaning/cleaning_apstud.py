@@ -12,39 +12,78 @@ df_project = df[df['project'] == 'apstud']
 #Filtering out only user stories that have been compleated
 story_done = df_project[(df_project['fields.issuetype.name'] == 'Story') & (df_project['fields.status.statusCategory.name'] == 'Done')]
 
-
 #Cleaning
-#Taking only description (user story) and indentification key
-project_save = story_done[['fields.description',  'key']]
-print(len(project_save))
+#Taking summary (heading of issue) and description of the issue
+project_description = story_done[['fields.description',  'key']]
+project_summary = story_done[['fields.summary', 'key']]
+#Renaming summary to description
+project_summary = project_summary.rename(columns={'fields.summary': 'fields.description'})
+#Adding row with indentifier for indentifyng summary and description
+project_description['identif'] = 0
+project_summary['identif'] = 1
+
+# Removing summaries with less than 3 words
+project_summary['nr_of_words'] = project_summary['fields.description'].str.split().str.len()
+project_summary = project_summary[project_summary['nr_of_words'] > 3]
+
+#Mergeing summary and description together
+project_save = pd.merge(project_description, project_summary, how='outer')
+print('Description and summary merged: ' + str(len(project_save)))
 
 #Removing empty descriptions
 project_save = project_save[ project_save['fields.description'].notnull() ]
+print('Empty descriptions removed: ' + str(len(project_save)))
+
+#Removing everything that follows special headings
+project_save['fields.description'] = project_save['fields.description'].str.split('h3. Steps to Reproduce').str[0] 
+project_save['fields.description'] = project_save['fields.description'].str.split('h3. Steps to Reproduce').str[0] 
+project_save['fields.description'] = project_save['fields.description'].str.split('Steps to reproduce').str[0] 
+project_save['fields.description'] = project_save['fields.description'].str.split('h3. Actual Result').str[0] 
+
+#Remove links to web
+project_save['fields.description'] = project_save['fields.description'].apply(lambda x: re.sub('http[s]?://\S+', ' ', str(x)))
+#Remove jar file extensions
+project_save['fields.description'] = project_save['fields.description'].apply(lambda x: re.sub('\s+.*.jar\s*', ' ', str(x)))
+project_save['fields.description'] = project_save['fields.description'].apply(lambda x: re.sub('<(.*)>', ' ', str(x)))
+#Remove code examples
+project_save['fields.description'] = project_save['fields.description'].apply(lambda x: re.sub('"{code(.*){code}"', ' ', str(x)))
+project_save['fields.description'] = project_save['fields.description'].apply(lambda x: re.sub('\s*\{code\}.*\{code\}\s*', ' ', str(x)))
+#Remove curly bracets
+project_save['fields.description'] = project_save['fields.description'].apply(lambda x: re.sub('{{(.*)}}', ' ', str(x)))
+#Remove another type of curly bracets
+project_save['fields.description'] = project_save['fields.description'].apply(lambda x: re.sub('{(.*)}', ' ', str(x)))
+#Remove paths
+project_save['fields.description'] = project_save['fields.description'].apply(lambda x: re.sub('\S+?(?=\/)\/\S*\/\S*', ' ', str(x)))
+#Remove word longer than 19 characters
+project_save['fields.description'] = project_save['fields.description'].apply(lambda x: re.sub('.\S{19,}.', ' ', str(x)))
+#Remove curly brackets and everything in them
+project_save['fields.description'] = project_save['fields.description'].apply(lambda x: re.sub('\s*{.*}\s*', ' ', str(x)))
+#Remove exclamation marks and everything between them (used for image files, for example !GettingStarted.png! )
+project_save['fields.description'] = project_save['fields.description'].apply(lambda x: re.sub('\s*!.*!\s*', ' ', str(x)))
+#Remove square braces and everything between them
+project_save['fields.description'] = project_save['fields.description'].apply(lambda x: re.sub('\[([^[\].*()]+?)\]', ' ', str(x)))
+#Cleaning nin-ascii characters
+project_save['fields.description'] = project_save['fields.description'].apply(lambda x: re.sub(r'[^\x00-\x7F]+',' ', x))
 
 #Replacing special characters
 xlist = ['\\n', '\\r', '<', '>', '`', ':', '\\', '_', '{', '}', '@', '-', '$', '[', ']', '#', '/', '(', ')', '*', '+', '%', '~', '|', '=', '&', "'", '"', '\t']
 for x in xlist:
     project_save['fields.description'] = project_save['fields.description'].str.replace(x, ' ')
 
-#Keeping the "I'd like" part in a correct way
-project_save['fields.description'] = project_save['fields.description'].str.replace('I d', "I'd")
-
-#Cleaning nin-ascii characters
-project_save['fields.description'] = project_save['fields.description'].apply(lambda x: re.sub(r'[^\x00-\x7F]+',' ', x))
-
-#Removing spaces form the end of description
+#Removing whitespaces
+project_save['fields.description'] = project_save['fields.description'].str.replace('\n', ' ')
+project_save['fields.description'] = project_save['fields.description'].str.replace('\r', ' ')
+project_save['fields.description'] = project_save['fields.description'].str.replace('\t', ' ')
+project_save['fields.description'] = project_save['fields.description'].str.replace('\s', ' ')
+project_save['fields.description'] = project_save['fields.description'].str.replace(' +', ' ')
+project_save['fields.description'] = project_save['fields.description'].str.replace('&nbsp', ' ')
 project_save['fields.description'] = project_save['fields.description'].str.lstrip()
-
 #Replacing multiple spaces with one
 project_save['fields.description'] = project_save['fields.description'].str.replace(' +', ' ')
 
-#Removing duplicates
-project_save = project_save.drop_duplicates()
-
-#Removing duplicate stories
-project_save = project_save.drop_duplicates(subset='fields.description', keep="first")
-print(len(project_save))
-
+#Removing duplicates with same descriptions and keys
+project_save = project_save.drop_duplicates(subset=['fields.description', 'key'])
+print('Duplicates removed: ' + str(len(project_save)))
 
 #Removing upper outliers using standard deviation
 project_save['description_length'] = project_save['fields.description'].str.len()
@@ -54,7 +93,7 @@ project_save['suitable_title_length'] = project_save['description_length'].apply
 project_save = project_save[project_save.suitable_title_length != 0]
 
 project_output = project_save[['fields.description',  'key']]
-print(len(project_output))
+print('Nr of rows after cleaning: ' + str(len(project_save)))
 
 #Writing 119 rows of cleaned data to a csv
 project_output.to_csv("C://Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/cleaned_input_data/jira-apstud-allus.csv", sep=',', encoding='utf-8', doublequote = True, header=False, index=False, line_terminator=",\n")
