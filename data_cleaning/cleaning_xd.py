@@ -19,12 +19,8 @@ project_summary = story_done[['fields.summary', 'key']]
 #Renaming summary to description
 project_summary = project_summary.rename(columns={'fields.summary': 'fields.description'})
 #Adding row with indentifier for indentifyng summary and description
-project_description['identif'] = 'D'
-project_summary['identif'] = 'S'
-
-# Removing summaries with less than 3 words
-project_summary['nr_of_words'] = project_summary['fields.description'].str.split().str.len()
-project_summary = project_summary[project_summary['nr_of_words'] > 3]
+project_description['identif'] = 0
+project_summary['identif'] = 1
 
 #Mergeing summary and description together
 project_save = pd.merge(project_description, project_summary, how='outer')
@@ -96,6 +92,10 @@ mean_story_length = np.mean(project_save['description_length'])
 standart_deviation_story_length = np.std(project_save['description_length'])
 project_save['suitable_title_length'] = project_save['description_length'].apply(lambda x: x if x < mean_story_length + 0.7 * standart_deviation_story_length else 0)
 project_save = project_save[project_save.suitable_title_length != 0]
+
+# Removing summaries with less than 3 words (lower outliers) - these are not real stories, often afected by data cleaning and connot be analyesd. For example only web link in description instead of user story
+project_save['nr_of_words'] = project_save['fields.description'].str.split().str.len()
+project_save = project_save[project_save['nr_of_words'] > 3]
 
 project_output = project_save[['fields.description',  'key', 'identif']]
 print('Nr of rows after cleaning: ' + str(len(project_save)))
