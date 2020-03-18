@@ -13,7 +13,7 @@ import datetime
 #timob
 #tistud
 
-project = "COMPASS"
+project = "xd"
 
 projects = {
     "xd":      ("fields.issuetype.name",  "fields.status.name",                 "Done",      "jiradataset_issues.csv",        "project",    "fields.created"),
@@ -28,7 +28,10 @@ projects = {
 }
 
 #Read the stories (AQUSA input)
-stories_project = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/cleaned_input_data/jira-{0}-allus.csv".format(project), names=['title', 'key', 'z'])
+#title - the text of user story
+#key - unique identifier of user story
+#identif - text source identifier, description is 0 and summary is 1
+stories_project = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/cleaned_input_data/jira-{0}-allus.csv".format(project), names=['title', 'key', 'identif', 'z'])
 print(len(stories_project))
 
 #Read the quality (AQUSA output)
@@ -39,10 +42,11 @@ print(len(quality_project))
 quality_df = pd.merge(stories_project, quality_project, how='left', left_on='title', right_on='title')
 print(len(quality_df))
 
-quality_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
+#Adding source identifier to story key
+quality_df['identif_key'] = quality_df['identif'].apply(str) + '+' + quality_df['key']
 
 #Calculating the length of the text
-df_text = quality_df[['key', 'title', 'role', 'means', 'ends']].drop_duplicates()
+df_text = quality_df[['identif_key', 'title', 'role', 'means', 'ends']].drop_duplicates()
 print(len(df_text))
 
 def manage_nullvalues(current_column, len_column):
@@ -68,27 +72,38 @@ quality_df["minor"] = quality_df["severity"].apply(lambda x: 1 if x == "minor" e
 quality_df["medium"] = quality_df["severity"].apply(lambda x: 1 if x == "medium" else 0)
 
 #Grouping the data using key field and summarising the penalties and the number of errors.
-q = quality_df[["key", "penalty", "high", "minor", "medium"]].groupby(['key']).sum()
+q = quality_df[["identif_key", "penalty", "high", "minor", "medium"]].groupby(['identif_key']).sum()
 q = q.reset_index()
 
 
 #Adding kind and subkind and creating table presenting all issues
-qc = quality_df[["key", "kind", "subkind"]].groupby(['key', "kind", "subkind"]).count()
+qc = quality_df[["identif_key", "kind", "subkind"]].groupby(['identif_key', "kind", "subkind"]).count()
 qc = qc.reset_index()
 
-qc.index = qc["key"]
+qc.index = qc["identif_key"]
 dummies = pd.get_dummies(qc[["kind", "subkind"]])
 dummies = dummies.reset_index()
-dummies = dummies.groupby(['key']).sum()
+dummies = dummies.groupby(['identif_key']).sum()
 
-qj = q.join(dummies, on="key")
+qj = q.join(dummies, on="identif_key")
 
+#Split source identifier and story key
+qj[['identif','key']] = qj['identif_key'].str.split("+",expand=True) 
 
 #Calculating the total quality Q = 1 - P
 qj["quality"] = 1 - qj["penalty"]
-quality_df = pd.merge(df_text, qj, on='key')
-quality_df = quality_df.fillna(0)
 
+#Sorting values, from highest value to lowest
+qj = qj.sort_values('quality', ascending=False)
+#qj.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
+
+#Removing duplicates to keep ones only the ones with higher value
+qj = qj.drop_duplicates(subset='key', keep='first')
+#df_text.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test2.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
+
+#Mergeing text and quality dataframes
+quality_df = pd.merge(df_text, qj, on='identif_key')
+quality_df = quality_df.fillna(0)
 
 #Merging the data from initial dataset (dates and quality scores)
 initial_dataset = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/datasets/"+projects['{0}'.format(project)][3] )
@@ -111,7 +126,7 @@ quality_scores[["key", "quality"]].to_csv("C:/Users/Tanel/Documents/Ylikool/Magi
 # #W  --> week
 # #Q  --> quarter
 # #Y  --> year
-quality.resample('Y')['quality'].mean().plot()
+quality.resample('SM')['quality'].mean().plot()
 #quality['20150101':'20160101'].resample('SM')['quality'].mean().plot()
 pyplot.show()
 
