@@ -4,14 +4,19 @@
 All of the data is located in the data folder as follows:
 <ul>
   <li>Initial datasets: /data/datasets</li>
-  <li>Cleaned stories (AQUSA input): /data/cleaned_input_data</li>
+  <li>Cleaned stories (AQUSA input): /data/cleaned_input_data
+    <ul>
+      <li>Files with ending _DS consist Descriptions and Summaries sepparately. Description has identifier 0 and Summary has identifier 1</li>
+      <li>Files with ending _ALL consist concatenated Summaries and Descriptions (summary + ' ' + description) </li>
+    </ul></li>
   <li>Defects (AQUSA output): /data/analyzed_output_data</li>
   <li>Quality scores for user stories: /data/quality_scores_data</li>
 </ul> 
 
 <h3>Data cleaning</h3>
 <ul>
-  <li>All data cleaning files are located here: /data_cleaning/cleaning_projectname.py</li>
+  <li>Cleaning for Summary and Description sepparately: /data_cleaning/cleaning_projects_DS.py</li>
+  <li>Cleaning file where Summary and Description are concatenated (summary + ' ' + description): /data_cleaning/cleaning_projects_DS.py</li>
 </ul> 
 
 <h3>Reading AQUSA outplut and plotting quality</h3>
