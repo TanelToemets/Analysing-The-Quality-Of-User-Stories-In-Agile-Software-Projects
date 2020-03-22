@@ -1,6 +1,7 @@
 import pandas as pd
 from matplotlib import pyplot
 import datetime
+import statsmodels.api as sm
 
 #Possible projects
 #xd 
@@ -13,7 +14,7 @@ import datetime
 #timob
 #tistud
 
-project = "COMPASS"
+project = "xd"
 
 projects = {
     "xd":      ("fields.issuetype.name",  "fields.status.name",                 "Done",      "jiradataset_issues.csv",        "project",    "fields.created"),
@@ -31,7 +32,7 @@ projects = {
 #title - the text of user story
 #key - unique identifier of user story
 #identif - text source identifier, description is 0 and summary is 1
-stories_project = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/cleaned_input_data/jira-{0}-allus.csv".format(project), names=['title', 'key', 'identif', 'z'])
+stories_project = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/cleaned_input_data/jira-{0}-allus-DS.csv".format(project), names=['title', 'key', 'identif', 'z'])
 print(len(stories_project))
 
 #Read the quality (AQUSA output)
@@ -126,11 +127,31 @@ quality_scores[["key", "quality"]].to_csv("C:/Users/Tanel/Documents/Ylikool/Magi
 # #W  --> week
 # #Q  --> quarter
 # #Y  --> year
-quality.resample('SM')['quality'].mean().plot()
+#quality.resample('SM')['quality'].mean().plot()
 #quality['20150101':'20160101'].resample('SM')['quality'].mean().plot()
-pyplot.show()
+#pyplot.show()
 
 #Alternative
 # pyplot.plot(quality[projects['{0}'.format(project)][5]],quality['quality'])
 # pyplot.gcf().autofmt_xdate()
 # pyplot.show()
+
+
+
+#TIME SERIES ANAYSIS
+time_series_df = quality[['fields.created', 'quality']]
+#Removing outliers
+time_series_df = time_series_df[time_series_df['quality'] > 0]
+#Indexing date
+time_series_df = time_series_df.set_index('fields.created')
+
+#Decomposing timeseries
+decomposition = sm.tsa.seasonal_decompose(time_series_df, freq=365, model = 'multiplicative')
+
+#Plotting
+result = decomposition.plot()
+pyplot.rcParams['figure.figsize'] = [9.0, 5.0]
+pyplot.show()
+
+#test
+time_series_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
