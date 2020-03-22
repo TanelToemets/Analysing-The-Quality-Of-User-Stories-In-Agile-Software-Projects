@@ -16,7 +16,7 @@ All of the data is located in the data folder as follows:
 <h3>Data cleaning</h3>
 <ul>
   <li>Cleaning for Summary and Description sepparately: /data_cleaning/cleaning_projects_DS.py</li>
-  <li>Cleaning file where Summary and Description are concatenated (summary + ' ' + description): /data_cleaning/cleaning_projects_DS.py</li>
+  <li>Cleaning file where Summary and Description are concatenated (summary + ' ' + description): /data_cleaning/cleaning_projects_ALL.py</li>
 </ul> 
 
 <h3>Reading AQUSA outplut and plotting quality</h3>
