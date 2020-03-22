@@ -22,7 +22,7 @@ All of the data is located in the data folder as follows:
 <h3>Reading AQUSA outplut and plotting quality</h3>
 <ul>
   <li>Analysing stories in Description field: /user_story_analysis/analysing_stories_description.py</li>
-  <li>Analysing stories in Summary field: /user_story_analysis/analysing_stories_choose_summary.py</li>
+  <li>Analysing stories in Summary field: /user_story_analysis/analysing_stories_summary.py</li>
   <li>Choosing only best score story from Description or Summary: /user_story_analysis/analysing_stories_choose_better_score.py</li>
   <li>Analysing concatenated Summary and Desctiption: /user_story_analysis/analysing_stories_all.py</li>
 </ul> 
