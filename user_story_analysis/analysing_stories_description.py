@@ -16,7 +16,7 @@ from pandas.plotting import autocorrelation_plot
 #timob
 #tistud
 
-project = "COMPASS"
+project = "xd"
 
 projects = {
     "xd":      ("fields.issuetype.name",  "fields.status.name",                 "Done",      "jiradataset_issues.csv",        "project",    "fields.created"),
@@ -39,7 +39,7 @@ print(len(stories_project))
 stories_project = stories_project[stories_project['identif'] == 0]
 
 #Read the quality (AQUSA output)
-quality_project = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/analyzed_output_data/{0}-quality-allus.csv".format(project))
+quality_project = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/analyzed_output_data/{0}-quality-allus-DS.csv".format(project))
 print(len(quality_project))
 
 #Merge story keys and quality issues
@@ -143,7 +143,7 @@ pyplot.rcParams['figure.figsize'] = [9.0, 5.0]
 pyplot.show()
 
 #test
-time_series_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
+#time_series_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
 
 # Autocorrelation plot
 # pyplot.rcParams.update({'figure.figsize':(9,5), 'figure.dpi':120})

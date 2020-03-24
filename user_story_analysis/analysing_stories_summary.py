@@ -14,7 +14,7 @@ import statsmodels.api as sm
 #timob
 #tistud
 
-project = "xd"
+project = "COMPASS"
 
 projects = {
     "xd":      ("fields.issuetype.name",  "fields.status.name",                 "Done",      "jiradataset_issues.csv",        "project",    "fields.created"),
@@ -37,7 +37,7 @@ print(len(stories_project))
 stories_project = stories_project[stories_project['identif'] == 1]
 
 #Read the quality (AQUSA output)
-quality_project = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/analyzed_output_data/{0}-quality-allus.csv".format(project))
+quality_project = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/analyzed_output_data/{0}-quality-allus-DS.csv".format(project))
 print(len(quality_project))
 
 #Merge story keys and quality issues
@@ -133,7 +133,7 @@ time_series_df = time_series_df[time_series_df['quality'] > 0]
 time_series_df = time_series_df.set_index('fields.created')
 
 #Decomposing timeseries
-decomposition = sm.tsa.seasonal_decompose(time_series_df, freq=365, model = 'multiplicative')
+decomposition = sm.tsa.seasonal_decompose(time_series_df, freq=14, model = 'multiplicative')
 
 #Plotting
 result = decomposition.plot()
@@ -141,4 +141,4 @@ pyplot.rcParams['figure.figsize'] = [9.0, 5.0]
 pyplot.show()
 
 #test
-time_series_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
+#time_series_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")

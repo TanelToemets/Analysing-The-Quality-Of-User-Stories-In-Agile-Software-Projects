@@ -36,7 +36,7 @@ stories_project = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master 
 print(len(stories_project))
 
 #Read the quality (AQUSA output)
-quality_project = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/analyzed_output_data/{0}-quality-allus.csv".format(project))
+quality_project = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/analyzed_output_data/{0}-quality-allus-DS.csv".format(project))
 print(len(quality_project))
 
 #Merge story keys and quality issues
@@ -146,7 +146,7 @@ time_series_df = time_series_df[time_series_df['quality'] > 0]
 time_series_df = time_series_df.set_index('fields.created')
 
 #Decomposing timeseries
-decomposition = sm.tsa.seasonal_decompose(time_series_df, freq=365, model = 'multiplicative')
+decomposition = sm.tsa.seasonal_decompose(time_series_df, freq=14, model = 'multiplicative')
 
 #Plotting
 result = decomposition.plot()
