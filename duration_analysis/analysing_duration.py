@@ -29,7 +29,9 @@ projects = {
 }
 
 #Read cleaned stories
-stories_df = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/cleaned_input_data/jira-{0}-allus.csv".format(project), names=['title', 'key', 'z'])
+stories_df = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/cleaned_input_data/jira-{0}-allus-DS.csv".format(project), names=['title', 'key', 'identif', 'z'])
+stories_df = stories_df[stories_df['identif'] == 0]
+stories_df = stories_df.drop_duplicates(subset=['key'])
 print(len(stories_df))
 
 #Read fields.resolution.name from initial data
