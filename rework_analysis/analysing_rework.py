@@ -39,7 +39,13 @@ changelog_df = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master The
 print(len(changelog_df))
 
 #Read the stories
-stories_df = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/cleaned_input_data/jira-{0}-allus.csv".format(project), names=['title', 'key', 'z'])
+stories_df = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/cleaned_input_data/jira-{0}-allus-DS.csv".format(project), names=['title', 'key', 'identif', 'z'])
+print(len(stories_df))
+
+#Selecting stories by text source identifier
+# Description = 0 and summary = 1
+stories_df = stories_df[stories_df['identif'] == 1]
+stories_df = stories_df.drop_duplicates(subset=['key'])
 print(len(stories_df))
 
 #Merge story keys and rework data
@@ -57,13 +63,14 @@ print(len(rework_df))
 #Formating and indexing creationtime
 rework_df['created'] = pd.to_datetime(rework_df['created'], utc=True)
 rework_df = rework_df.set_index(pd.DatetimeIndex(rework_df['created']))
-rework_df['rework_nr'] = 1
+#Adding a row showing the percentage of each separate story 
+rework_df['rework_nr'] = 1/len(stories_df)
 
 #Printing nr of rework cases
 print ("{0} {1} {2}".format(project, "Nr of rework cases:", len(rework_df)))
 
 #Plotting
-rework_df.resample('W')['rework_nr'].sum().plot()
+rework_df.resample('SM')['rework_nr'].sum().plot()
 pyplot.show()
 
-rework_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
+#rework_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
