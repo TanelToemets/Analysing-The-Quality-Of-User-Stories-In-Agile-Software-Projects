@@ -44,7 +44,7 @@ print(len(stories_df))
 
 #Selecting stories by text source identifier
 # Description = 0 and summary = 1
-stories_df = stories_df[stories_df['identif'] == 1]
+stories_df = stories_df[stories_df['identif'] == 0]
 stories_df = stories_df.drop_duplicates(subset=['key'])
 print(len(stories_df))
 
