@@ -13,14 +13,16 @@ import datetime
 #timob        +       
 #tistud       +
 
-project = "timob"
+project = 'nexus'
 
 #Read sprints file
 sprints_df = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/datasets/jiradataset_sprints.csv")
 print(len(sprints_df))
 
 #Read cleaned stories
-stories_df = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/cleaned_input_data/jira-{0}-allus.csv".format(project), names=['title', 'key', 'z'])
+stories_df = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/cleaned_input_data/jira-{0}-allus-DS.csv".format(project), names=['title', 'key', 'identif', 'z'])
+stories_df = stories_df[stories_df['identif'] == 1]
+stories_df = stories_df.drop_duplicates(subset=['key'])
 print(len(stories_df))
 
 #Merge story keys and sprints data
@@ -55,8 +57,8 @@ delays_df = delays_df.set_index(pd.DatetimeIndex(delays_df['fields.resolutiondat
 print ("{0} {1} {2}".format(project, "Nr of stories that needed rework:", len(delays_df)))
 
 #Plotting delays
-delays_df['delay_nr'] = 1
-delays_df.resample('W')['delay_nr'].sum().plot()
+delays_df['delay_nr'] = 1/len(stories_df)
+delays_df.resample('SM')['delay_nr'].sum().plot()
 pyplot.show()
 
 delays_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
