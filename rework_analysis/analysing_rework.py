@@ -58,13 +58,27 @@ rework_df = rework_df[rework_df['field'] == 'status']
 #rework_df = rework_df[rework_df['fromString'] == projects['{0}'.format(project)][0]]
 #Selecting Reopened stories
 rework_df = rework_df[rework_df['toString'] == projects['{0}'.format(project)][1]]
-print(len(rework_df))
 
 #Formating and indexing creationtime
 rework_df['created'] = pd.to_datetime(rework_df['created'], utc=True)
 rework_df = rework_df.set_index(pd.DatetimeIndex(rework_df['created']))
 #Adding a row showing the percentage of each separate story 
 rework_df['rework_nr'] = 1/len(stories_df)
+rework_df = rework_df.drop_duplicates(subset=['key'])
+
+
+#reading sprints data
+# sprints_df = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/datasets/jiradataset_sprints.csv")
+# sprints_df = sprints_df[sprints_df['project'] == project]
+# sprints_df = sprints_df[['key', 'sprint.startDate', 'sprint.completeDate']]
+# print('sprints')
+# print(len(sprints_df))
+# #Merge stories with sprint data
+# sprints_rework_df = pd.merge(rework_df, sprints_df, how='left', left_on='key', right_on='key')
+# print('sprints and rework merged')
+# print(len(sprints_rework_df))
+# sprints_rework_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
+
 
 #Printing nr of rework cases
 print ("{0} {1} {2}".format(project, "Nr of rework cases:", len(rework_df)))
