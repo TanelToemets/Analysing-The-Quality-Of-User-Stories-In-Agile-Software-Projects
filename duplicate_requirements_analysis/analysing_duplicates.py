@@ -13,7 +13,7 @@ import datetime
 #timob        +       
 #tistud       +
 
-project = "COMPASS"
+project = "xd"
 
 projects = {
     "xd":           ("fields.resolution.name",  "key", "project",      "fields.created", "jiradataset_issues.csv"), 
@@ -28,7 +28,9 @@ projects = {
 }
 
 #Read cleaned stories
-stories_df = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/cleaned_input_data/jira-{0}-allus.csv".format(project), names=['title', 'key', 'z'])
+stories_df = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/cleaned_input_data/jira-{0}-allus-DS.csv".format(project), names=['title', 'key', 'identif', 'z'])
+stories_df = stories_df[stories_df['identif'] == 0]
+stories_df = stories_df.drop_duplicates(subset=['key'])
 print(len(stories_df))
 
 #Read fields.resolution.name from initial data
@@ -55,8 +57,8 @@ duplicates_df[projects['{0}'.format(project)][3]] = pd.to_datetime(duplicates_df
 duplicates_df = duplicates_df.set_index(pd.DatetimeIndex(duplicates_df[projects['{0}'.format(project)][3]]))
 
 #Plotting duplicates
-duplicates_df['duplicate_nr'] = 1
-duplicates_df.resample('W')['duplicate_nr'].sum().plot()
+duplicates_df['duplicate_nr'] = 1/len(stories_df)
+duplicates_df.resample('SM')['duplicate_nr'].sum().plot()
 pyplot.show()
 
 duplicates_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
