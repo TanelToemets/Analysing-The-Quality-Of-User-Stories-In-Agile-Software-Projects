@@ -14,7 +14,7 @@ import numpy as np
 #timob        +     
 #tistud       +
 
-project = "COMPASS"
+project = "dnn"
 
 projects = {
     "xd":           ("fields.resolutiondate",  "key", "project",      "fields.created", "jiradataset_issues.csv"), 
@@ -56,9 +56,22 @@ duration_df['duration_in_days'] = (duration_df[projects['{0}'.format(project)][0
 #Indexing creationdate
 duration_df = duration_df.set_index(pd.DatetimeIndex(duration_df[projects['{0}'.format(project)][3]]))
 
+#Identifing outliers using standart deviation
+mean_duration_length = np.mean(duration_df['duration_in_days'])
+standart_deviation_story_duration = np.std(duration_df['duration_in_days'])
+duration_df['suitable_duration_length'] = duration_df['duration_in_days'].apply(lambda x: x if x < mean_duration_length + 2 * standart_deviation_story_duration else 0)
+#Removing outliers
+duration_df = duration_df[duration_df.suitable_duration_length != 0]
+print(len(duration_df))
+
+#formating datetime to date for plot readability
+duration_df['fields.created'] = duration_df['fields.created'].dt.date
+
 #Plotting duration
 duration_df.plot(kind='bar', x=projects['{0}'.format(project)][3], y='duration_in_days')
 pyplot.xticks(rotation='vertical')
+pyplot.tight_layout()
+pyplot.locator_params(axis='x', nbins=10)
 pyplot.show()
 
 duration_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
