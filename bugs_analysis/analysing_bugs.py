@@ -2,7 +2,7 @@ import pandas as pd
 from matplotlib import pyplot
 import datetime as dt
 
-project = "xd"
+project = "dnn"
 
 projects = {
     "xd":      ("fields.issuetype.name",  "fields.status.name",                 "jiradataset_issues.csv",         "project",     "fields.created"),
@@ -37,6 +37,8 @@ df3['bugnr'] = 1
 #Plotting bugs
 df3.resample('SM')['bugnr'].sum().plot()
 #df3['20150101':'20160101'].resample('W')['bugnr'].sum().plot()
+#Fixing range for plot
+pyplot.ylim(0, 60)
 pyplot.show()
 
 
