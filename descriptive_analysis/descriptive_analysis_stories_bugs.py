@@ -18,7 +18,7 @@ projects = {
 	"dnn":     ("fields.issuetype.name",  "fields.status.statusCategory.name",  "Done",      "jiradataset_issues.csv",       "project",     "fields.created"),
     "COMPASS": ("issuetype.name",         "status.statusCategory.name",         "Done",      "compass_issues_extracted.csv", "project.key", "created"),
 	"apstud":  ("fields.issuetype.name",  "fields.status.statusCategory.name",  "Done",      "jiradataset_issues.csv",       "project",     "fields.created"),
-    "mesos":  ("fields.issuetype.name",  "fields.status.statusCategory.name",  "Done",      "jiradataset_issues.csv",       "project",     "fields.created"),
+    "mesos":   ("fields.issuetype.name",  "fields.status.statusCategory.name",  "Done",      "jiradataset_issues.csv",       "project",     "fields.created"),
     "mule":    ("fields.issuetype.name",  "fields.status.statusCategory.name",  "Complete",  "jiradataset_issues.csv",       "project",     "fields.created"),
     "nexus":   ("fields.issuetype.name",  "fields.status.statusCategory.name",  "Done",      "jiradataset_issues.csv",       "project",     "fields.created"),
     "timob":   ("fields.issuetype.name",  "fields.status.statusCategory.name",  "Done",      "jiradataset_issues.csv",       "project",     "fields.created"),
@@ -43,7 +43,8 @@ for x in project_list:
     print ("{0} {1} {2}".format(x, "Nr of stories before cleaning:", len(project_initial)))
 
     #Number of stories after cleaning
-    project_cleaned = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/cleaned_input_data/jira-{0}-allus.csv".format(x), names=['title', 'key', 'z'])
+    project_cleaned = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/cleaned_input_data/jira-{0}-allus-DS.csv".format(x), names=['title', 'key', 'z'])
+    project_cleaned = project_cleaned.drop_duplicates(subset=['key'])
     print ("{0} {1} {2}".format(x, "Nr of stories after cleaning:", len(project_cleaned)))
 
     #Number of bugs
