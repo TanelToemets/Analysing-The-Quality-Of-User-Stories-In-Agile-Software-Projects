@@ -1,7 +1,10 @@
 import pandas as pd
 from matplotlib import pyplot
+import numpy as np
 import datetime
 import statsmodels.api as sm
+from statsmodels.graphics.tsaplots import plot_acf
+from statsmodels.graphics.tsaplots import plot_pacf
 
 #Possible projects
 #xd 
@@ -123,6 +126,7 @@ quality_scores = quality.drop_duplicates(subset='key', keep="first")
 quality_scores[["key", "quality"]].to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/quality_scores_data/{0}-quality-scores.csv".format(project), sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
 
 
+#PLOTTING QUALITY BY TWO WEEKS
 # #SM --> semi month (15th and end of month)
 # #W  --> week
 # #Q  --> quarter
@@ -138,20 +142,90 @@ quality_scores[["key", "quality"]].to_csv("C:/Users/Tanel/Documents/Ylikool/Magi
 
 
 
-#TIME SERIES ANAYSIS
+# #TIME SERIES ANAYSIS
+#quality = quality['20130101':'20140101']
 time_series_df = quality[['fields.created', 'quality']]
 #Removing outliers
 time_series_df = time_series_df[time_series_df['quality'] > 0]
 #Indexing date
 time_series_df = time_series_df.set_index('fields.created')
-
-#Decomposing timeseries
+#Decomposing timeseries. freq is the number of days I am considering
+#multiplicative or additive
 decomposition = sm.tsa.seasonal_decompose(time_series_df, freq=14, model = 'multiplicative')
-
 #Plotting
 result = decomposition.plot()
-pyplot.rcParams['figure.figsize'] = [9.0, 5.0]
+#reversing x axis
+ax=pyplot.gca()
+ax.invert_xaxis()
+#pyplot.rcParams['figure.figsize'] = [9.0, 5.0]
 pyplot.show()
 
-#test
-time_series_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
+
+
+#AUTOCORRELATION & PARTIAL-AUTOCORREALTION
+correlation_df = quality[['fields.created', 'quality']]
+correlation_df = correlation_df.set_index('fields.created')
+
+#autocorrelation plot
+plot_acf(correlation_df)
+pyplot.show()
+
+#partial-autocorrelation plot
+plot_pacf(correlation_df)
+pyplot.show()
+
+#TEST
+#time_series_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
+
+
+
+
+
+
+
+#FINDING CROSS-CORRELATION WITH NR OF BUGS
+#Reading the initial dataset
+project_bugs = pd.read_csv('C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/datasets/'+projects['{0}'.format(project)][3])
+#Selecting the project
+project_bugs = project_bugs[project_bugs[projects['{0}'.format(project)][4]] == project]
+#Taking only Bugs that have been Done/Compleated
+DONE = ['Closed', 'Done', 'Resolved', 'Complete']
+df = project_bugs[(project_bugs[projects['{0}'.format(project)][0]] == 'Bug') & (project_bugs[projects['{0}'.format(project)][1]].isin(DONE))]
+print(len(df))
+#Removing duplicates by issuetype, creation time, status and key
+df2 = df[[projects['{0}'.format(project)][0], projects['{0}'.format(project)][5], projects['{0}'.format(project)][1], 'key']].drop_duplicates()
+#Formating and indexing creationtime
+df2[projects['{0}'.format(project)][5]] = pd.to_datetime(df2[projects['{0}'.format(project)][5]], utc=True)
+#df2 = df2.set_index(pd.DatetimeIndex(df2[projects['{0}'.format(project)][5]]))
+
+#adding bugnr to be able to count later
+df2['bugnr'] = 1
+#renaming to make naming same for all projects
+df2 = df2.rename(columns={projects['{0}'.format(project)][5]: 'fields.created'})
+df2 = df2[['fields.created', 'bugnr']]
+#df2.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test2.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
+
+#counting nr of bugs by day
+#crosscorr_bugs_df = df2['bugnr'].groupby(df2['fields.created'].dt.to_period('D')).sum().reset_index()
+crosscorr_bugs_df = df2.groupby(['fields.created']).sum().reset_index()
+
+#crosscorr_bugs_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
+
+#finding cross-correlation between nr of bugs and user story quality
+crosscorr_quality_df = quality[['fields.created', 'quality']]
+crosscorr_bugs_df = crosscorr_bugs_df[['fields.created', 'bugnr']]
+crosscorr_bugs_df = crosscorr_bugs_df.set_index(pd.DatetimeIndex(crosscorr_bugs_df['fields.created']))
+
+print(len(crosscorr_bugs_df))
+crosscorr_bugs_df = crosscorr_bugs_df[:516] #For tring
+print(len(crosscorr_bugs_df))
+print(len(crosscorr_quality_df))
+
+#FIRST TRY WITH PANDAS
+crosscorr_quality_df.apply(crosscorr_bugs_df['bugnr'].corr).plot()
+pyplot.show()
+
+#SECOND TRY WITH NUMPYS
+np.correlate(crosscorr_bugs_df['bugnr'].to_numpy(),crosscorr_quality_df['quality'].to_numpy(),"full")
+pyplot.show()
+
