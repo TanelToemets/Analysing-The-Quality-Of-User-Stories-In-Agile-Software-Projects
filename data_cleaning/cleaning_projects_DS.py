@@ -13,7 +13,7 @@ import numpy as np
 #timob    +
 #tistud   +
 
-project = 'xd'
+project = 'SLICE'
 
 projects = {
     "xd":      ("fields.issuetype.name",  "fields.status.name",                 "jiradataset_issues.csv",       0.7  ),
@@ -25,6 +25,7 @@ projects = {
     "nexus":   ("fields.issuetype.name",  "fields.status.statusCategory.name",  "jiradataset_issues.csv",       2    ),
     "timob":   ("fields.issuetype.name",  "fields.status.statusCategory.name",  "jiradataset_issues.csv",       2    ),
     "tistud":  ("fields.issuetype.name",  "fields.status.statusCategory.name",  "jiradataset_issues.csv",       2    ),
+    "SLICE":   ("issuetype.name",         "status.name",                        "slice_issues_extracted.csv", 2      ),
 }
 
 #Getting user story data
@@ -32,12 +33,12 @@ df = pd.read_csv('C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analys
 
 #Manage field names in order to use one file and improve readabiliy
 def manage_field_names(project, initial_data):
-    if project == 'COMPASS':
+    if project == 'COMPASS' or project == 'SLICE':
         initial_data = initial_data.rename(columns={'description': 'fields.description'})
         initial_data = initial_data.rename(columns={'project.key': 'project'})
         initial_data = initial_data.rename(columns={'issuetype.name': 'fields.issuetype.name'})
         initial_data = initial_data.rename(columns={'summary': 'fields.summary'})
-        print('compass fields managed')
+        print('field names fixed')
     return initial_data
 
 df = manage_field_names(project, df)
@@ -157,6 +158,13 @@ def project_specific_cleaning(project):
         project_save['fields.description'] = project_save['fields.description'].str.split('h3.Reproduction').str[0]
         project_save['fields.description'] = project_save['fields.description'].str.split('h3. Issue').str[0]
         print('tistud special headings removed')
+    elif project == 'SLICE':
+        #Removing unneeded headings from beginning of the description
+        project_save['fields.description'] = project_save['fields.description'].str.replace('h2. Narrative', '')
+        #Removing everything that follows special headings
+        project_save['fields.description'] = project_save['fields.description'].str.split('h2. Back story   ').str[0]
+        project_save['fields.description'] = project_save['fields.description'].str.split('h2.  Back story').str[0]
+        print('slice special headings removed')
     else:
         #For mule, nexus and mesos
         print('No special header cleaning found for this project')
