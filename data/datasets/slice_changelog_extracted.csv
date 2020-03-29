@@ -1,0 +1,722 @@
+field,fieldtype,from,fromString,to,toString,key,created,author
+Workflow,jira,32188,Scrum Workflow,107785,Generic Scrum Workflow,SLICE-107,2015-01-08T13:24:38.194+0000,
+Workflow,jira,31775,Scrum Workflow,107821,Generic Scrum Workflow,SLICE-106,2015-01-08T13:24:38.737+0000,
+Workflow,jira,31774,Scrum Workflow,107826,Generic Scrum Workflow,SLICE-105,2015-01-08T13:24:38.809+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-104,2010-05-23T20:42:34.194+0000,U2
+resolution,jira,,,8,Complete,SLICE-104,2010-05-23T20:43:57.369+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-104,2010-05-23T20:43:57.369+0000,U2
+Workflow,jira,31772,Scrum Workflow,107831,Generic Scrum Workflow,SLICE-104,2015-01-08T13:24:38.880+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-103,2010-05-23T18:45:03.209+0000,U2
+timespent,jira,,,1200,1200,SLICE-103,2010-05-23T19:07:58.951+0000,U2
+timeestimate,jira,,,0,0,SLICE-103,2010-05-23T19:07:58.951+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-103,2010-05-23T20:03:49.544+0000,U2
+resolution,jira,,,8,Complete,SLICE-103,2010-05-23T20:03:49.544+0000,U2
+Workflow,jira,31771,Scrum Workflow,107829,Generic Scrum Workflow,SLICE-103,2015-01-08T13:24:38.852+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-102,2010-05-20T01:48:49.237+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-102,2010-05-20T01:49:59.024+0000,U2
+resolution,jira,,,8,Complete,SLICE-102,2010-05-20T01:49:59.024+0000,U2
+Workflow,jira,31743,Scrum Workflow,107791,Generic Scrum Workflow,SLICE-102,2015-01-08T13:24:38.281+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-101,2010-05-20T00:38:32.155+0000,U2
+timespent,jira,,,3600,3600,SLICE-101,2010-05-20T01:48:37.727+0000,U2
+timeestimate,jira,,,0,0,SLICE-101,2010-05-20T01:48:37.727+0000,U2
+resolution,jira,,,8,Complete,SLICE-101,2010-05-20T01:48:43.584+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-101,2010-05-20T01:48:43.584+0000,U2
+Workflow,jira,31742,Scrum Workflow,107814,Generic Scrum Workflow,SLICE-101,2015-01-08T13:24:38.631+0000,
+summary,jira,,Change the name of the {{ca}} tag to {{constructor-arg}} upon completion of SPR-7218,,Change the name of the ca tag to constructor-arg upon completion of SPR-7218,SLICE-100,2010-05-19T03:07:03.126+0000,U2
+Link,jira,,,SPR-7218,This issue depends on SPR-7218,SLICE-100,2010-05-19T03:07:17.831+0000,U2
+Fix Version,jira,11499,Sprint 7,,,SLICE-100,2010-05-23T18:07:49.803+0000,U2
+Fix Version,jira,,,11502,Sprint 8,SLICE-100,2010-05-23T18:07:49.803+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-100,2010-05-23T18:10:02.876+0000,U2
+timeestimate,jira,,,0,0,SLICE-100,2010-05-23T18:11:23.370+0000,U2
+timespent,jira,,,1800,1800,SLICE-100,2010-05-23T18:11:23.370+0000,U2
+resolution,jira,,,8,Complete,SLICE-100,2010-05-23T18:11:34.644+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-100,2010-05-23T18:11:34.644+0000,U2
+Workflow,jira,31729,Scrum Workflow,107828,Generic Scrum Workflow,SLICE-100,2015-01-08T13:24:38.837+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-99,2010-05-19T01:56:16.335+0000,U2
+timeestimate,jira,,,0,0,SLICE-99,2010-05-19T19:37:23.077+0000,U2
+timespent,jira,,,7200,7200,SLICE-99,2010-05-19T19:37:23.077+0000,U2
+timespent,jira,7200,7200,10800,10800,SLICE-99,2010-05-19T19:37:32.446+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-99,2010-05-19T19:37:39.625+0000,U2
+resolution,jira,,,8,Complete,SLICE-99,2010-05-19T19:37:39.625+0000,U2
+Workflow,jira,31725,Scrum Workflow,107752,Generic Scrum Workflow,SLICE-99,2015-01-08T13:24:37.647+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-98,2010-05-19T01:56:06.342+0000,U2
+timespent,jira,,,600,600,SLICE-98,2010-05-19T21:33:08.663+0000,U2
+timeestimate,jira,,,0,0,SLICE-98,2010-05-19T21:33:08.663+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-98,2010-05-19T21:33:15.188+0000,U2
+resolution,jira,,,8,Complete,SLICE-98,2010-05-19T21:33:15.188+0000,U2
+Workflow,jira,31724,Scrum Workflow,107772,Generic Scrum Workflow,SLICE-98,2015-01-08T13:24:37.973+0000,
+Fix Version,jira,11499,Sprint 7,,,SLICE-97,2010-05-23T18:07:50.669+0000,U2
+Fix Version,jira,,,11502,Sprint 8,SLICE-97,2010-05-23T18:07:50.669+0000,U2
+Workflow,jira,31722,Scrum Workflow,107824,Generic Scrum Workflow,SLICE-97,2015-01-08T13:24:38.781+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-96,2010-05-18T23:15:41.618+0000,U2
+timespent,jira,,,3600,3600,SLICE-96,2010-05-19T00:24:28.669+0000,U2
+timeestimate,jira,,,0,0,SLICE-96,2010-05-19T00:24:28.669+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-96,2010-05-19T00:24:39.364+0000,U2
+resolution,jira,,,8,Complete,SLICE-96,2010-05-19T00:24:39.364+0000,U2
+Workflow,jira,31720,Scrum Workflow,107766,Generic Scrum Workflow,SLICE-96,2015-01-08T13:24:37.871+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-95,2010-05-18T18:19:07.446+0000,U2
+timespent,jira,,,14400,14400,SLICE-95,2010-05-18T23:15:27.715+0000,U2
+timeestimate,jira,,,0,0,SLICE-95,2010-05-18T23:15:27.715+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-95,2010-05-18T23:15:33.411+0000,U2
+resolution,jira,,,8,Complete,SLICE-95,2010-05-18T23:15:33.411+0000,U2
+Workflow,jira,31719,Scrum Workflow,107784,Generic Scrum Workflow,SLICE-95,2015-01-08T13:24:38.168+0000,
+Fix Version,jira,11499,Sprint 7,,,SLICE-94,2010-05-23T18:07:51.116+0000,U2
+Fix Version,jira,,,11502,Sprint 8,SLICE-94,2010-05-23T18:07:51.116+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-94,2010-05-23T18:41:37.980+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-94,2010-05-23T20:44:02.897+0000,U2
+resolution,jira,,,8,Complete,SLICE-94,2010-05-23T20:44:02.897+0000,U2
+Workflow,jira,31713,Scrum Workflow,107825,Generic Scrum Workflow,SLICE-94,2015-01-08T13:24:38.795+0000,
+Fix Version,jira,11499,Sprint 7,,,SLICE-93,2010-05-23T18:07:51.424+0000,U2
+Fix Version,jira,,,11502,Sprint 8,SLICE-93,2010-05-23T18:07:51.424+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-93,2010-05-23T20:44:18.311+0000,U2
+Workflow,jira,31712,Scrum Workflow,107822,Generic Scrum Workflow,SLICE-93,2015-01-08T13:24:38.752+0000,
+Parent Issue,custom,SLICE-89,SLICE-89,SLICE-84,SLICE-84,SLICE-92,2010-05-17T00:27:00.622+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-92,2010-05-17T18:26:14.965+0000,U2
+timeestimate,jira,,,0,0,SLICE-92,2010-05-17T22:51:45.655+0000,U2
+timespent,jira,,,7200,7200,SLICE-92,2010-05-17T22:51:45.655+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-92,2010-05-17T22:51:52.454+0000,U2
+resolution,jira,,,8,Complete,SLICE-92,2010-05-17T22:51:52.454+0000,U2
+Workflow,jira,31700,Scrum Workflow,107833,Generic Scrum Workflow,SLICE-92,2015-01-08T13:24:38.912+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-91,2010-05-17T22:51:58.147+0000,U2
+timeestimate,jira,,,0,0,SLICE-91,2010-05-18T01:53:17.204+0000,U2
+timespent,jira,,,10800,10800,SLICE-91,2010-05-18T01:53:17.204+0000,U2
+resolution,jira,,,8,Complete,SLICE-91,2010-05-18T01:53:25.140+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-91,2010-05-18T01:53:25.140+0000,U2
+Workflow,jira,31699,Scrum Workflow,107768,Generic Scrum Workflow,SLICE-91,2015-01-08T13:24:37.917+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-90,2010-05-17T00:27:44.525+0000,U2
+timespent,jira,,,7200,7200,SLICE-90,2010-05-17T18:25:59.721+0000,U2
+timeestimate,jira,,,0,0,SLICE-90,2010-05-17T18:25:59.721+0000,U2
+resolution,jira,,,8,Complete,SLICE-90,2010-05-17T18:26:06.171+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-90,2010-05-17T18:26:06.171+0000,U2
+Workflow,jira,31698,Scrum Workflow,107827,Generic Scrum Workflow,SLICE-90,2015-01-08T13:24:38.823+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-89,2010-05-18T02:18:47.623+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-89,2010-05-19T00:24:45.927+0000,U2
+resolution,jira,,,8,Complete,SLICE-89,2010-05-19T00:24:45.927+0000,U2
+Workflow,jira,31697,Scrum Workflow,107800,Generic Scrum Workflow,SLICE-89,2015-01-08T13:24:38.406+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-88,2010-05-19T00:33:39.164+0000,U2
+timespent,jira,,,3600,3600,SLICE-88,2010-05-19T01:49:13.430+0000,U2
+timeestimate,jira,,,0,0,SLICE-88,2010-05-19T01:49:13.430+0000,U2
+resolution,jira,,,8,Complete,SLICE-88,2010-05-19T01:49:21.505+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-88,2010-05-19T01:49:21.505+0000,U2
+Workflow,jira,31696,Scrum Workflow,107777,Generic Scrum Workflow,SLICE-88,2015-01-08T13:24:38.043+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-87,2010-05-19T23:00:08.525+0000,U2
+resolution,jira,,,8,Complete,SLICE-87,2010-05-20T01:50:08.642+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-87,2010-05-20T01:50:08.642+0000,U2
+Workflow,jira,31695,Scrum Workflow,107830,Generic Scrum Workflow,SLICE-87,2015-01-08T13:24:38.867+0000,
+Fix Version,jira,11499,Sprint 7,,,SLICE-86,2010-05-23T18:07:51.769+0000,U2
+Fix Version,jira,,,11502,Sprint 8,SLICE-86,2010-05-23T18:07:51.769+0000,U2
+Workflow,jira,31694,Scrum Workflow,107834,Generic Scrum Workflow,SLICE-86,2015-01-08T13:24:38.925+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-85,2010-05-19T01:55:01.288+0000,U2
+resolution,jira,,,8,Complete,SLICE-85,2010-05-19T21:33:26.002+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-85,2010-05-19T21:33:26.002+0000,U2
+Workflow,jira,31693,Scrum Workflow,107832,Generic Scrum Workflow,SLICE-85,2015-01-08T13:24:38.898+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-84,2010-05-17T00:27:51.126+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-84,2010-05-18T01:53:30.769+0000,U2
+resolution,jira,,,8,Complete,SLICE-84,2010-05-18T01:53:30.769+0000,U2
+Workflow,jira,31692,Scrum Workflow,107835,Generic Scrum Workflow,SLICE-84,2015-01-08T13:24:38.939+0000,
+Workflow,jira,31218,Scrum Workflow,107799,Generic Scrum Workflow,SLICE-83,2015-01-08T13:24:38.392+0000,
+Workflow,jira,31207,Scrum Workflow,107779,Generic Scrum Workflow,SLICE-82,2015-01-08T13:24:38.077+0000,
+Workflow,jira,31206,Scrum Workflow,107744,Generic Scrum Workflow,SLICE-81,2015-01-08T13:24:37.514+0000,
+Workflow,jira,31205,Scrum Workflow,107811,Generic Scrum Workflow,SLICE-80,2015-01-08T13:24:38.560+0000,
+Workflow,jira,31203,Scrum Workflow,107786,Generic Scrum Workflow,SLICE-79,2015-01-08T13:24:38.207+0000,
+Attachment,jira,,,16380,SLICE-78.patch,SLICE-78,2010-04-06T00:09:32.693+0000,U3
+Workflow,jira,31201,Scrum Workflow,107787,Generic Scrum Workflow,SLICE-78,2015-01-08T13:24:38.220+0000,
+Workflow,jira,31200,Scrum Workflow,107769,Generic Scrum Workflow,SLICE-77,2015-01-08T13:24:37.930+0000,
+Workflow,jira,31199,Scrum Workflow,107789,Generic Scrum Workflow,SLICE-76,2015-01-08T13:24:38.247+0000,
+Workflow,jira,31197,Scrum Workflow,107836,Generic Scrum Workflow,SLICE-75,2015-01-08T13:24:38.954+0000,
+Workflow,jira,31180,Scrum Workflow,107823,Generic Scrum Workflow,SLICE-74,2015-01-08T13:24:38.765+0000,
+Workflow,jira,31112,Scrum Workflow,107813,Generic Scrum Workflow,SLICE-73,2015-01-08T13:24:38.616+0000,
+Workflow,jira,30995,Scrum Workflow,107819,Generic Scrum Workflow,SLICE-72,2015-01-08T13:24:38.706+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-71,2010-03-10T05:53:26.814+0000,U2
+timeestimate,jira,7200,7200,0,0,SLICE-71,2010-03-10T06:28:32.737+0000,U2
+timespent,jira,,,1800,1800,SLICE-71,2010-03-10T06:28:32.737+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-71,2010-03-10T06:28:41.295+0000,U2
+resolution,jira,,,8,Complete,SLICE-71,2010-03-10T06:28:41.295+0000,U2
+Workflow,jira,30785,Scrum Workflow,107748,Generic Scrum Workflow,SLICE-71,2015-01-08T13:24:37.582+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-70,2010-03-10T07:05:14.851+0000,U2
+Fix Version,jira,11395,1.0.0.M1,,,SLICE-70,2010-03-15T04:48:18.293+0000,U2
+Fix Version,jira,11430,Sprint 5,,,SLICE-70,2010-03-15T04:48:18.293+0000,U2
+Fix Version,jira,11396,1.0.0.RELEASE,,,SLICE-70,2010-03-15T04:48:18.293+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-70,2010-03-18T00:49:19.716+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-70,2010-03-18T00:49:19.716+0000,U2
+Fix Version,jira,,,11435,Sprint 6,SLICE-70,2010-03-18T00:49:19.716+0000,U2
+timeestimate,jira,1800,1800,0,0,SLICE-70,2010-03-18T20:07:27.246+0000,U2
+timespent,jira,,,3600,3600,SLICE-70,2010-03-18T20:07:27.246+0000,U2
+timespent,jira,3600,3600,7200,7200,SLICE-70,2010-03-18T20:07:34.613+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-70,2010-03-18T20:07:40.209+0000,U2
+resolution,jira,,,8,Complete,SLICE-70,2010-03-18T20:07:40.209+0000,U2
+Workflow,jira,30784,Scrum Workflow,107812,Generic Scrum Workflow,SLICE-70,2015-01-08T13:24:38.594+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-69,2010-03-09T05:27:12.968+0000,U2
+timespent,jira,,,3600,3600,SLICE-69,2010-03-10T07:04:54.828+0000,U2
+timeestimate,jira,3600,3600,0,0,SLICE-69,2010-03-10T07:04:54.828+0000,U2
+resolution,jira,,,8,Complete,SLICE-69,2010-03-10T07:05:08.569+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-69,2010-03-10T07:05:08.569+0000,U2
+Workflow,jira,30783,Scrum Workflow,107778,Generic Scrum Workflow,SLICE-69,2015-01-08T13:24:38.057+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-68,2010-03-09T05:26:23.339+0000,U2
+timespent,jira,,,1200,1200,SLICE-68,2010-03-09T05:26:33.244+0000,U2
+timeestimate,jira,1800,1800,0,0,SLICE-68,2010-03-09T05:26:33.244+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-68,2010-03-09T05:26:40.442+0000,U2
+resolution,jira,,,8,Complete,SLICE-68,2010-03-09T05:26:40.442+0000,U2
+Workflow,jira,30782,Scrum Workflow,107796,Generic Scrum Workflow,SLICE-68,2015-01-08T13:24:38.352+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-67,2010-03-06T23:26:01.540+0000,U2
+timespent,jira,,,3600,3600,SLICE-67,2010-03-07T16:01:35.388+0000,U2
+timeestimate,jira,7200,7200,3600,3600,SLICE-67,2010-03-07T16:01:35.388+0000,U2
+timeestimate,jira,3600,3600,0,0,SLICE-67,2010-03-07T16:01:43.678+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-67,2010-03-07T16:01:43.837+0000,U2
+resolution,jira,,,8,Complete,SLICE-67,2010-03-07T16:01:43.837+0000,U2
+Workflow,jira,30781,Scrum Workflow,107808,Generic Scrum Workflow,SLICE-67,2015-01-08T13:24:38.519+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-66,2010-03-06T14:14:52.586+0000,U2
+timeestimate,jira,7200,7200,3600,3600,SLICE-66,2010-03-06T15:00:26.019+0000,U2
+timespent,jira,,,3600,3600,SLICE-66,2010-03-06T15:00:26.019+0000,U2
+timespent,jira,3600,3600,5400,5400,SLICE-66,2010-03-06T23:25:47.561+0000,U2
+timeestimate,jira,3600,3600,1800,1800,SLICE-66,2010-03-06T23:25:47.561+0000,U2
+timeestimate,jira,1800,1800,0,0,SLICE-66,2010-03-06T23:25:55.948+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-66,2010-03-06T23:25:56.315+0000,U2
+resolution,jira,,,8,Complete,SLICE-66,2010-03-06T23:25:56.315+0000,U2
+Workflow,jira,30780,Scrum Workflow,107803,Generic Scrum Workflow,SLICE-66,2015-01-08T13:24:38.449+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-65,2010-03-06T14:12:53.843+0000,U2
+timespent,jira,,,1800,1800,SLICE-65,2010-03-06T14:13:02.769+0000,U2
+timeestimate,jira,1800,1800,0,0,SLICE-65,2010-03-06T14:13:02.769+0000,U2
+resolution,jira,,,8,Complete,SLICE-65,2010-03-06T14:13:12.153+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-65,2010-03-06T14:13:12.153+0000,U2
+Workflow,jira,30779,Scrum Workflow,107745,Generic Scrum Workflow,SLICE-65,2015-01-08T13:24:37.531+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-64,2010-03-06T14:14:43.777+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-64,2010-03-09T05:26:44.588+0000,U2
+resolution,jira,,,8,Complete,SLICE-64,2010-03-09T05:26:44.588+0000,U2
+Workflow,jira,30772,Scrum Workflow,107740,Generic Scrum Workflow,SLICE-64,2015-01-08T13:24:37.434+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-63,2010-03-03T01:59:42.689+0000,U2
+timespent,jira,,,25200,25200,SLICE-63,2010-03-04T02:58:07.822+0000,U2
+timeestimate,jira,14400,14400,0,0,SLICE-63,2010-03-04T02:58:07.822+0000,U2
+resolution,jira,,,8,Complete,SLICE-63,2010-03-04T02:58:14.310+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-63,2010-03-04T02:58:14.310+0000,U2
+Workflow,jira,30721,Scrum Workflow,107792,Generic Scrum Workflow,SLICE-63,2015-01-08T13:24:38.295+0000,
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-62,2010-03-05T02:05:16.705+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-62,2010-03-05T02:05:16.705+0000,U2
+Fix Version,jira,,,11430,Sprint 5,SLICE-62,2010-03-05T02:05:16.705+0000,U2
+Story Points,custom,,,,2,SLICE-62,2010-03-05T02:06:06.503+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-62,2010-03-09T05:26:52.839+0000,U2
+Fix Version,jira,11396,1.0.0.RELEASE,,,SLICE-62,2010-03-15T04:48:18.616+0000,U2
+Fix Version,jira,11430,Sprint 5,,,SLICE-62,2010-03-15T04:48:18.616+0000,U2
+Fix Version,jira,11395,1.0.0.M1,,,SLICE-62,2010-03-15T04:48:18.616+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-62,2010-03-18T00:49:20.145+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-62,2010-03-18T00:49:20.145+0000,U2
+Fix Version,jira,,,11435,Sprint 6,SLICE-62,2010-03-18T00:49:20.145+0000,U2
+resolution,jira,,,8,Complete,SLICE-62,2010-03-18T20:07:47.875+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-62,2010-03-18T20:07:47.875+0000,U2
+Workflow,jira,30718,Scrum Workflow,107817,Generic Scrum Workflow,SLICE-62,2015-01-08T13:24:38.677+0000,
+Fix Version,jira,,,11430,Sprint 5,SLICE-61,2010-03-05T02:05:16.519+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-61,2010-03-05T02:05:16.519+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-61,2010-03-05T02:05:16.519+0000,U2
+Story Points,custom,,,,2,SLICE-61,2010-03-05T02:06:23.310+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-61,2010-03-06T14:12:50.271+0000,U2
+resolution,jira,,,8,Complete,SLICE-61,2010-03-06T14:13:20.906+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-61,2010-03-06T14:13:20.906+0000,U2
+Workflow,jira,30717,Scrum Workflow,107790,Generic Scrum Workflow,SLICE-61,2015-01-08T13:24:38.267+0000,
+reporter,jira,nebhale,Ben Hale,david_syer,Dave Syer,SLICE-60,2010-03-01T23:02:05.159+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-60,2010-03-05T02:05:16.315+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-60,2010-03-05T02:05:16.315+0000,U2
+Fix Version,jira,,,11430,Sprint 5,SLICE-60,2010-03-05T02:05:16.315+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-60,2010-03-10T05:53:22.251+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-60,2010-03-10T06:28:45.866+0000,U2
+resolution,jira,,,8,Complete,SLICE-60,2010-03-10T06:28:45.866+0000,U2
+Workflow,jira,30695,Scrum Workflow,107818,Generic Scrum Workflow,SLICE-60,2015-01-08T13:24:38.692+0000,
+Workflow,jira,30677,Scrum Workflow,107807,Generic Scrum Workflow,SLICE-59,2015-01-08T13:24:38.505+0000,
+Workflow,jira,30676,Scrum Workflow,107798,Generic Scrum Workflow,SLICE-58,2015-01-08T13:24:38.379+0000,
+Workflow,jira,30675,Scrum Workflow,107805,Generic Scrum Workflow,SLICE-57,2015-01-08T13:24:38.477+0000,
+Workflow,jira,30674,Scrum Workflow,107757,Generic Scrum Workflow,SLICE-56,2015-01-08T13:24:37.732+0000,
+Workflow,jira,30673,Scrum Workflow,107816,Generic Scrum Workflow,SLICE-55,2015-01-08T13:24:38.662+0000,
+Workflow,jira,30672,Scrum Workflow,107749,Generic Scrum Workflow,SLICE-54,2015-01-08T13:24:37.597+0000,
+Workflow,jira,30671,Scrum Workflow,107761,Generic Scrum Workflow,SLICE-53,2015-01-08T13:24:37.791+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-52,2010-03-02T03:27:43.880+0000,U2
+timeestimate,jira,7200,7200,0,0,SLICE-52,2010-03-03T01:21:39.641+0000,U2
+timespent,jira,,,7200,7200,SLICE-52,2010-03-03T01:21:39.641+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-52,2010-03-03T01:21:45.861+0000,U2
+resolution,jira,,,8,Complete,SLICE-52,2010-03-03T01:21:45.861+0000,U2
+Workflow,jira,30670,Scrum Workflow,107794,Generic Scrum Workflow,SLICE-52,2015-01-08T13:24:38.324+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-51,2010-03-02T03:12:12.724+0000,U2
+timeestimate,jira,7200,7200,0,0,SLICE-51,2010-03-02T03:17:18.978+0000,U2
+timespent,jira,,,60,60,SLICE-51,2010-03-02T03:17:18.978+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-51,2010-03-02T03:17:19.134+0000,U2
+resolution,jira,,,8,Complete,SLICE-51,2010-03-02T03:17:19.134+0000,U2
+resolution,jira,8,Complete,,,SLICE-51,2010-03-02T21:40:28.679+0000,U2
+status,jira,10001,Done,3,In Progress,SLICE-51,2010-03-02T21:40:28.679+0000,U2
+resolution,jira,,,8,Complete,SLICE-51,2010-03-03T00:21:24.290+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-51,2010-03-03T00:21:24.290+0000,U2
+Workflow,jira,30669,Scrum Workflow,107765,Generic Scrum Workflow,SLICE-51,2015-01-08T13:24:37.857+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-50,2010-03-02T01:10:59.055+0000,U2
+status,jira,3,In Progress,10000,To Do,SLICE-50,2010-03-02T01:11:09.240+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-50,2010-03-02T02:33:10.913+0000,U2
+timeestimate,jira,7200,7200,3600,3600,SLICE-50,2010-03-02T03:11:54.371+0000,U2
+timespent,jira,,,3600,3600,SLICE-50,2010-03-02T03:11:54.371+0000,U2
+timeestimate,jira,3600,3600,0,0,SLICE-50,2010-03-02T03:12:05.810+0000,U2
+resolution,jira,,,8,Complete,SLICE-50,2010-03-02T03:12:05.963+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-50,2010-03-02T03:12:05.963+0000,U2
+status,jira,10001,Done,3,In Progress,SLICE-50,2010-03-02T21:40:24.360+0000,U2
+resolution,jira,8,Complete,,,SLICE-50,2010-03-02T21:40:24.360+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-50,2010-03-03T01:21:52.783+0000,U2
+resolution,jira,,,8,Complete,SLICE-50,2010-03-03T01:21:52.783+0000,U2
+Workflow,jira,30668,Scrum Workflow,107773,Generic Scrum Workflow,SLICE-50,2015-01-08T13:24:37.987+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-47,2010-03-04T23:02:37.872+0000,U2
+timeestimate,jira,1800,1800,0,0,SLICE-47,2010-03-04T23:20:30.457+0000,U2
+timespent,jira,,,1800,1800,SLICE-47,2010-03-04T23:20:30.457+0000,U2
+resolution,jira,,,8,Complete,SLICE-47,2010-03-04T23:20:37.948+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-47,2010-03-04T23:20:37.948+0000,U2
+Workflow,jira,30665,Scrum Workflow,107746,Generic Scrum Workflow,SLICE-47,2015-01-08T13:24:37.545+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-46,2010-03-04T02:59:25.293+0000,U2
+timeestimate,jira,1800,1800,0,0,SLICE-46,2010-03-04T23:02:23.982+0000,U2
+timespent,jira,,,7200,7200,SLICE-46,2010-03-04T23:02:23.982+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-46,2010-03-04T23:02:32.372+0000,U2
+resolution,jira,,,8,Complete,SLICE-46,2010-03-04T23:02:32.372+0000,U2
+Workflow,jira,30664,Scrum Workflow,107788,Generic Scrum Workflow,SLICE-46,2015-01-08T13:24:38.234+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-45,2010-03-05T00:05:07.535+0000,U2
+timespent,jira,,,1800,1800,SLICE-45,2010-03-05T00:26:56.979+0000,U2
+timeestimate,jira,1800,1800,0,0,SLICE-45,2010-03-05T00:26:56.979+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-45,2010-03-05T00:27:04.297+0000,U2
+resolution,jira,,,8,Complete,SLICE-45,2010-03-05T00:27:04.297+0000,U2
+Workflow,jira,30663,Scrum Workflow,107771,Generic Scrum Workflow,SLICE-45,2015-01-08T13:24:37.959+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-44,2010-03-04T23:21:01.979+0000,U2
+timeestimate,jira,1800,1800,0,0,SLICE-44,2010-03-05T00:04:53.894+0000,U2
+timespent,jira,,,1800,1800,SLICE-44,2010-03-05T00:04:53.894+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-44,2010-03-05T00:05:02.610+0000,U2
+resolution,jira,,,8,Complete,SLICE-44,2010-03-05T00:05:02.610+0000,U2
+Workflow,jira,30662,Scrum Workflow,107804,Generic Scrum Workflow,SLICE-44,2015-01-08T13:24:38.463+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-43,2010-03-03T01:45:48.274+0000,U2
+timespent,jira,,,1800,1800,SLICE-43,2010-03-03T01:56:46.252+0000,U2
+timeestimate,jira,7200,7200,5400,5400,SLICE-43,2010-03-03T01:56:46.252+0000,U2
+timeestimate,jira,5400,5400,0,0,SLICE-43,2010-03-03T01:59:37.121+0000,U2
+resolution,jira,,,8,Complete,SLICE-43,2010-03-03T01:59:37.318+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-43,2010-03-03T01:59:37.318+0000,U2
+Workflow,jira,30661,Scrum Workflow,107795,Generic Scrum Workflow,SLICE-43,2015-01-08T13:24:38.338+0000,
+Parent Issue,custom,SLICE-40,SLICE-40,SLICE-48,SLICE-48,SLICE-42,2010-03-01T02:07:04.125+0000,U2
+Parent Issue,custom,SLICE-48,SLICE-48,SLICE-28,SLICE-28,SLICE-42,2010-03-01T02:08:34.685+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-42,2010-03-02T01:27:32.171+0000,U2
+timespent,jira,,,3600,3600,SLICE-42,2010-03-02T02:31:26.239+0000,U2
+timeestimate,jira,7200,7200,3600,3600,SLICE-42,2010-03-02T02:31:26.239+0000,U2
+timeestimate,jira,3600,3600,0,0,SLICE-42,2010-03-02T02:31:31.977+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-42,2010-03-02T02:31:32.108+0000,U2
+resolution,jira,,,8,Complete,SLICE-42,2010-03-02T02:31:32.108+0000,U2
+resolution,jira,8,Complete,,,SLICE-42,2010-03-02T21:40:17.829+0000,U2
+status,jira,10001,Done,3,In Progress,SLICE-42,2010-03-02T21:40:17.829+0000,U2
+resolution,jira,,,8,Complete,SLICE-42,2010-03-03T01:21:18.303+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-42,2010-03-03T01:21:18.303+0000,U2
+Workflow,jira,30660,Scrum Workflow,107801,Generic Scrum Workflow,SLICE-42,2015-01-08T13:24:38.420+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-41,2010-03-04T03:30:59.545+0000,U2
+resolution,jira,,,8,Complete,SLICE-41,2010-03-05T00:27:10.062+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-41,2010-03-05T00:27:10.062+0000,U2
+Workflow,jira,30659,Scrum Workflow,107751,Generic Scrum Workflow,SLICE-41,2015-01-08T13:24:37.625+0000,
+summary,jira,,Create a FactoryBean that exports a service to the service registry,,Create a facility to retrieve service registry,SLICE-40,2010-03-01T02:07:34.912+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-40,2010-03-03T01:22:59.945+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-40,2010-03-04T02:59:16.424+0000,U2
+resolution,jira,,,8,Complete,SLICE-40,2010-03-04T02:59:16.424+0000,U2
+Workflow,jira,30658,Scrum Workflow,107793,Generic Scrum Workflow,SLICE-40,2015-01-08T13:24:38.310+0000,
+Parent Issue,custom,SLICE-31,SLICE-31,SLICE-48,SLICE-48,SLICE-37,2010-03-01T02:06:54.450+0000,U2
+Parent Issue,custom,SLICE-48,SLICE-48,SLICE-28,SLICE-28,SLICE-37,2010-03-01T02:08:34.370+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-37,2010-03-02T01:12:41.021+0000,U2
+timeestimate,jira,7200,7200,5400,5400,SLICE-37,2010-03-02T01:27:17.203+0000,U2
+timespent,jira,,,1800,1800,SLICE-37,2010-03-02T01:27:17.203+0000,U2
+timeestimate,jira,5400,5400,0,0,SLICE-37,2010-03-02T01:27:24.063+0000,U2
+resolution,jira,,,8,Complete,SLICE-37,2010-03-02T01:27:24.201+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-37,2010-03-02T01:27:24.201+0000,U2
+resolution,jira,8,Complete,,,SLICE-37,2010-03-02T21:40:12.158+0000,U2
+status,jira,10001,Done,3,In Progress,SLICE-37,2010-03-02T21:40:12.158+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-37,2010-03-03T01:22:00.276+0000,U2
+resolution,jira,,,8,Complete,SLICE-37,2010-03-03T01:22:00.276+0000,U2
+Workflow,jira,30655,Scrum Workflow,107755,Generic Scrum Workflow,SLICE-37,2015-01-08T13:24:37.695+0000,
+Parent Issue,custom,SLICE-31,SLICE-31,SLICE-48,SLICE-48,SLICE-36,2010-03-01T02:06:45.687+0000,U2
+Parent Issue,custom,SLICE-48,SLICE-48,SLICE-28,SLICE-28,SLICE-36,2010-03-01T02:08:34.056+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-36,2010-03-01T03:16:12.178+0000,U2
+timeestimate,jira,3600,3600,0,0,SLICE-36,2010-03-02T01:11:50.411+0000,U2
+timespent,jira,,,3600,3600,SLICE-36,2010-03-02T01:11:50.411+0000,U2
+resolution,jira,,,8,Complete,SLICE-36,2010-03-02T01:11:58.732+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-36,2010-03-02T01:11:58.732+0000,U2
+status,jira,10001,Done,3,In Progress,SLICE-36,2010-03-02T21:40:05.770+0000,U2
+resolution,jira,8,Complete,,,SLICE-36,2010-03-02T21:40:05.770+0000,U2
+resolution,jira,,,8,Complete,SLICE-36,2010-03-03T01:21:11.846+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-36,2010-03-03T01:21:11.846+0000,U2
+Workflow,jira,30654,Scrum Workflow,107767,Generic Scrum Workflow,SLICE-36,2015-01-08T13:24:37.898+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-35,2010-02-24T02:38:21.931+0000,U2
+timeestimate,jira,14400,14400,0,0,SLICE-35,2010-02-25T22:38:26.085+0000,U2
+timespent,jira,,,14400,14400,SLICE-35,2010-02-25T22:38:26.085+0000,U2
+resolution,jira,,,8,Complete,SLICE-35,2010-02-25T22:39:05.911+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-35,2010-02-25T22:39:05.911+0000,U2
+Workflow,jira,30580,Scrum Workflow,107742,Generic Scrum Workflow,SLICE-35,2015-01-08T13:24:37.470+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-34,2010-02-24T02:27:30.520+0000,U2
+timeestimate,jira,1800,1800,1200,1200,SLICE-34,2010-02-24T02:27:54.920+0000,U2
+timespent,jira,,,600,600,SLICE-34,2010-02-24T02:27:54.920+0000,U2
+timeestimate,jira,1200,1200,0,0,SLICE-34,2010-02-24T02:33:07.204+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-34,2010-02-24T02:33:07.355+0000,U2
+resolution,jira,,,8,Complete,SLICE-34,2010-02-24T02:33:07.355+0000,U2
+Workflow,jira,30579,Scrum Workflow,107736,Generic Scrum Workflow,SLICE-34,2015-01-08T13:24:37.303+0000,
+status,jira,10000,To Do,3,In Progress,SLICE-33,2010-02-24T01:48:50.025+0000,U2
+timeestimate,jira,1800,1800,600,600,SLICE-33,2010-02-24T02:27:42.279+0000,U2
+timespent,jira,,,1200,1200,SLICE-33,2010-02-24T02:27:42.279+0000,U2
+timeestimate,jira,600,600,0,0,SLICE-33,2010-02-24T02:32:59.998+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-33,2010-02-24T02:33:00.304+0000,U2
+resolution,jira,,,8,Complete,SLICE-33,2010-02-24T02:33:00.304+0000,U2
+Workflow,jira,30578,Scrum Workflow,107756,Generic Scrum Workflow,SLICE-33,2015-01-08T13:24:37.718+0000,
+Link,jira,,,SLICE-28,This issue is depended on by SLICE-28,SLICE-30,2010-02-24T01:15:20.308+0000,U2
+Link,jira,,,SLICE-29,This issue is depended on by SLICE-29,SLICE-30,2010-02-24T01:15:33.835+0000,U2
+description,jira,,,,Blueprint schema is located at http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd,SLICE-30,2010-02-24T01:21:44.299+0000,U2
+Fix Version,jira,11419,Sprint 3,,,SLICE-30,2010-02-24T01:22:21.305+0000,U2
+Fix Version,jira,11395,1.0.0.M1,,,SLICE-30,2010-02-24T01:22:21.305+0000,U2
+Fix Version,jira,11396,1.0.0.RELEASE,,,SLICE-30,2010-02-24T01:22:21.305+0000,U2
+Story Points,custom,,,,3,SLICE-30,2010-02-24T01:30:03.517+0000,U2
+Fix Version,jira,,,11419,Sprint 3,SLICE-30,2010-02-24T01:33:47.264+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-30,2010-02-24T01:33:47.264+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-30,2010-02-24T01:33:47.264+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-30,2010-02-24T02:33:22.794+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-30,2010-02-25T22:40:05.254+0000,U2
+resolution,jira,,,8,Complete,SLICE-30,2010-02-25T22:40:05.254+0000,U2
+Workflow,jira,30575,Scrum Workflow,107750,Generic Scrum Workflow,SLICE-30,2015-01-08T13:24:37.611+0000,
+Link,jira,,,SLICE-30,This issue depends on SLICE-30,SLICE-29,2010-02-24T01:15:33.811+0000,U2
+Fix Version,jira,11419,Sprint 3,,,SLICE-29,2010-02-24T01:22:21.492+0000,U2
+Fix Version,jira,11396,1.0.0.RELEASE,,,SLICE-29,2010-02-24T01:22:21.492+0000,U2
+Fix Version,jira,11395,1.0.0.M1,,,SLICE-29,2010-02-24T01:22:21.492+0000,U2
+Link,jira,,,SLICE-32,This issue depends on SLICE-32,SLICE-29,2010-02-24T01:32:12.355+0000,U2
+Fix Version,jira,,,11426,Sprint 4,SLICE-29,2010-03-01T02:08:16.567+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-29,2010-03-01T02:08:16.567+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-29,2010-03-01T02:08:16.567+0000,U2
+Story Points,custom,,,,4,SLICE-29,2010-03-01T02:09:19.932+0000,U2
+Link,jira,SLICE-32,This issue depends on SLICE-32,,,SLICE-29,2010-03-01T02:13:42.767+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-29,2010-03-02T02:33:06.194+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-29,2010-03-03T01:22:09.767+0000,U2
+resolution,jira,,,8,Complete,SLICE-29,2010-03-03T01:22:09.767+0000,U2
+Workflow,jira,30574,Scrum Workflow,107760,Generic Scrum Workflow,SLICE-29,2015-01-08T13:24:37.778+0000,
+Link,jira,,,SLICE-30,This issue depends on SLICE-30,SLICE-28,2010-02-24T01:15:20.272+0000,U2
+Fix Version,jira,11395,1.0.0.M1,,,SLICE-28,2010-02-24T01:22:21.693+0000,U2
+Fix Version,jira,11396,1.0.0.RELEASE,,,SLICE-28,2010-02-24T01:22:21.693+0000,U2
+Fix Version,jira,11419,Sprint 3,,,SLICE-28,2010-02-24T01:22:21.693+0000,U2
+Link,jira,,,SLICE-31,This issue depends on SLICE-31,SLICE-28,2010-02-24T01:32:45.349+0000,U2
+Fix Version,jira,,,11426,Sprint 4,SLICE-28,2010-03-01T02:08:11.221+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-28,2010-03-01T02:08:11.221+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-28,2010-03-01T02:08:11.221+0000,U2
+Story Points,custom,,,,4,SLICE-28,2010-03-01T02:09:06.216+0000,U2
+Link,jira,SLICE-31,This issue depends on SLICE-31,,,SLICE-28,2010-03-01T02:13:30.073+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-28,2010-03-01T03:45:10.748+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-28,2010-03-02T02:31:42.028+0000,U2
+resolution,jira,,,8,Complete,SLICE-28,2010-03-02T02:31:42.028+0000,U2
+resolution,jira,8,Complete,,,SLICE-28,2010-03-02T21:39:49.655+0000,U2
+status,jira,10001,Done,3,In Progress,SLICE-28,2010-03-02T21:39:49.655+0000,U2
+resolution,jira,,,8,Complete,SLICE-28,2010-03-03T01:22:05.488+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-28,2010-03-03T01:22:05.488+0000,U2
+Workflow,jira,30573,Scrum Workflow,107758,Generic Scrum Workflow,SLICE-28,2015-01-08T13:24:37.746+0000,
+summary,jira,,Start each slice on a separate thread,,Start and stop each slice on a separate thread,SLICE-27,2010-02-24T01:06:22.472+0000,U2
+Fix Version,jira,11419,Sprint 3,,,SLICE-27,2010-02-24T01:22:21.909+0000,U2
+Fix Version,jira,11396,1.0.0.RELEASE,,,SLICE-27,2010-02-24T01:22:21.909+0000,U2
+Fix Version,jira,11395,1.0.0.M1,,,SLICE-27,2010-02-24T01:22:21.909+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-27,2010-02-24T01:33:47.468+0000,U2
+Fix Version,jira,,,11419,Sprint 3,SLICE-27,2010-02-24T01:33:47.468+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-27,2010-02-24T01:33:47.468+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-27,2010-02-24T01:45:37.401+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-27,2010-02-24T02:33:18.286+0000,U2
+resolution,jira,,,8,Complete,SLICE-27,2010-02-24T02:33:18.286+0000,U2
+Workflow,jira,30572,Scrum Workflow,107754,Generic Scrum Workflow,SLICE-27,2015-01-08T13:24:37.680+0000,
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-26,2010-02-24T01:25:04.721+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-26,2010-02-24T01:25:04.721+0000,U2
+Fix Version,jira,,,11419,Sprint 3,SLICE-26,2010-02-24T01:25:04.721+0000,U2
+assignee,jira,,,nebhale,Ben Hale,SLICE-26,2010-02-24T01:25:26.047+0000,U2
+Story Points,custom,,,,0.5,SLICE-26,2010-02-24T01:28:02.892+0000,U2
+timeoriginalestimate,jira,,,600,600,SLICE-26,2010-02-24T01:28:11.533+0000,U2
+timeestimate,jira,,,600,600,SLICE-26,2010-02-24T01:28:11.533+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-26,2010-02-24T01:28:16.685+0000,U2
+timeestimate,jira,600,600,0,0,SLICE-26,2010-02-24T23:06:24.538+0000,U2
+timespent,jira,,,60,60,SLICE-26,2010-02-24T23:06:24.538+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-26,2010-02-24T23:06:25.350+0000,U2
+resolution,jira,,,8,Complete,SLICE-26,2010-02-24T23:06:25.350+0000,U2
+Workflow,jira,30557,Scrum Workflow,107763,Generic Scrum Workflow,SLICE-26,2015-01-08T13:24:37.824+0000,
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-25,2010-02-22T22:47:23.895+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-25,2010-02-22T22:47:23.895+0000,U2
+Fix Version,jira,,,11419,Sprint 3,SLICE-25,2010-02-22T22:47:23.895+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-25,2010-02-22T23:20:52.486+0000,U2
+timespent,jira,,,1200,1200,SLICE-25,2010-02-22T23:57:28.166+0000,U2
+timeestimate,jira,1800,1800,600,600,SLICE-25,2010-02-22T23:57:28.166+0000,U2
+timeestimate,jira,600,600,0,0,SLICE-25,2010-02-22T23:57:34.698+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-25,2010-02-22T23:57:34.840+0000,U2
+resolution,jira,,,8,Complete,SLICE-25,2010-02-22T23:57:34.840+0000,U2
+Workflow,jira,30553,Scrum Workflow,107738,Generic Scrum Workflow,SLICE-25,2015-01-08T13:24:37.376+0000,
+Attachment,jira,,,16222,0002-SLICE-24-tidy-up-maven-build-a-bit.patch,SLICE-24,2010-02-22T22:39:21.731+0000,U3
+Attachment,jira,,,16221,0001-ANT-Maven-typo.patch,SLICE-24,2010-02-22T22:39:21.731+0000,U3
+Story Points,custom,,,,1,SLICE-24,2010-02-22T22:46:56.328+0000,U2
+Fix Version,jira,,,11419,Sprint 3,SLICE-24,2010-02-22T22:47:23.691+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-24,2010-02-22T22:47:23.691+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-24,2010-02-22T22:47:23.691+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-24,2010-02-22T23:20:48.626+0000,U2
+resolution,jira,,,8,Complete,SLICE-24,2010-02-22T23:57:44.726+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-24,2010-02-22T23:57:44.726+0000,U2
+Workflow,jira,30552,Scrum Workflow,107820,Generic Scrum Workflow,SLICE-24,2015-01-08T13:24:38.723+0000,
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-23,2010-02-19T00:01:17.773+0000,U2
+Fix Version,jira,,,11416,Sprint 2,SLICE-23,2010-02-19T00:01:17.773+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-23,2010-02-19T00:01:17.773+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-23,2010-02-19T00:02:01.105+0000,U2
+timeestimate,jira,1800,1800,1200,1200,SLICE-23,2010-02-19T00:21:20.877+0000,U2
+timespent,jira,,,600,600,SLICE-23,2010-02-19T00:21:20.877+0000,U2
+timeestimate,jira,1200,1200,0,0,SLICE-23,2010-02-19T00:22:06.117+0000,U2
+resolution,jira,,,8,Complete,SLICE-23,2010-02-19T00:22:06.307+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-23,2010-02-19T00:22:06.307+0000,U2
+Workflow,jira,30492,Scrum Workflow,107775,Generic Scrum Workflow,SLICE-23,2015-01-08T13:24:38.015+0000,
+Fix Version,jira,,,11416,Sprint 2,SLICE-22,2010-02-19T00:01:17.319+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-22,2010-02-19T00:01:17.319+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-22,2010-02-19T00:01:17.319+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-22,2010-02-19T00:05:38.903+0000,U2
+timespent,jira,,,600,600,SLICE-22,2010-02-19T00:21:42.101+0000,U2
+timeestimate,jira,1800,1800,1200,1200,SLICE-22,2010-02-19T00:21:42.101+0000,U2
+timeestimate,jira,1200,1200,0,0,SLICE-22,2010-02-19T00:21:56.296+0000,U2
+resolution,jira,,,8,Complete,SLICE-22,2010-02-19T00:21:56.483+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-22,2010-02-19T00:21:56.483+0000,U2
+Workflow,jira,30491,Scrum Workflow,107774,Generic Scrum Workflow,SLICE-22,2015-01-08T13:24:38.001+0000,
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-21,2010-02-19T00:01:17.535+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-21,2010-02-19T00:01:17.535+0000,U2
+Fix Version,jira,,,11416,Sprint 2,SLICE-21,2010-02-19T00:01:17.535+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-21,2010-02-19T00:05:33.791+0000,U2
+timespent,jira,,,600,600,SLICE-21,2010-02-19T00:23:16.143+0000,U2
+timeestimate,jira,3600,3600,3000,3000,SLICE-21,2010-02-19T00:23:16.143+0000,U2
+timeestimate,jira,3000,3000,0,0,SLICE-21,2010-02-19T00:23:23.472+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-21,2010-02-19T00:23:23.588+0000,U2
+resolution,jira,,,8,Complete,SLICE-21,2010-02-19T00:23:23.588+0000,U2
+Workflow,jira,30490,Scrum Workflow,107781,Generic Scrum Workflow,SLICE-21,2015-01-08T13:24:38.120+0000,
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-20,2010-02-19T00:01:17.052+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-20,2010-02-19T00:01:17.052+0000,U2
+Fix Version,jira,,,11416,Sprint 2,SLICE-20,2010-02-19T00:01:17.052+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-20,2010-02-19T00:01:57.062+0000,U2
+resolution,jira,,,8,Complete,SLICE-20,2010-02-19T00:23:32.016+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-20,2010-02-19T00:23:32.016+0000,U2
+Workflow,jira,30489,Scrum Workflow,107759,Generic Scrum Workflow,SLICE-20,2015-01-08T13:24:37.764+0000,
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-19,2010-02-14T22:42:30.937+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-19,2010-02-14T22:42:30.937+0000,U2
+Fix Version,jira,,,11416,Sprint 2,SLICE-19,2010-02-14T22:42:30.937+0000,U2
+assignee,jira,,,nebhale,Ben Hale,SLICE-19,2010-02-14T22:44:28.160+0000,U2
+Fix Version,jira,11395,1.0.0.M1,,,SLICE-19,2010-02-14T22:52:35.934+0000,
+Fix Version,jira,11396,1.0.0.RELEASE,,,SLICE-19,2010-02-14T22:52:35.934+0000,
+Fix Version,jira,11416,Sprint 2,,,SLICE-19,2010-02-14T22:52:35.934+0000,
+Fix Version,jira,,,11419,Sprint 3,SLICE-19,2010-02-21T19:45:57.504+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-19,2010-02-21T19:45:57.504+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-19,2010-02-21T19:45:57.504+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-19,2010-02-22T23:58:40.616+0000,U2
+timespent,jira,,,1800,1800,SLICE-19,2010-02-23T00:27:58.670+0000,U2
+timeestimate,jira,14400,14400,12600,12600,SLICE-19,2010-02-23T00:27:58.670+0000,U2
+timeestimate,jira,12600,12600,0,0,SLICE-19,2010-02-23T00:28:23.350+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-19,2010-02-23T00:28:23.509+0000,U2
+resolution,jira,,,8,Complete,SLICE-19,2010-02-23T00:28:23.509+0000,U2
+Workflow,jira,30422,Scrum Workflow,107809,Generic Scrum Workflow,SLICE-19,2015-01-08T13:24:38.533+0000,
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-18,2010-02-14T22:42:30.612+0000,U2
+Fix Version,jira,,,11416,Sprint 2,SLICE-18,2010-02-14T22:42:30.612+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-18,2010-02-14T22:42:30.612+0000,U2
+assignee,jira,,,nebhale,Ben Hale,SLICE-18,2010-02-14T22:44:56.517+0000,U2
+Fix Version,jira,11396,1.0.0.RELEASE,,,SLICE-18,2010-02-14T22:52:44.181+0000,
+Fix Version,jira,11416,Sprint 2,,,SLICE-18,2010-02-14T22:52:44.181+0000,
+Fix Version,jira,11395,1.0.0.M1,,,SLICE-18,2010-02-14T22:52:44.181+0000,
+Fix Version,jira,,,11419,Sprint 3,SLICE-18,2010-02-21T19:45:57.329+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-18,2010-02-21T19:45:57.329+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-18,2010-02-21T19:45:57.329+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-18,2010-02-23T00:30:33.985+0000,U2
+timespent,jira,,,1800,1800,SLICE-18,2010-02-23T00:46:42.400+0000,U2
+timeestimate,jira,14400,14400,0,0,SLICE-18,2010-02-23T00:46:42.400+0000,U2
+resolution,jira,,,8,Complete,SLICE-18,2010-02-23T00:46:48.437+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-18,2010-02-23T00:46:48.437+0000,U2
+Workflow,jira,30421,Scrum Workflow,107743,Generic Scrum Workflow,SLICE-18,2015-01-08T13:24:37.492+0000,
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-17,2010-02-14T22:42:30.390+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-17,2010-02-14T22:42:30.390+0000,U2
+Fix Version,jira,,,11416,Sprint 2,SLICE-17,2010-02-14T22:42:30.390+0000,U2
+assignee,jira,,,nebhale,Ben Hale,SLICE-17,2010-02-14T22:45:01.634+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-17,2010-02-19T00:23:45.041+0000,U2
+Fix Version,jira,11416,Sprint 2,,,SLICE-17,2010-02-21T19:44:50.220+0000,U2
+Fix Version,jira,,,11419,Sprint 3,SLICE-17,2010-02-21T19:44:50.220+0000,U2
+timespent,jira,,,10800,10800,SLICE-17,2010-02-21T21:01:31.996+0000,U2
+timeestimate,jira,14400,14400,3600,3600,SLICE-17,2010-02-21T21:01:31.996+0000,U2
+timeestimate,jira,3600,3600,0,0,SLICE-17,2010-02-21T21:01:48.775+0000,U2
+timespent,jira,10800,10800,14400,14400,SLICE-17,2010-02-21T21:01:48.775+0000,U2
+resolution,jira,,,8,Complete,SLICE-17,2010-02-21T21:01:57.959+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-17,2010-02-21T21:01:57.959+0000,U2
+Workflow,jira,30420,Scrum Workflow,107797,Generic Scrum Workflow,SLICE-17,2015-01-08T13:24:38.366+0000,
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-16,2010-02-14T22:42:29.882+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-16,2010-02-14T22:42:29.882+0000,U2
+Fix Version,jira,,,11416,Sprint 2,SLICE-16,2010-02-14T22:42:29.882+0000,U2
+assignee,jira,,,nebhale,Ben Hale,SLICE-16,2010-02-14T22:45:07.619+0000,U2
+Fix Version,jira,,,11419,Sprint 3,SLICE-16,2010-02-21T19:44:50.460+0000,U2
+Fix Version,jira,11416,Sprint 2,,,SLICE-16,2010-02-21T19:44:50.460+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-16,2010-02-21T21:02:37.077+0000,U2
+timespent,jira,,,3600,3600,SLICE-16,2010-02-21T21:43:46.854+0000,U2
+timeestimate,jira,14400,14400,10800,10800,SLICE-16,2010-02-21T21:43:46.854+0000,U2
+timeestimate,jira,10800,10800,0,0,SLICE-16,2010-02-21T21:45:05.270+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-16,2010-02-21T21:45:05.494+0000,U2
+resolution,jira,,,8,Complete,SLICE-16,2010-02-21T21:45:05.494+0000,U2
+Workflow,jira,30419,Scrum Workflow,107806,Generic Scrum Workflow,SLICE-16,2015-01-08T13:24:38.492+0000,
+Story Points,custom,,3,,2,SLICE-15,2010-02-14T22:38:35.576+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-15,2010-02-14T22:42:28.418+0000,U2
+Fix Version,jira,,,11416,Sprint 2,SLICE-15,2010-02-14T22:42:28.418+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-15,2010-02-14T22:42:28.418+0000,U2
+Fix Version,jira,11416,Sprint 2,,,SLICE-15,2010-02-14T22:52:36.249+0000,
+Fix Version,jira,11395,1.0.0.M1,,,SLICE-15,2010-02-14T22:52:36.249+0000,
+Fix Version,jira,11396,1.0.0.RELEASE,,,SLICE-15,2010-02-14T22:52:36.249+0000,
+Fix Version,jira,,,11419,Sprint 3,SLICE-15,2010-02-21T19:45:57.842+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-15,2010-02-21T19:45:57.842+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-15,2010-02-21T19:45:57.842+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-15,2010-02-22T23:58:33.697+0000,U2
+resolution,jira,,,8,Complete,SLICE-15,2010-02-23T00:28:47.253+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-15,2010-02-23T00:28:47.253+0000,U2
+Workflow,jira,30418,Scrum Workflow,107802,Generic Scrum Workflow,SLICE-15,2015-01-08T13:24:38.435+0000,
+Story Points,custom,,3,,2,SLICE-14,2010-02-14T22:38:25.448+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-14,2010-02-14T22:42:28.592+0000,U2
+Fix Version,jira,,,11416,Sprint 2,SLICE-14,2010-02-14T22:42:28.592+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-14,2010-02-14T22:42:28.592+0000,U2
+Fix Version,jira,11395,1.0.0.M1,,,SLICE-14,2010-02-14T22:52:44.360+0000,
+Fix Version,jira,11396,1.0.0.RELEASE,,,SLICE-14,2010-02-14T22:52:44.360+0000,
+Fix Version,jira,11416,Sprint 2,,,SLICE-14,2010-02-14T22:52:44.360+0000,
+Fix Version,jira,,,11419,Sprint 3,SLICE-14,2010-02-21T19:45:58.246+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-14,2010-02-21T19:45:58.246+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-14,2010-02-21T19:45:58.246+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-14,2010-02-23T00:30:29.839+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-14,2010-02-23T00:46:54.321+0000,U2
+resolution,jira,,,8,Complete,SLICE-14,2010-02-23T00:46:54.321+0000,U2
+Workflow,jira,30417,Scrum Workflow,107747,Generic Scrum Workflow,SLICE-14,2015-01-08T13:24:37.564+0000,
+Story Points,custom,,,,3,SLICE-13,2010-02-14T22:36:38.136+0000,U2
+Story Points,custom,,3,,2,SLICE-13,2010-02-14T22:38:15.916+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-13,2010-02-14T22:42:29.162+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-13,2010-02-14T22:42:29.162+0000,U2
+Fix Version,jira,,,11416,Sprint 2,SLICE-13,2010-02-14T22:42:29.162+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-13,2010-02-19T00:23:41.796+0000,U2
+Fix Version,jira,,,11419,Sprint 3,SLICE-13,2010-02-21T19:44:50.624+0000,U2
+Fix Version,jira,11416,Sprint 2,,,SLICE-13,2010-02-21T19:44:50.624+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-13,2010-02-21T21:02:22.241+0000,U2
+resolution,jira,,,8,Complete,SLICE-13,2010-02-21T21:02:22.241+0000,U2
+Workflow,jira,30416,Scrum Workflow,107815,Generic Scrum Workflow,SLICE-13,2015-01-08T13:24:38.648+0000,
+Story Points,custom,,3,,2,SLICE-12,2010-02-14T22:38:07.644+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-12,2010-02-14T22:42:29.671+0000,U2
+Fix Version,jira,,,11416,Sprint 2,SLICE-12,2010-02-14T22:42:29.671+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-12,2010-02-14T22:42:29.671+0000,U2
+Fix Version,jira,11416,Sprint 2,,,SLICE-12,2010-02-21T19:44:50.776+0000,U2
+Fix Version,jira,,,11419,Sprint 3,SLICE-12,2010-02-21T19:44:50.776+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-12,2010-02-21T21:02:34.257+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-12,2010-02-21T21:45:11.882+0000,U2
+resolution,jira,,,8,Complete,SLICE-12,2010-02-21T21:45:11.882+0000,U2
+Workflow,jira,30415,Scrum Workflow,107741,Generic Scrum Workflow,SLICE-12,2015-01-08T13:24:37.450+0000,
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-11,2010-02-14T22:42:26.751+0000,U2
+Fix Version,jira,,,11416,Sprint 2,SLICE-11,2010-02-14T22:42:26.751+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-11,2010-02-14T22:42:26.751+0000,U2
+assignee,jira,,,nebhale,Ben Hale,SLICE-11,2010-02-14T22:45:12.646+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-11,2010-02-18T21:02:37.470+0000,U2
+timespent,jira,,,7200,7200,SLICE-11,2010-02-19T00:00:38.919+0000,U2
+timeestimate,jira,7200,7200,0,0,SLICE-11,2010-02-19T00:00:38.919+0000,U2
+resolution,jira,,,8,Complete,SLICE-11,2010-02-19T00:00:49.659+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-11,2010-02-19T00:00:49.659+0000,U2
+Workflow,jira,30414,Scrum Workflow,107780,Generic Scrum Workflow,SLICE-11,2015-01-08T13:24:38.100+0000,
+Fix Version,jira,,,11416,Sprint 2,SLICE-10,2010-02-14T22:42:27.249+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-10,2010-02-14T22:42:27.249+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-10,2010-02-14T22:42:27.249+0000,U2
+assignee,jira,,,nebhale,Ben Hale,SLICE-10,2010-02-14T22:45:16.669+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-10,2010-02-16T01:29:16.617+0000,U2
+timeestimate,jira,3600,3600,0,0,SLICE-10,2010-02-18T20:12:03.475+0000,U2
+timespent,jira,,,14400,14400,SLICE-10,2010-02-18T20:12:03.475+0000,U2
+timespent,jira,14400,14400,21600,21600,SLICE-10,2010-02-18T21:02:24.150+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-10,2010-02-18T21:02:32.031+0000,U2
+resolution,jira,,,8,Complete,SLICE-10,2010-02-18T21:02:32.031+0000,U2
+Workflow,jira,30413,Scrum Workflow,107739,Generic Scrum Workflow,SLICE-10,2015-01-08T13:24:37.418+0000,
+Fix Version,jira,,,11416,Sprint 2,SLICE-9,2010-02-14T22:42:26.999+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-9,2010-02-14T22:42:26.999+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-9,2010-02-14T22:42:26.999+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-9,2010-02-16T01:29:05.949+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-9,2010-02-19T00:00:57.697+0000,U2
+resolution,jira,,,8,Complete,SLICE-9,2010-02-19T00:00:57.697+0000,U2
+Workflow,jira,30412,Scrum Workflow,107782,Generic Scrum Workflow,SLICE-9,2015-01-08T13:24:38.134+0000,
+timeestimate,jira,,,14400,14400,SLICE-8,2010-02-14T22:33:24.793+0000,U2
+timeoriginalestimate,jira,,,14400,14400,SLICE-8,2010-02-14T22:33:24.793+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-8,2010-02-14T22:42:27.438+0000,U2
+Fix Version,jira,,,11416,Sprint 2,SLICE-8,2010-02-14T22:42:27.438+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-8,2010-02-14T22:42:27.438+0000,U2
+Fix Version,jira,11396,1.0.0.RELEASE,,,SLICE-8,2010-02-14T22:43:39.781+0000,U2
+Fix Version,jira,11416,Sprint 2,,,SLICE-8,2010-02-14T22:43:39.781+0000,U2
+Fix Version,jira,11395,1.0.0.M1,,,SLICE-8,2010-02-14T22:43:39.781+0000,U2
+assignee,jira,,,nebhale,Ben Hale,SLICE-8,2010-02-14T22:45:20.910+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-8,2010-02-21T19:45:57.683+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-8,2010-02-21T19:45:57.683+0000,U2
+Fix Version,jira,,,11419,Sprint 3,SLICE-8,2010-02-21T19:45:57.683+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-8,2010-02-21T21:45:41.475+0000,U2
+timeestimate,jira,14400,14400,10800,10800,SLICE-8,2010-02-22T01:57:48.256+0000,U2
+timespent,jira,,,14400,14400,SLICE-8,2010-02-22T01:57:48.256+0000,U2
+timespent,jira,14400,14400,28800,28800,SLICE-8,2010-02-22T23:20:25.157+0000,U2
+timeestimate,jira,10800,10800,0,0,SLICE-8,2010-02-22T23:20:25.157+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-8,2010-02-22T23:20:33.985+0000,U2
+resolution,jira,,,8,Complete,SLICE-8,2010-02-22T23:20:33.985+0000,U2
+Workflow,jira,30411,Scrum Workflow,107810,Generic Scrum Workflow,SLICE-8,2015-01-08T13:24:38.547+0000,
+timeestimate,jira,,,7200,7200,SLICE-7,2010-02-14T22:31:09.344+0000,U2
+timeoriginalestimate,jira,,,7200,7200,SLICE-7,2010-02-14T22:31:09.344+0000,U2
+Fix Version,jira,,,11416,Sprint 2,SLICE-7,2010-02-14T22:42:27.686+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-7,2010-02-14T22:42:27.686+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-7,2010-02-14T22:42:27.686+0000,U2
+assignee,jira,,,nebhale,Ben Hale,SLICE-7,2010-02-14T22:45:25.609+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-7,2010-02-15T02:29:28.240+0000,U2
+timespent,jira,,,3600,3600,SLICE-7,2010-02-15T03:41:53.005+0000,U2
+timeestimate,jira,7200,7200,14400,14400,SLICE-7,2010-02-15T03:41:53.005+0000,U2
+timeestimate,jira,14400,14400,0,0,SLICE-7,2010-02-16T01:27:58.629+0000,U2
+timespent,jira,3600,3600,18000,18000,SLICE-7,2010-02-16T01:27:58.629+0000,U2
+resolution,jira,,,8,Complete,SLICE-7,2010-02-16T01:28:09.175+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-7,2010-02-16T01:28:09.175+0000,U2
+Workflow,jira,30410,Scrum Workflow,107762,Generic Scrum Workflow,SLICE-7,2015-01-08T13:24:37.806+0000,
+timeoriginalestimate,jira,,,14400,14400,SLICE-6,2010-02-14T22:30:51.901+0000,U2
+timeestimate,jira,,,14400,14400,SLICE-6,2010-02-14T22:30:51.901+0000,U2
+timeoriginalestimate,jira,14400,14400,10800,10800,SLICE-6,2010-02-14T22:39:30.156+0000,U2
+timeestimate,jira,14400,14400,10800,10800,SLICE-6,2010-02-14T22:39:30.156+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-6,2010-02-14T22:42:27.980+0000,U2
+Fix Version,jira,,,11416,Sprint 2,SLICE-6,2010-02-14T22:42:27.980+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-6,2010-02-14T22:42:27.980+0000,U2
+assignee,jira,,,nebhale,Ben Hale,SLICE-6,2010-02-14T22:44:38.380+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-6,2010-02-14T23:26:15.704+0000,U2
+timespent,jira,,,10800,10800,SLICE-6,2010-02-15T02:29:12.836+0000,U2
+timeestimate,jira,10800,10800,0,0,SLICE-6,2010-02-15T02:29:12.836+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-6,2010-02-15T02:29:21.619+0000,U2
+resolution,jira,,,8,Complete,SLICE-6,2010-02-15T02:29:21.619+0000,U2
+Workflow,jira,30409,Scrum Workflow,107764,Generic Scrum Workflow,SLICE-6,2015-01-08T13:24:37.839+0000,
+Story Points,custom,,,,8,SLICE-5,2010-02-14T21:47:42.780+0000,U2
+Story Points,custom,,8,,5,SLICE-5,2010-02-14T22:39:07.297+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-5,2010-02-14T22:42:28.796+0000,U2
+Fix Version,jira,,,11416,Sprint 2,SLICE-5,2010-02-14T22:42:28.796+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-5,2010-02-14T22:42:28.796+0000,U2
+Fix Version,jira,11395,1.0.0.M1,,,SLICE-5,2010-02-14T22:43:39.961+0000,U2
+Fix Version,jira,11396,1.0.0.RELEASE,,,SLICE-5,2010-02-14T22:43:39.961+0000,U2
+Fix Version,jira,11416,Sprint 2,,,SLICE-5,2010-02-14T22:43:39.961+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-5,2010-02-21T19:45:58.069+0000,U2
+Fix Version,jira,,,11419,Sprint 3,SLICE-5,2010-02-21T19:45:58.069+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-5,2010-02-21T19:45:58.069+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-5,2010-02-21T21:45:34.696+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-5,2010-02-22T23:20:40.786+0000,U2
+resolution,jira,,,8,Complete,SLICE-5,2010-02-22T23:20:40.786+0000,U2
+Workflow,jira,30406,Scrum Workflow,107770,Generic Scrum Workflow,SLICE-5,2015-01-08T13:24:37.944+0000,
+Story Points,custom,,,,5,SLICE-4,2010-02-14T21:47:32.101+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-4,2010-02-14T22:42:29.466+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-4,2010-02-14T22:42:29.466+0000,U2
+Fix Version,jira,,,11416,Sprint 2,SLICE-4,2010-02-14T22:42:29.466+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-4,2010-02-14T23:21:31.471+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-4,2010-02-16T01:28:16.741+0000,U2
+resolution,jira,,,8,Complete,SLICE-4,2010-02-16T01:28:16.741+0000,U2
+Workflow,jira,30405,Scrum Workflow,107783,Generic Scrum Workflow,SLICE-4,2015-01-08T13:24:38.149+0000,
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-3,2010-02-08T22:58:12.398+0000,U2
+Fix Version,jira,,,11394,Sprint 1,SLICE-3,2010-02-08T22:58:12.398+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-3,2010-02-08T22:58:12.398+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-3,2010-02-08T23:01:46.841+0000,U2
+timespent,jira,,,900,900,SLICE-3,2010-02-08T23:02:34.754+0000,U2
+timeestimate,jira,3600,3600,2700,2700,SLICE-3,2010-02-08T23:02:34.754+0000,U2
+timeestimate,jira,2700,2700,0,0,SLICE-3,2010-02-08T23:02:45.245+0000,U2
+resolution,jira,,,8,Complete,SLICE-3,2010-02-08T23:02:45.367+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-3,2010-02-08T23:02:45.367+0000,U2
+assignee,jira,,,nebhale,Ben Hale,SLICE-3,2010-02-14T22:44:20.059+0000,U2
+Workflow,jira,30316,Scrum Workflow,107776,Generic Scrum Workflow,SLICE-3,2015-01-08T13:24:38.029+0000,
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-2,2010-02-08T22:58:11.893+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-2,2010-02-08T22:58:11.893+0000,U2
+Fix Version,jira,,,11394,Sprint 1,SLICE-2,2010-02-08T22:58:11.893+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-2,2010-02-08T23:01:41.570+0000,U2
+timeestimate,jira,14400,14400,7200,7200,SLICE-2,2010-02-08T23:02:03.088+0000,U2
+timespent,jira,,,7200,7200,SLICE-2,2010-02-08T23:02:03.088+0000,U2
+timespent,jira,7200,7200,14400,14400,SLICE-2,2010-02-08T23:02:11.891+0000,U2
+timeestimate,jira,7200,7200,0,0,SLICE-2,2010-02-08T23:02:11.891+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-2,2010-02-08T23:02:21.742+0000,U2
+resolution,jira,,,8,Complete,SLICE-2,2010-02-08T23:02:21.742+0000,U2
+Comment,jira,This is a test comment,,,,SLICE-2,2010-02-10T20:50:25.595+0000,U2
+Workflow,jira,30315,Scrum Workflow,107737,Generic Scrum Workflow,SLICE-2,2015-01-08T13:24:37.345+0000,
+Story Points,custom,,,,2,SLICE-1,2010-02-08T22:56:53.419+0000,U2
+Fix Version,jira,,,11395,1.0.0.M1,SLICE-1,2010-02-08T22:58:12.229+0000,U2
+Fix Version,jira,,,11394,Sprint 1,SLICE-1,2010-02-08T22:58:12.229+0000,U2
+Fix Version,jira,,,11396,1.0.0.RELEASE,SLICE-1,2010-02-08T22:58:12.229+0000,U2
+status,jira,10000,To Do,3,In Progress,SLICE-1,2010-02-08T23:03:25.985+0000,U2
+status,jira,3,In Progress,10001,Done,SLICE-1,2010-02-08T23:03:32.016+0000,U2
+resolution,jira,,,8,Complete,SLICE-1,2010-02-08T23:03:32.016+0000,U2
+Workflow,jira,30314,Scrum Workflow,107753,Generic Scrum Workflow,SLICE-1,2015-01-08T13:24:37.666+0000,
