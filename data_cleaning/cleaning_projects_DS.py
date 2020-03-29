@@ -25,7 +25,7 @@ projects = {
     "nexus":   ("fields.issuetype.name",  "fields.status.statusCategory.name",  "jiradataset_issues.csv",       2    ),
     "timob":   ("fields.issuetype.name",  "fields.status.statusCategory.name",  "jiradataset_issues.csv",       2    ),
     "tistud":  ("fields.issuetype.name",  "fields.status.statusCategory.name",  "jiradataset_issues.csv",       2    ),
-    "SLICE":   ("issuetype.name",         "status.name",                        "slice_issues_extracted.csv", 2      ),
+    "SLICE":   ("issuetype.name",         "status.name",                        "slice_issues_extracted.csv",   2    ),
 }
 
 #Getting user story data
