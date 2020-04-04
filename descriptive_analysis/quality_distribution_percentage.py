@@ -1,6 +1,8 @@
 import pandas as pd
 from matplotlib import pyplot
 import matplotlib.ticker as ticker
+import numpy as np
+import matplotlib.ticker as plticker
 
 #Possible projects
 #xd 
@@ -24,10 +26,20 @@ counted_values = df.groupby(['quality']).size().reset_index(name='counts')
 #Calculating percentage
 counted_values['percentage'] = (counted_values['counts'] / counted_values['counts'].sum()) * 100
 
+#Seting intervals
+counted_values['intervals'] = counted_values['quality'].apply(lambda x: '[0;0.25]' if x <= 0.25 else '(0.25;0.5]' if x > 0.25 and x<=0.5 else '(0.5;0.75]' if x > 0.5 and x<=0.75 else '(0.75;1]')
+#Group and sum by intervals
+interval_values = counted_values.groupby(['intervals']).sum().reset_index()
+
 #Plotting
-counted_values.plot(kind='bar', x='quality', y='percentage')
-pyplot.xticks(rotation='vertical')
-pyplot.tight_layout()
+interval_values.plot(kind='bar', x='intervals', y='percentage')
+#adding upper project title
+project_up = project.upper()
+pyplot.title(project_up, fontsize=20)
+pyplot.xticks(rotation='horizontal')
 pyplot.show()
 
-counted_values.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
+interval_values.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
+
+
+
