@@ -14,7 +14,7 @@ import matplotlib.ticker as plticker
 #nexus
 #timob
 #tistud
-project = 'tistud'
+project = 'xd'
 
 #Read the quality scores
 df = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/quality_scores_data/{0}-quality-scores.csv".format(project))

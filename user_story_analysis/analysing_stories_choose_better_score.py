@@ -11,13 +11,13 @@ from statsmodels.graphics.tsaplots import plot_pacf
 #dnn
 #COMPASS
 #apstud
-#mesos
+#mesos -> excluded from analysis because of not enough stories
 #mule
 #nexus
 #timob
 #tistud
 
-project = "COMPASS"
+project = "dnn"
 
 projects = {
     "xd":      ("fields.issuetype.name",  "fields.status.name",                 "Done",      "jiradataset_issues.csv",        "project",    "fields.created"),
@@ -117,13 +117,13 @@ print(len(quality_df))
 quality = pd.merge(initial_dataset[["key", projects['{0}'.format(project)][5]]], quality_df, on='key', how='outer')
 quality = quality[quality.quality.notnull()]
 
+#Writing keys and quality scores to csv
+quality_scores = quality.drop_duplicates(subset='key', keep="first")
+quality_scores[["key", "quality", "fields.created"]].to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/quality_scores_data/{0}-quality-scores.csv".format(project), sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
+
 #Formating datetime and indexing. Needed for resampling
 quality['fields.created'] = pd.to_datetime(quality[projects['{0}'.format(project)][5]], utc=True)
 quality = quality.set_index(pd.DatetimeIndex(quality[projects['{0}'.format(project)][5]]))
-
-#Writing keys and quality scores to csv
-quality_scores = quality.drop_duplicates(subset='key', keep="first")
-quality_scores[["key", "quality"]].to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/quality_scores_data/{0}-quality-scores.csv".format(project), sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
 
 
 #PLOTTING QUALITY BY TWO WEEKS
