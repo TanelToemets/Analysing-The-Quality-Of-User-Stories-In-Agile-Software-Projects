@@ -20,14 +20,13 @@ import datetime
 #nexus        +
 #timob        +       
 #tistud       +
-project = 'dnn'
+project = 'xd'
 
 projects = {
     "xd":      ("Done",  "In Progress" ), #65 Currently only Done -> In Progress ||Other: In Progress -> In PR | In Progress -> To Do | In PR -> In Progress | In PR -> To Do
 	"dnn":     ("XXXX", "Reopened"     ), #128 | Fine
     "COMPASS": ("XXXX", "XXXX"         ), #NO DATA 
 	"apstud":  ("XXXX", "Reopened"     ), #49  |#Many are going from a Closed to Closed? | Otherwise fine
-    "mesos":   ("XXXX", "Reopened"     ), #0   |Reopened state exists but none of the stories we are analysing have this state 
     "mule":    ("Closed", "Reopened"   ), #4   | Fine
     "nexus":   ("XXXX", "XXXX"         ), #0   |Reopened state and Closed->Open states exists but none of the stories we are analysing have this state 
     "timob":   ("Closed", "Reopened"   ), #7   |#Two are going from a Closed to Closed?  | Otherwise fine

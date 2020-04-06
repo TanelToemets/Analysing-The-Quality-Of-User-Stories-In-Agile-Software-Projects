@@ -13,7 +13,7 @@ import datetime
 #timob        +       
 #tistud       +
 
-project = 'nexus'
+project = 'tistud'
 
 #Read sprints file
 sprints_df = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/datasets/jiradataset_sprints.csv")
@@ -57,8 +57,13 @@ delays_df = delays_df.set_index(pd.DatetimeIndex(delays_df['fields.resolutiondat
 print ("{0} {1} {2}".format(project, "Nr of stories that needed rework:", len(delays_df)))
 
 #Plotting delays
+fig = pyplot.figure()
 delays_df['delay_nr'] = 1/len(stories_df)
 delays_df.resample('SM')['delay_nr'].sum().plot()
+project_up = project.upper()
+fig.suptitle(project_up, fontsize=20)
+pyplot.xlabel('Time', fontsize=12)
+pyplot.ylabel('Percentage of all stories', fontsize=12)
 pyplot.show()
 
 delays_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")

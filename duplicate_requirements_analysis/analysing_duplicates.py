@@ -7,20 +7,18 @@ import datetime
 #dnn          +
 #COMPASS      +
 #apstud       +
-#mesos        +
 #mule         +
 #nexus        +
 #timob        +       
 #tistud       +
 
-project = "xd"
+project = "tistud"
 
 projects = {
     "xd":           ("fields.resolution.name",  "key", "project",      "fields.created", "jiradataset_issues.csv"), 
     "dnn":          ("fields.resolution.name",  "key", "project",      "fields.created", "jiradataset_issues.csv"),
     "COMPASS":      ("resolution.name",         "key", "project.name", "created",        "compass_issues_extracted.csv"), 
     "apstud":       ("fields.resolution.name",  "key", "project",      "fields.created", "jiradataset_issues.csv"), 
-    "mesos":        ("fields.resolution.name",  "key", "project",      "fields.created", "jiradataset_issues.csv"), 
     "mule":         ("fields.resolution.name",  "key", "project",      "fields.created", "jiradataset_issues.csv"), 
     "nexus":        ("fields.resolution.name",  "key", "project",      "fields.created", "jiradataset_issues.csv"),  
     "timob":        ("fields.resolution.name",  "key", "project",      "fields.created", "jiradataset_issues.csv"), 
@@ -57,8 +55,13 @@ duplicates_df[projects['{0}'.format(project)][3]] = pd.to_datetime(duplicates_df
 duplicates_df = duplicates_df.set_index(pd.DatetimeIndex(duplicates_df[projects['{0}'.format(project)][3]]))
 
 #Plotting duplicates
+fig = pyplot.figure()
 duplicates_df['duplicate_nr'] = 1/len(stories_df)
 duplicates_df.resample('SM')['duplicate_nr'].sum().plot()
+project_up = project.upper()
+fig.suptitle(project_up, fontsize=20)
+pyplot.xlabel('Time', fontsize=12)
+pyplot.ylabel('Percentage of all stories', fontsize=12)
 pyplot.show()
 
 duplicates_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
