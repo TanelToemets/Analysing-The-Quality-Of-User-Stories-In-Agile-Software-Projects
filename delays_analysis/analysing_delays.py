@@ -13,7 +13,18 @@ import datetime
 #timob        +       
 #tistud       +
 
-project = 'tistud'
+project = 'COMPASS'
+
+projects = {
+    "xd":      ("jiradataset_issues.csv"         ),
+	"dnn":     ("jiradataset_issues.csv"         ),
+    "COMPASS": ("compass_issues_extracted.csv"   ),
+	"apstud":  ("jiradataset_issues.csv"         ),
+    "mule":    ("jiradataset_issues.csv"         ), 
+    "nexus":   ("jiradataset_issues.csv"         ), 
+    "timob":   ("jjiradataset_issues.csv"         ), 
+    "tistud":  ("jiradataset_issues.csv"         ), 
+}
 
 #Read sprints file
 sprints_df = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/datasets/jiradataset_sprints.csv")
@@ -30,9 +41,30 @@ story_sprint_df = pd.merge(stories_df, sprints_df, how='left', left_on='key', ri
 print(len(story_sprint_df))
 
 #Read resolutiondate from initial data
-initial_data = pd.read_csv('C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/datasets/jiradataset_issues.csv', usecols = ['fields.resolutiondate','key', 'project'])
-initial_data = initial_data[initial_data['project'] == project]
-print(len(initial_data))
+# initial_data = pd.read_csv('C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/datasets/jiradataset_issues.csv', usecols = ['fields.resolutiondate','key', 'project'])
+# initial_data = initial_data[initial_data['project'] == project]
+# print(len(initial_data))
+
+
+def manage_initial_data(project):
+    if project == 'COMPASS':
+        initial_data = pd.read_csv('C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/datasets/compass_issues_extracted.csv', usecols = ['resolutiondate','key', 'project.key'])
+        initial_data = initial_data.rename(columns={'resolutiondate': 'fields.resolutiondate'})
+        initial_data = initial_data.rename(columns={'project.key': 'project'})
+        initial_data = initial_data[initial_data['project'] == project]
+        print(len(initial_data))
+        print('compass managed')
+        return initial_data
+    else:
+        initial_data = pd.read_csv('C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/datasets/jiradataset_issues.csv', usecols = ['fields.resolutiondate','key', 'project'])
+        initial_data = initial_data[initial_data['project'] == project]
+        print(len(initial_data))
+        print('project managed')
+        return initial_data
+
+initial_data = manage_initial_data(project)
+
+
 
 #Merge resolutiondates, sprints and story data
 delays_df = pd.merge(story_sprint_df, initial_data, how='left', left_on='key', right_on='key')
@@ -54,7 +86,7 @@ delays_df = delays_df.drop_duplicates(subset='key', keep="first")
 delays_df = delays_df.set_index(pd.DatetimeIndex(delays_df['fields.resolutiondate']))
 
 #Printing nr of stories that needed rework
-print ("{0} {1} {2}".format(project, "Nr of stories that needed rework:", len(delays_df)))
+print ("{0} {1} {2}".format(project, "Nr of stories that had delays:", len(delays_df)))
 
 #Plotting delays
 fig = pyplot.figure()
