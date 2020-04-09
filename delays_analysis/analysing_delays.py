@@ -13,7 +13,7 @@ import datetime
 #timob        +       
 #tistud       +
 
-project = 'COMPASS'
+project = 'dnn'
 
 projects = {
     "xd":      ("jiradataset_issues.csv"         ),
@@ -87,6 +87,9 @@ delays_df = delays_df.set_index(pd.DatetimeIndex(delays_df['fields.resolutiondat
 
 #Printing nr of stories that needed rework
 print ("{0} {1} {2}".format(project, "Nr of stories that had delays:", len(delays_df)))
+#Calculating overal percentage of delayd stories
+overal_percentage_of_delayd_stories = (len(delays_df)/len(stories_df))*100
+print("{0} {1}".format("Overal percentage of delayd stories", overal_percentage_of_delayd_stories))
 
 #Plotting delays
 fig = pyplot.figure()
@@ -98,4 +101,4 @@ pyplot.xlabel('Time', fontsize=12)
 pyplot.ylabel('Percentage of all stories', fontsize=12)
 pyplot.show()
 
-delays_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
+delays_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test2.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
