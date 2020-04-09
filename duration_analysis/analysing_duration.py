@@ -1,20 +1,22 @@
 import pandas as pd
 from matplotlib import pyplot
+from matplotlib import dates
 import datetime
 import numpy as np
+import matplotlib.ticker as plticker
+import matplotlib.ticker as ticker
 
 #Possible projects
 #xd           +
 #dnn          +
 #COMPASS      +
 #apstud       +
-#mesos        +
 #mule         +
 #nexus        +
 #timob        +     
 #tistud       +
 
-project = "dnn"
+project = "tistud"
 
 projects = {
     "xd":           ("fields.resolutiondate",  "key", "project",      "fields.created", "jiradataset_issues.csv"), 
@@ -59,19 +61,43 @@ duration_df = duration_df.set_index(pd.DatetimeIndex(duration_df[projects['{0}'.
 #Identifing outliers using standart deviation
 mean_duration_length = np.mean(duration_df['duration_in_days'])
 standart_deviation_story_duration = np.std(duration_df['duration_in_days'])
-duration_df['suitable_duration_length'] = duration_df['duration_in_days'].apply(lambda x: x if x < mean_duration_length + 2 * standart_deviation_story_duration else 0)
+duration_df['suitable_duration_length'] = duration_df['duration_in_days'].apply(lambda x: x if x < mean_duration_length + 1 * standart_deviation_story_duration else 0)
 #Removing outliers
 duration_df = duration_df[duration_df.suitable_duration_length != 0]
 print(len(duration_df))
 
 #formating datetime to date for plot readability
-duration_df['fields.created'] = duration_df['fields.created'].dt.date
+duration_df[projects['{0}'.format(project)][3]] = duration_df[projects['{0}'.format(project)][3]].dt.date
+
 
 #Plotting duration
-duration_df.plot(kind='bar', x=projects['{0}'.format(project)][3], y='duration_in_days')
-pyplot.xticks(rotation='vertical')
-pyplot.tight_layout()
-pyplot.locator_params(axis='x', nbins=10)
+fig = pyplot.figure()
+duration_df.resample('SM')['duration_in_days'].mean().ffill().plot()
+
+#Adding titles and axis names
+project_up = project.upper()
+fig.suptitle(project_up, fontsize=20)
+pyplot.xlabel('Time', fontsize=12)
+pyplot.ylabel('Mean solving duration in days', fontsize=12)
+
 pyplot.show()
 
 duration_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
+
+
+#ALTERNATIVE PLOTS FOR DATA EXPLORATION
+# #Plotting all user stories
+# duration_df.plot(kind='bar', x=projects['{0}'.format(project)][3], y='duration_in_days')
+# pyplot.xticks(rotation='vertical')
+# pyplot.tight_layout()
+# pyplot.gcf().autofmt_xdate()
+# ax = pyplot.gca()
+# ax.invert_xaxis()
+
+# #Plotting stories over time
+# fig = pyplot.figure()
+# ax = fig.add_subplot(1,1,1)
+# #ax.plot_date(duration_df['fields.created'], duration_df['duration_in_days'], "ro")
+# ax.bar(duration_df[projects['{0}'.format(project)][3]], duration_df['duration_in_days'], width=2)
+# fig.autofmt_xdate()
+
