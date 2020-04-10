@@ -5,6 +5,7 @@ import datetime
 import statsmodels.api as sm
 from statsmodels.graphics.tsaplots import plot_acf
 from statsmodels.graphics.tsaplots import plot_pacf
+from pandas.plotting import autocorrelation_plot
 
 #Possible projects
 #xd 
@@ -17,7 +18,7 @@ from statsmodels.graphics.tsaplots import plot_pacf
 #timob
 #tistud
 
-project = "dnn"
+project = "tistud"
 
 projects = {
     "xd":      ("fields.issuetype.name",  "fields.status.name",                 "Done",      "jiradataset_issues.csv",        "project",    "fields.created"),
@@ -119,7 +120,7 @@ quality = quality[quality.quality.notnull()]
 
 #Writing keys and quality scores to csv
 quality_scores = quality.drop_duplicates(subset='key', keep="first")
-quality_scores[["key", "quality", "fields.created"]].to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/quality_scores_data/{0}-quality-scores.csv".format(project), sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
+quality_scores[["key", "quality", projects['{0}'.format(project)][5]]].to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/quality_scores_data/{0}-quality-scores.csv".format(project), sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
 
 #Formating datetime and indexing. Needed for resampling
 quality['fields.created'] = pd.to_datetime(quality[projects['{0}'.format(project)][5]], utc=True)
@@ -146,42 +147,133 @@ pyplot.show()
 # pyplot.gcf().autofmt_xdate()
 # pyplot.show()
 
+def manage_compass_field_names(quality, project):
+    if project == 'COMPASS':
+        quality = quality.rename(columns={'created': 'field.created'})
+        return quality
+    else:
+        return quality
+
+quality = manage_compass_field_names(quality, project)
 
 
-# # #TIME SERIES ANAYSIS
-# #quality = quality['20130101':'20140101']
-# time_series_df = quality[['fields.created', 'quality']]
-# #Removing outliers
-# time_series_df = time_series_df[time_series_df['quality'] > 0]
-# #Indexing date
-# time_series_df = time_series_df.set_index('fields.created')
-# #Decomposing timeseries. freq is the number of days I am considering
-# #multiplicative or additive
-# decomposition = sm.tsa.seasonal_decompose(time_series_df, freq=14, model = 'multiplicative')
-# #Plotting
-# result = decomposition.plot()
-# #reversing x axis
-# ax=pyplot.gca()
-# ax.invert_xaxis()
-# #pyplot.rcParams['figure.figsize'] = [9.0, 5.0]
-# pyplot.show()
+# #TIME SERIES ANAYSIS
+# #Analysing base leve, trend, seasonality and error
+#quality = quality['20130101':'20140101']
+time_series_df = quality[['fields.created', 'quality']]
+#Removing outliers
+time_series_df = time_series_df[time_series_df['quality'] > 0]
+#Indexing date
+time_series_df = time_series_df.set_index('fields.created')
+#Decomposing timeseries. freq is the number of days I am considering
+#multiplicative or additive
+decomposition = sm.tsa.seasonal_decompose(time_series_df, freq=7, model = 'additive')
+#Plotting
+result = decomposition.plot()
+#reversing x axis
+ax=pyplot.gca()
+ax.invert_xaxis()
+#pyplot.rcParams['figure.figsize'] = [9.0, 5.0]
+pyplot.show()
 
 
 
-# #AUTOCORRELATION & PARTIAL-AUTOCORREALTION
-# correlation_df = quality[['fields.created', 'quality']]
-# correlation_df = correlation_df.set_index('fields.created')
+#AUTOCORRELATION & PARTIAL-AUTOCORREALTION
+correlation_df = quality[['fields.created', 'quality']]
+correlation_df = correlation_df.set_index('fields.created')
 
-# #autocorrelation plot
-# plot_acf(correlation_df)
-# pyplot.show()
+#autocorrelation plot for testing seasonality in timeseries
+autocorrelation_plot(correlation_df['quality'].tolist())
 
-# #partial-autocorrelation plot
-# plot_pacf(correlation_df)
-# pyplot.show()
+#autocorrelation plot
+plot_acf(correlation_df)
+pyplot.show()
+
+#partial-autocorrelation plot
+plot_pacf(correlation_df)
+pyplot.show()
 
 # #TEST
 # #time_series_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
