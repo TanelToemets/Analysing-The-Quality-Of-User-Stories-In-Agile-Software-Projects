@@ -1,11 +1,17 @@
 import pandas as pd
 from matplotlib import pyplot
+import matplotlib
 import numpy as np
 import datetime
 import statsmodels.api as sm
 from statsmodels.graphics.tsaplots import plot_acf
 from statsmodels.graphics.tsaplots import plot_pacf
 from pandas.plotting import autocorrelation_plot
+import warnings
+import itertools
+warnings.filterwarnings("ignore")
+pyplot.style.use('fivethirtyeight')
+
 
 #Possible projects
 #xd 
@@ -18,7 +24,7 @@ from pandas.plotting import autocorrelation_plot
 #timob
 #tistud
 
-project = "tistud"
+project = "COMPASS"
 
 projects = {
     "xd":      ("fields.issuetype.name",  "fields.status.name",                 "Done",      "jiradataset_issues.csv",        "project",    "fields.created"),
@@ -127,20 +133,20 @@ quality['fields.created'] = pd.to_datetime(quality[projects['{0}'.format(project
 quality = quality.set_index(pd.DatetimeIndex(quality[projects['{0}'.format(project)][5]]))
 
 
-#PLOTTING QUALITY BY TWO WEEKS
-# #SM --> semi month (15th and end of month)
-# #W  --> week
-# #Q  --> quarter
-# #Y  --> year
-fig = pyplot.figure()
-quality.resample('SM')['quality'].mean().ffill().plot()
-#quality.resample('SM')['quality'].mean().plot()
-#quality['20150101':'20160101'].resample('SM')['quality'].mean().plot()
-project_up = project.upper()
-fig.suptitle(project_up, fontsize=20)
-pyplot.xlabel('Quality', fontsize=12)
-pyplot.ylabel('Creation time', fontsize=12)
-pyplot.show()
+# #PLOTTING QUALITY BY TWO WEEKS
+# # #SM --> semi month (15th and end of month)
+# # #W  --> week
+# # #Q  --> quarter
+# # #Y  --> year
+# fig = pyplot.figure()
+# quality.resample('SM')['quality'].mean().ffill().plot()
+# #quality.resample('SM')['quality'].mean().plot()
+# #quality['20150101':'20160101'].resample('SM')['quality'].mean().plot()
+# project_up = project.upper()
+# fig.suptitle(project_up, fontsize=20)
+# pyplot.xlabel('Quality', fontsize=12)
+# pyplot.ylabel('Creation time', fontsize=12)
+# pyplot.show()
 
 #Alternative
 # pyplot.plot(quality[projects['{0}'.format(project)][5]],quality['quality'])
@@ -157,44 +163,97 @@ def manage_compass_field_names(quality, project):
 quality = manage_compass_field_names(quality, project)
 
 
-# #TIME SERIES ANAYSIS
-# #Analysing base leve, trend, seasonality and error
+
+
+##TIME SERIES ANAYSIS - FORECASTING
+
+#DATA PREPROCESSING
 #quality = quality['20130101':'20140101']
 time_series_df = quality[['fields.created', 'quality']]
 #Removing outliers
 time_series_df = time_series_df[time_series_df['quality'] > 0]
 #Indexing date
 time_series_df = time_series_df.set_index('fields.created')
-#Decomposing timeseries. freq is the number of days I am considering
-#multiplicative or additive
+time_series_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test2.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
+time_series_df.resample('SM')['quality'].mean().ffill().plot()
+pyplot.show()
+time_series_df = time_series_df.resample('SM')['quality'].mean().ffill()
+
+
+##DECOMPOSING TIMESERIES
+# Analysing base level, trend, seasonality and error
+# freq is the number of days I am considering # multiplicative or additive
 decomposition = sm.tsa.seasonal_decompose(time_series_df, freq=7, model = 'additive')
-#Plotting
+#Plotting decomposition
 result = decomposition.plot()
 #reversing x axis
-ax=pyplot.gca()
-ax.invert_xaxis()
+# ax=pyplot.gca()
+# ax.invert_xaxis()
 #pyplot.rcParams['figure.figsize'] = [9.0, 5.0]
 pyplot.show()
 
+#ARIMA (Autoregressive Integrated Moving Average)
+#reference: https://towardsdatascience.com/an-end-to-end-project-on-time-series-analysis-and-forecasting-with-python-4835e6bf050b
+p = d = q = range(0, 2)
+pdq = list(itertools.product(p, d, q))
+seasonal_pdq = [(x[0], x[1], x[2], 12) for x in list(itertools.product(p, d, q))]
 
+#Performing "Grid search” to find the optimal set of parameters that yields the best performance for our model
+for param in pdq:
+    for param_seasonal in seasonal_pdq:
+        try:
+            mod = sm.tsa.statespace.SARIMAX(time_series_df,
+                                            order=param,
+                                            seasonal_order=param_seasonal,
+                                            enforce_stationarity=False,
+                                            enforce_invertibility=False)
 
-#AUTOCORRELATION & PARTIAL-AUTOCORREALTION
-correlation_df = quality[['fields.created', 'quality']]
-correlation_df = correlation_df.set_index('fields.created')
+            results = mod.fit()
+            print('ARIMA{}x{}12 - AIC:{}'.format(param, param_seasonal, results.aic))
+        except:
+            continue
 
-#autocorrelation plot for testing seasonality in timeseries
-autocorrelation_plot(correlation_df['quality'].tolist())
+#Fitting the ARIMA model
+mod = sm.tsa.statespace.SARIMAX(time_series_df,
+                                order=(1, 1, 1),
+                                seasonal_order=(1, 1, 0, 12),
+                                enforce_stationarity=False,
+                                enforce_invertibility=False)
+results = mod.fit()
+print(results.summary().tables[1])
 
-#autocorrelation plot
-plot_acf(correlation_df)
+results.plot_diagnostics(figsize=(16, 8))
 pyplot.show()
 
-#partial-autocorrelation plot
-plot_pacf(correlation_df)
+#xd first date in 2015 is 2015-01-04T09:29:27.000+0000
+# results = results.tz_localize(None)
+# time_series_df = time_series_df.tz_localize(None)
+
+#pred = results.get_prediction(start=pd.to_datetime('2015-01-04 00:00:00'), dynamic=False)
+# pred = results.get_prediction(start=200)
+# pred_ci = pred.conf_int()
+# ax = time_series_df['2013':].plot(label='observed')
+# pred.predicted_mean.plot(ax=ax, label='One-step ahead Forecast', alpha=.7, figsize=(14, 7))
+# ax.fill_between(pred_ci.index,
+#                 pred_ci.iloc[:, 0],
+#                 pred_ci.iloc[:, 1], color='k', alpha=.2)
+# ax.set_xlabel('Date')
+# ax.set_ylabel('Furniture Sales')
+# pyplot.legend()
+# pyplot.show()
+
+pred_uc = results.get_forecast(steps=100)
+pred_ci = pred_uc.conf_int()
+ax = time_series_df.plot(label='observed', figsize=(14, 7))
+pred_uc.predicted_mean.plot(ax=ax, label='Forecast')
+ax.fill_between(pred_ci.index,
+                pred_ci.iloc[:, 0],
+                pred_ci.iloc[:, 1], color='k', alpha=.25)
+ax.set_xlabel('Date')
+ax.set_ylabel('User Story quality')
+pyplot.legend()
 pyplot.show()
 
-# #TEST
-# #time_series_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
 
 
 
@@ -266,64 +325,21 @@ pyplot.show()
 
 
 
+# #AUTOCORRELATION & PARTIAL-AUTOCORREALTION
+# correlation_df = quality[['fields.created', 'quality']]
+# correlation_df = correlation_df.set_index('fields.created')
 
+# #autocorrelation plot for testing seasonality in timeseries
+# autocorrelation_plot(correlation_df['quality'].tolist())
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-# #FINDING CROSS-CORRELATION WITH NR OF BUGS
-# #Reading the initial dataset
-# project_bugs = pd.read_csv('C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/datasets/'+projects['{0}'.format(project)][3])
-# #Selecting the project
-# project_bugs = project_bugs[project_bugs[projects['{0}'.format(project)][4]] == project]
-# #Taking only Bugs that have been Done/Compleated
-# DONE = ['Closed', 'Done', 'Resolved', 'Complete']
-# df = project_bugs[(project_bugs[projects['{0}'.format(project)][0]] == 'Bug') & (project_bugs[projects['{0}'.format(project)][1]].isin(DONE))]
-# print(len(df))
-# #Removing duplicates by issuetype, creation time, status and key
-# df2 = df[[projects['{0}'.format(project)][0], projects['{0}'.format(project)][5], projects['{0}'.format(project)][1], 'key']].drop_duplicates()
-# #Formating and indexing creationtime
-# df2[projects['{0}'.format(project)][5]] = pd.to_datetime(df2[projects['{0}'.format(project)][5]], utc=True)
-# #df2 = df2.set_index(pd.DatetimeIndex(df2[projects['{0}'.format(project)][5]]))
-
-# #adding bugnr to be able to count later
-# df2['bugnr'] = 1
-# #renaming to make naming same for all projects
-# df2 = df2.rename(columns={projects['{0}'.format(project)][5]: 'fields.created'})
-# df2 = df2[['fields.created', 'bugnr']]
-# #df2.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test2.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
-
-# #counting nr of bugs by day
-# #crosscorr_bugs_df = df2['bugnr'].groupby(df2['fields.created'].dt.to_period('D')).sum().reset_index()
-# crosscorr_bugs_df = df2.groupby(['fields.created']).sum().reset_index()
-
-# #crosscorr_bugs_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
-
-# #finding cross-correlation between nr of bugs and user story quality
-# crosscorr_quality_df = quality[['fields.created', 'quality']]
-# crosscorr_bugs_df = crosscorr_bugs_df[['fields.created', 'bugnr']]
-# crosscorr_bugs_df = crosscorr_bugs_df.set_index(pd.DatetimeIndex(crosscorr_bugs_df['fields.created']))
-
-# print(len(crosscorr_bugs_df))
-# crosscorr_bugs_df = crosscorr_bugs_df[:516] #For tring
-# print(len(crosscorr_bugs_df))
-# print(len(crosscorr_quality_df))
-
-# #FIRST TRY WITH PANDAS
-# crosscorr_quality_df.apply(crosscorr_bugs_df['bugnr'].corr).plot()
+# #autocorrelation plot
+# plot_acf(correlation_df)
 # pyplot.show()
 
-# #SECOND TRY WITH NUMPYS
-# np.correlate(crosscorr_bugs_df['bugnr'].to_numpy(),crosscorr_quality_df['quality'].to_numpy(),"full")
+# #partial-autocorrelation plot
+# plot_pacf(correlation_df)
 # pyplot.show()
+
+# # #TEST
+# # #time_series_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
 
