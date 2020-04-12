@@ -24,7 +24,7 @@ pyplot.style.use('fivethirtyeight')
 #timob
 #tistud
 
-project = "COMPASS"
+project = "dnn"
 
 projects = {
     "xd":      ("fields.issuetype.name",  "fields.status.name",                 "Done",      "jiradataset_issues.csv",        "project",    "fields.created"),
@@ -175,7 +175,12 @@ time_series_df = time_series_df[time_series_df['quality'] > 0]
 #Indexing date
 time_series_df = time_series_df.set_index('fields.created')
 time_series_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test2.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
+fig = pyplot.figure()
 time_series_df.resample('SM')['quality'].mean().ffill().plot()
+project_up = project.upper()
+fig.suptitle(project_up, fontsize=20)
+pyplot.xlabel('Date', fontsize=12)
+pyplot.ylabel('Quality score', fontsize=12)
 pyplot.show()
 time_series_df = time_series_df.resample('SM')['quality'].mean().ffill()
 
@@ -229,18 +234,30 @@ pyplot.show()
 # results = results.tz_localize(None)
 # time_series_df = time_series_df.tz_localize(None)
 
+#reference: https://stackoverflow.com/questions/31818050/round-number-to-nearest-integer
+def proper_round(num, dec=0):
+    num = str(num)[:str(num).index('.')+dec+2]
+    if num[-1]>='5':
+        return float(num[:-2-(not dec)]+str(int(num[-2-(not dec)])+1))
+    return float(num[:-1])
+
 #pred = results.get_prediction(start=pd.to_datetime('2015-01-04 00:00:00'), dynamic=False)
-# pred = results.get_prediction(start=200)
-# pred_ci = pred.conf_int()
-# ax = time_series_df['2013':].plot(label='observed')
-# pred.predicted_mean.plot(ax=ax, label='One-step ahead Forecast', alpha=.7, figsize=(14, 7))
-# ax.fill_between(pred_ci.index,
-#                 pred_ci.iloc[:, 0],
-#                 pred_ci.iloc[:, 1], color='k', alpha=.2)
-# ax.set_xlabel('Date')
-# ax.set_ylabel('Furniture Sales')
-# pyplot.legend()
-# pyplot.show()
+printing_df = time_series_df['20130101':'20150104']
+print(printing_df) 
+pred = results.get_prediction(start=pd.to_datetime('2014-12-31 00:00:00+00:00'), dynamic=False)
+#pred = results.get_prediction(start=int(proper_round(len(time_series_df)/(len(time_series_df)*0.9))), dynamic=False)
+#pred = results.get_prediction(start=200)
+pred_ci = pred.conf_int()
+ax = time_series_df['2013':].plot(label='observed')
+pred.predicted_mean.plot(ax=ax, label='One-step ahead Forecast', alpha=.7, figsize=(14, 7))
+ax.fill_between(pred_ci.index,
+                pred_ci.iloc[:, 0],
+                pred_ci.iloc[:, 1], color='k', alpha=.2)
+ax.set_title(project_up, fontsize=20)
+ax.set_xlabel('Date')
+ax.set_ylabel('User Story quality')
+pyplot.legend()
+pyplot.show()
 
 pred_uc = results.get_forecast(steps=100)
 pred_ci = pred_uc.conf_int()
@@ -249,6 +266,7 @@ pred_uc.predicted_mean.plot(ax=ax, label='Forecast')
 ax.fill_between(pred_ci.index,
                 pred_ci.iloc[:, 0],
                 pred_ci.iloc[:, 1], color='k', alpha=.25)
+ax.set_title(project_up, fontsize=20)
 ax.set_xlabel('Date')
 ax.set_ylabel('User Story quality')
 pyplot.legend()
