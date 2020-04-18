@@ -24,14 +24,14 @@ project = 'tistud'
 
 
 projects = {
-    "xd":      ("Done",  "In Progress", "jiradataset_changelog.csv" ), #65 Cnly Done -> In Progress| Fine  ||Other but not in our interest: In Progress -> In PR | In Progress -> To Do | In PR -> In Progress | In PR -> To Do
-	"dnn":     ("XXXX", "Reopened", "jiradataset_changelog.csv"     ), #128 | Fine
-    "COMPASS": ("XXXX", "XXXX", "compass_changelog_extracted.csv"   ), #3 
-	"apstud":  ("XXXX", "Reopened", "jiradataset_changelog.csv"     ), #49  |#Many are going from a Closed to Closed? | Otherwise fine
-    "mule":    ("Closed", "Reopened", "jiradataset_changelog.csv"   ), #4   | Fine
-    "nexus":   ("XXXX", "XXXX", "jiradataset_changelog.csv"         ), #0   |Reopened state and Closed->Open states exists but none of the stories we are analysing have this state 
-    "timob":   ("Closed", "Reopened", "jiradataset_changelog.csv"   ), #7   |#Two are going from a Closed to Closed?  | Otherwise fine
-    "tistud":  ("Closed", "Reopened", "jiradataset_changelog.csv"   ), #178 |#Many are going from a Closed to Closed? | Otherwise fine
+    "xd":      ("Done",  "In Progress", "jiradataset_changelog.csv" ), #Cnly Done -> In Progress| Fine  ||Other but not in our interest: In Progress -> In PR | In Progress -> To Do | In PR -> In Progress | In PR -> To Do
+	"dnn":     ("XXXX", "Reopened", "jiradataset_changelog.csv"     ), #Fine
+    "COMPASS": ("XXXX", "XXXX", "compass_changelog_extracted.csv"   ), #
+	"apstud":  ("XXXX", "Reopened", "jiradataset_changelog.csv"     ), #Many are going from a Closed to Closed? | Otherwise fine
+    "mule":    ("Closed", "Reopened", "jiradataset_changelog.csv"   ), #Fine
+    "nexus":   ("XXXX", "XXXX", "jiradataset_changelog.csv"         ), #Reopened state and Closed->Open states exists but none of the stories we are analysing have this state 
+    "timob":   ("Closed", "Reopened", "jiradataset_changelog.csv"   ), #Two are going from a Closed to Closed?  | Otherwise fine
+    "tistud":  ("Closed", "Reopened", "jiradataset_changelog.csv"   ), #Many are going from a Closed to Closed? | Otherwise fine
 }
 
 #Read changelog file for rework data
@@ -44,10 +44,9 @@ print(len(stories_df))
 
 #Selecting stories by text source identifier
 # Description = 0 and summary = 1
-stories_df = stories_df[stories_df['identif'] == 0]
-stories_df = stories_df.drop_duplicates(subset=['key'])
-print(len(stories_df))
-
+# stories_df = stories_df[stories_df['identif'] == 0]
+# stories_df = stories_df.drop_duplicates(subset=['key'])
+# print(len(stories_df))
 #Merge story keys and rework data
 # rework_df = pd.merge(stories_df, changelog_df, how='left', left_on='key', right_on='key')
 # print(len(rework_df))

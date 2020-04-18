@@ -2,7 +2,7 @@ import pandas as pd
 from matplotlib import pyplot
 import datetime as dt
 
-project = "COMPASS"
+project = "tistud"
 
 projects = {
     "xd":      ("fields.issuetype.name",  "fields.status.name",                 "jiradataset_issues.csv",         "project",     "fields.created"),
@@ -39,6 +39,30 @@ df2[projects['{0}'.format(project)][4]] = pd.to_datetime(df2[projects['{0}'.form
 df3 = df2.set_index(pd.DatetimeIndex(df2[projects['{0}'.format(project)][4]]))
 df3['bugnr'] = 1
 
+def choose_active_development_periods(quality, project):
+    if project == 'dnn':
+        quality = quality['20130701':'20160101']
+        return quality
+    elif project == 'COMPASS':
+        quality = quality['20170920':'20180901']
+        return quality
+    elif project == 'apstud':
+        quality = quality['20110608':'20120620']
+        return quality
+    elif project == 'mule':
+        quality = quality['20130101':'20140901']
+        return quality
+    elif project == 'nexus':
+        quality = quality['20140901':'20150401']
+        return quality
+    elif project == 'tistud':
+        quality = quality['20110101':'20140801']
+        return quality    
+    else:
+        return quality
+
+df3 = choose_active_development_periods(df3, project)
+
 #Plotting bugs
 fig = pyplot.figure()
 df3.resample('SM')['bugnr'].sum().plot()
@@ -47,7 +71,7 @@ df3.resample('SM')['bugnr'].sum().plot()
 pyplot.ylim(0, 60)
 project_up = project.upper()
 fig.suptitle(project_up, fontsize=20)
-pyplot.xlabel('Time', fontsize=12)
+pyplot.xlabel('Date', fontsize=12)
 pyplot.ylabel('Nr of bugs', fontsize=12)
 pyplot.show()
 
