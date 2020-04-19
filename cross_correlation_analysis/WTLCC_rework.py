@@ -13,10 +13,10 @@ from sklearn.metrics import r2_score
 #compass
 #apstud
 #mule
-#nexus
+#nexus # no rework cases during the active development period
 #timob
 #tistud
-project = 'tistud'
+project = 'xd'
 
 #Read the quality scores
 quality_scores_df = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/quality_scores_data/{0}-quality-scores.csv".format(project))
@@ -55,10 +55,10 @@ def choose_active_development_periods(quality, project):
         quality = quality.set_index('fields.created')
         return quality
     elif project == 'nexus':
-        quality = quality.reset_index(drop=True)
-        quality = quality[(quality['fields.created'] > '2014-09-01') & (quality['fields.created'] < '2015-04-01')]
-        quality = quality.set_index('fields.created')
-        #quality = quality['20140901':'20150401']
+        # quality = quality.reset_index(drop=True)
+        # quality = quality[(quality['fields.created'] > '2014-09-01') & (quality['fields.created'] < '2015-04-01')]
+        # quality = quality.set_index('fields.created')
+        # quality = quality['20140901':'20150401']
         return quality
     elif project == 'tistud':
         quality = quality['20110101':'20140801']
@@ -91,6 +91,11 @@ plt.show()
 nan_value = float("NaN")
 resampled_quality.replace("", nan_value, inplace=True)
 
+# resampled_quality = resampled_quality.tz_localize(None)
+# resampled_rework = resampled_rework.tz_localize(None)
+#print(resampled_quality)
+
+#resampled_rework = resampled_rework.index.tz_convert(None)
 #inner join on resampled quality and rework
 quality_rework_df = pd.merge(resampled_quality, resampled_rework, left_index=True, right_index=True)
 print('len of quality_rework_df')
@@ -146,8 +151,8 @@ def proper_round(num, dec=0):
 
 
 #Time window settings
-#no_splits = 4                                               #SETTING 1 - 4 time windows
-no_splits = int(proper_round(len(quality_rework_df)/66))    #SETTING 2 len/66B | Quarter | 1Q ~ 66B
+no_splits = 4                                               #SETTING 1 - 4 time windows
+#no_splits = int(proper_round(len(quality_rework_df)/66))    #SETTING 2 len/66B | Quarter | 1Q ~ 66B
 #no_splits = int(proper_round(len(quality_rework_df)/22))    #SETTING 3 len/22B | Months  | 1M ~ 22B 
 #no_splits = int(proper_round(len(quality_rework_df)/10))    #SETTING 4 len/10B | Sprint  |~2W = 10B 
 
