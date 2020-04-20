@@ -9,6 +9,7 @@ from statsmodels.graphics.tsaplots import plot_pacf
 from pandas.plotting import autocorrelation_plot
 import warnings
 import itertools
+import pmdarima as pm
 warnings.filterwarnings("ignore")
 pyplot.style.use('fivethirtyeight')
 
@@ -24,7 +25,7 @@ pyplot.style.use('fivethirtyeight')
 #tistud
 #mesos -> excluded from analysis because of not enough stories
 
-project = "tistud"
+project = "xd"
 
 projects = {
     "xd":      ("fields.issuetype.name",  "fields.status.name",                 "Done",      "jiradataset_issues.csv",        "project",    "fields.created"),
@@ -152,7 +153,6 @@ def choose_active_development_periods(quality, project):
         quality = quality.set_index('fields.created')
         return quality
     elif project == 'mule':
-        #quality = quality['20130101':'20140101']
         quality = quality[['fields.created', 'quality']]
         quality = quality.reset_index(drop=True)
         quality = quality[(quality['fields.created'] > '2013-01-01') & (quality['fields.created'] < '2014-09-01')]
@@ -183,10 +183,8 @@ pyplot.xlabel('Date', fontsize=12)
 pyplot.ylabel('Quality score', fontsize=12)
 pyplot.show()
 
+#create time series dataframe for futher analysis
 time_series_df = quality.resample('SM')['quality'].mean().ffill()
-print(time_series_df)
-time_series_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test2.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
-
 
 #Alternative
 # pyplot.plot(quality[projects['{0}'.format(project)][5]],quality['quality'])
@@ -195,7 +193,7 @@ time_series_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/A
 
 # def manage_compass_field_names(quality, project):
 #     if project == 'COMPASS':
-#         quality = quality.rename(columns={'created': 'field.created'})
+#         quality = quality.rename(columns={'created': 'fields.created'})
 #         return quality
 #     else:
 #         return quality
@@ -243,18 +241,60 @@ time_series_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/A
 
 
 
-# ### FORECASTING
-# ##DECOMPOSING TIMESERIES
-# # Analysing base level, trend, seasonality and error
-# # freq is the number of days I am considering # multiplicative or additive
-# decomposition = sm.tsa.seasonal_decompose(time_series_df, freq=7, model = 'additive')
-# #Plotting decomposition
-# result = decomposition.plot()
-# #reversing x axis
-# # ax=pyplot.gca()
-# # ax.invert_xaxis()
-# #pyplot.rcParams['figure.figsize'] = [9.0, 5.0]
-# pyplot.show()
+### FORECASTING
+##DECOMPOSING TIMESERIES
+# Analysing base level, trend, seasonality and error
+# freq is the number of days I am considering # multiplicative or additive
+decomposition = sm.tsa.seasonal_decompose(time_series_df, freq=7, model = 'additive')
+#Plotting decomposition
+result = decomposition.plot()
+#reversing x axis
+# ax=pyplot.gca()
+# ax.invert_xaxis()
+#pyplot.rcParams['figure.figsize'] = [9.0, 5.0]
+pyplot.show()
+
+
+
+#reference: https://www.machinelearningplus.com/time-series/arima-model-time-series-forecasting-python/
+#SARIMA model using pmdarima‘s auto_arima()
+# Seasonal - fit stepwise auto-ARIMA
+smodel = pm.auto_arima(time_series_df, start_p=1, start_q=1,
+                         test='adf',
+                         max_p=3, max_q=3, m=6,
+                         start_P=0, seasonal=True,
+                         d=None, D=1, trace=True,
+                         error_action='ignore',  
+                         suppress_warnings=True, 
+                         stepwise=True)
+
+smodel.summary()
+print(smodel.summary())
+
+# Forecast
+n_periods = 6
+fitted, confint = smodel.predict(n_periods=n_periods, return_conf_int=True)
+index_of_fc = pd.date_range(time_series_df.index[-1], periods = n_periods, freq='MS')
+
+# make series for plotting purpose
+fitted_series = pd.Series(fitted, index=index_of_fc)
+lower_series = pd.Series(confint[:, 0], index=index_of_fc)
+upper_series = pd.Series(confint[:, 1], index=index_of_fc)
+
+# Plot
+pyplot.plot(time_series_df)
+pyplot.plot(fitted_series, color='darkgreen')
+pyplot.fill_between(lower_series.index, 
+                 lower_series, 
+                 upper_series, 
+                 color='k', alpha=.15)
+
+pyplot.title("SARIMA - User Story Quality Forecast - XD")
+pyplot.show()
+
+
+
+
 
 # #ARIMA (Autoregressive Integrated Moving Average)
 # #reference: https://towardsdatascience.com/an-end-to-end-project-on-time-series-analysis-and-forecasting-with-python-4835e6bf050b
@@ -279,12 +319,13 @@ time_series_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/A
 
 # #Fitting the ARIMA model
 # mod = sm.tsa.statespace.SARIMAX(time_series_df,
-#                                 order=(1, 1, 1),
-#                                 seasonal_order=(1, 1, 0, 12),
+#                                 order=(0, 1, 1), #xd
+#                                 seasonal_order=(1, 1, 0, 6), #xd
 #                                 enforce_stationarity=False,
 #                                 enforce_invertibility=False)
 # results = mod.fit()
-# print(results.summary().tables[1])
+# print(results.summary())
+# #print(results.summary().tables[1])
 
 # results.plot_diagnostics(figsize=(16, 8))
 # pyplot.show()
