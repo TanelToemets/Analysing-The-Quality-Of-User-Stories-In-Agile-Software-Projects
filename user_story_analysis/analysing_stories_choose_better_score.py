@@ -4,12 +4,15 @@ import matplotlib
 import numpy as np
 import datetime
 import statsmodels.api as sm
+from statsmodels.tsa.seasonal import seasonal_decompose
+from dateutil.parser import parse
 from statsmodels.graphics.tsaplots import plot_acf
 from statsmodels.graphics.tsaplots import plot_pacf
 from pandas.plotting import autocorrelation_plot
 import warnings
 import itertools
 import pmdarima as pm
+from statsmodels.tsa.stattools import acf
 warnings.filterwarnings("ignore")
 pyplot.style.use('fivethirtyeight')
 
@@ -241,27 +244,28 @@ time_series_df = quality.resample('SM')['quality'].mean().ffill()
 
 
 
-### FORECASTING
-##DECOMPOSING TIMESERIES
-# Analysing base level, trend, seasonality and error
-# freq is the number of days I am considering # multiplicative or additive
-decomposition = sm.tsa.seasonal_decompose(time_series_df, freq=7, model = 'additive')
-#Plotting decomposition
-result = decomposition.plot()
-#reversing x axis
-# ax=pyplot.gca()
-# ax.invert_xaxis()
-#pyplot.rcParams['figure.figsize'] = [9.0, 5.0]
-pyplot.show()
+# ### FORECASTING
+# ##DECOMPOSING TIMESERIES
+# # Analysing base level, trend, seasonality and error
+# # freq is the number of days I am considering # multiplicative or additive
+# decomposition = sm.tsa.seasonal_decompose(time_series_df, freq=7, model = 'additive')
+# #Plotting decomposition
+# result = decomposition.plot()
+# #reversing x axis
+# # ax=pyplot.gca()
+# # ax.invert_xaxis()
+# #pyplot.rcParams['figure.figsize'] = [9.0, 5.0]
+# pyplot.show()
 
 
 
 #reference: https://www.machinelearningplus.com/time-series/arima-model-time-series-forecasting-python/
 #SARIMA model using pmdarima‘s auto_arima()
 # Seasonal - fit stepwise auto-ARIMA
+
 smodel = pm.auto_arima(time_series_df, start_p=1, start_q=1,
                          test='adf',
-                         max_p=3, max_q=3, m=6,
+                         max_p=3, max_q=3, m=12,
                          start_P=0, seasonal=True,
                          d=None, D=1, trace=True,
                          error_action='ignore',  
@@ -271,8 +275,11 @@ smodel = pm.auto_arima(time_series_df, start_p=1, start_q=1,
 smodel.summary()
 print(smodel.summary())
 
+smodel.plot_diagnostics(figsize=(7,5))
+pyplot.show()
+
 # Forecast
-n_periods = 6
+n_periods = 24
 fitted, confint = smodel.predict(n_periods=n_periods, return_conf_int=True)
 index_of_fc = pd.date_range(time_series_df.index[-1], periods = n_periods, freq='MS')
 
@@ -296,8 +303,10 @@ pyplot.show()
 
 
 
-# #ARIMA (Autoregressive Integrated Moving Average)
-# #reference: https://towardsdatascience.com/an-end-to-end-project-on-time-series-analysis-and-forecasting-with-python-4835e6bf050b
+
+
+# # ARIMA (Autoregressive Integrated Moving Average)
+# # reference: https://towardsdatascience.com/an-end-to-end-project-on-time-series-analysis-and-forecasting-with-python-4835e6bf050b
 # p = d = q = range(0, 2)
 # pdq = list(itertools.product(p, d, q))
 # seasonal_pdq = [(x[0], x[1], x[2], 12) for x in list(itertools.product(p, d, q))]
@@ -317,58 +326,96 @@ pyplot.show()
 #         except:
 #             continue
 
-# #Fitting the ARIMA model
-# mod = sm.tsa.statespace.SARIMAX(time_series_df,
-#                                 order=(0, 1, 1), #xd
-#                                 seasonal_order=(1, 1, 0, 6), #xd
-#                                 enforce_stationarity=False,
-#                                 enforce_invertibility=False)
-# results = mod.fit()
-# print(results.summary())
-# #print(results.summary().tables[1])
+#Fitting the ARIMA model
+mod = sm.tsa.statespace.SARIMAX(time_series_df,
+                                order=(0, 1, 1), #xd
+                                seasonal_order=(0, 1, 1, 12), #xd
+                                enforce_stationarity=False,
+                                enforce_invertibility=False)
+results = mod.fit()
+print(results.summary())
+#print(results.summary().tables[1])
 
-# results.plot_diagnostics(figsize=(16, 8))
-# pyplot.show()
+results.plot_diagnostics(figsize=(16, 8))
+pyplot.show()
 
-# #xd first date in 2015 is 2015-01-04T09:29:27.000+0000
-# # results = results.tz_localize(None)
-# # time_series_df = time_series_df.tz_localize(None)
+#xd first date in 2015 is 2015-01-04T09:29:27.000+0000
+# results = results.tz_localize(None)
+# time_series_df = time_series_df.tz_localize(None)
 
-# #reference: https://stackoverflow.com/questions/31818050/round-number-to-nearest-integer
-# def proper_round(num, dec=0):
-#     num = str(num)[:str(num).index('.')+dec+2]
-#     if num[-1]>='5':
-#         return float(num[:-2-(not dec)]+str(int(num[-2-(not dec)])+1))
-#     return float(num[:-1])
+#reference: https://stackoverflow.com/questions/31818050/round-number-to-nearest-integer
+def proper_round(num, dec=0):
+    num = str(num)[:str(num).index('.')+dec+2]
+    if num[-1]>='5':
+        return float(num[:-2-(not dec)]+str(int(num[-2-(not dec)])+1))
+    return float(num[:-1])
 
-# #pred = results.get_prediction(start=pd.to_datetime('2015-01-04 00:00:00'), dynamic=False)
+
+##VALIDATING FORECAST
 # printing_df = time_series_df['20130101':'20150104']
 # print(printing_df) 
-# pred = results.get_prediction(start=pd.to_datetime('2014-12-31 00:00:00+00:00'), dynamic=False)
-# #pred = results.get_prediction(start=int(proper_round(len(time_series_df)/(len(time_series_df)*0.9))), dynamic=False)
-# #pred = results.get_prediction(start=200)
-# pred_ci = pred.conf_int()
-# ax = time_series_df['2013':].plot(label='observed')
-# pred.predicted_mean.plot(ax=ax, label='One-step ahead Forecast', alpha=.7, figsize=(14, 7))
-# ax.fill_between(pred_ci.index,
-#                 pred_ci.iloc[:, 0],
-#                 pred_ci.iloc[:, 1], color='k', alpha=.2)
-# ax.set_title(project_up, fontsize=20)
-# ax.set_xlabel('Date')
-# ax.set_ylabel('User Story quality')
-# pyplot.legend()
-# pyplot.show()
 
-# pred_uc = results.get_forecast(steps=100)
-# pred_ci = pred_uc.conf_int()
-# ax = time_series_df.plot(label='observed', figsize=(14, 7))
-# pred_uc.predicted_mean.plot(ax=ax, label='Forecast')
-# ax.fill_between(pred_ci.index,
-#                 pred_ci.iloc[:, 0],
-#                 pred_ci.iloc[:, 1], color='k', alpha=.25)
-# ax.set_title(project_up, fontsize=20)
-# ax.set_xlabel('Date')
-# ax.set_ylabel('User Story quality')
-# pyplot.legend()
-# pyplot.show()
+#XD
+pred = results.get_prediction(start=pd.to_datetime('2014-12-31 00:00:00+00:00'), dynamic=False)
+pred_ci = pred.conf_int()
+#XD
+ax = time_series_df['2013':].plot(label='observed')
+
+pred.predicted_mean.plot(ax=ax, label='One-step ahead Forecast', alpha=.7, figsize=(14, 7))
+ax.fill_between(pred_ci.index,
+                pred_ci.iloc[:, 0],
+                pred_ci.iloc[:, 1], color='k', alpha=.2)
+ax.set_title(project_up, fontsize=20)
+ax.set_xlabel('Date')
+ax.set_ylabel('User Story quality')
+pyplot.legend()
+pyplot.show()
+
+
+y_forecasted = pred.predicted_mean
+
+#XD
+y_truth = time_series_df['2014-12-31 00:00:00+00:00':]
+
+# Accuracy metrics
+print('VALIDATION METRICS')
+print(project_up)
+print('MSE')
+mse = ((y_forecasted - y_truth) ** 2).mean()
+print('The Mean Squared Error of our forecasts is {}'.format(round(mse, 2)))
+
+# print('MAE')
+# mae = np.mean(np.abs(y_forecasted - y_truth))    # MAE
+# print(mae)
+
+print('MAPE')
+mape = np.mean(np.abs(y_forecasted - y_truth)/np.abs(y_truth))  # MAPE
+print(mape)
+print('CORR')
+corr = np.corrcoef(y_forecasted, y_truth)[0,1]   # corr
+print(corr)
+
+print('MINMAX')
+mins = np.amin(np.hstack([y_forecasted[:,None], y_truth[:,None]]), axis=1)
+maxs = np.amax(np.hstack([y_forecasted[:,None], y_truth[:,None]]), axis=1)
+minmax = 1 - np.mean(mins/maxs) # minmax
+print(minmax)
+
+
+pred_uc = results.get_forecast(steps=100)
+pred_ci = pred_uc.conf_int()
+ax = time_series_df.plot(label='observed', figsize=(14, 7))
+pred_uc.predicted_mean.plot(ax=ax, label='Forecast')
+ax.fill_between(pred_ci.index,
+                pred_ci.iloc[:, 0],
+                pred_ci.iloc[:, 1], color='k', alpha=.25)
+ax.set_title(project_up, fontsize=20)
+ax.set_xlabel('Date')
+ax.set_ylabel('User Story quality')
+pyplot.title("SARIMAX - User Story Quality Forecast - XD")
+pyplot.legend()
+pyplot.show()
+
+
+
 
