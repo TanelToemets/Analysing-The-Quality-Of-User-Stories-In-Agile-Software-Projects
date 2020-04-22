@@ -28,7 +28,7 @@ pyplot.style.use('fivethirtyeight')
 #tistud
 #mesos -> excluded from analysis because of not enough stories
 
-project = "xd"
+project = "tistud"
 
 projects = {
     "xd":      ("fields.issuetype.name",  "fields.status.name",                 "Done",      "jiradataset_issues.csv",        "project",    "fields.created"),
@@ -261,43 +261,59 @@ time_series_df = quality.resample('SM')['quality'].mean().ffill()
 
 #reference: https://www.machinelearningplus.com/time-series/arima-model-time-series-forecasting-python/
 #SARIMA model using pmdarima‘s auto_arima()
-# Seasonal - fit stepwise auto-ARIMA
+#Seasonal - fit stepwise auto-ARIMA
 
-smodel = pm.auto_arima(time_series_df, start_p=1, start_q=1,
-                         test='adf',
-                         max_p=3, max_q=3, m=12,
-                         start_P=0, seasonal=True,
-                         d=None, D=1, trace=True,
-                         error_action='ignore',  
-                         suppress_warnings=True, 
-                         stepwise=True)
+# smodel = pm.auto_arima(time_series_df, start_p=1, start_q=1,
+#                          test='adf',
+#                          max_p=3, max_q=3, 
+#                          #m=12, #XD & DNN & TIMOB & TISTUD
+#                          #n=3, #NEXUS
+#                          m=6, #COMPASS & APSTUD & MULE
+#                          start_P=0, seasonal=True,
+#                          d=None, D=1, trace=True,
+#                          error_action='ignore',  
+#                          suppress_warnings=True, 
+#                          stepwise=True)
 
-smodel.summary()
-print(smodel.summary())
+# smodel.summary()
+# print(smodel.summary())
 
-smodel.plot_diagnostics(figsize=(7,5))
-pyplot.show()
+# smodel.plot_diagnostics(figsize=(7,5))
+# pyplot.show()
 
-# Forecast
-n_periods = 24
-fitted, confint = smodel.predict(n_periods=n_periods, return_conf_int=True)
-index_of_fc = pd.date_range(time_series_df.index[-1], periods = n_periods, freq='MS')
+# # Forecast
+# Wn_periods = 24 #XD & DNN & TIMOB & TISTUD
+# #n_periods = 6 #NEXUS
+# n_periods = 12 #COMPASS & APSTUD & MULE
+# fitted, confint = smodel.predict(n_periods=n_periods, return_conf_int=True)
+# index_of_fc = pd.date_range(time_series_df.index[-1], periods = n_periods, freq='MS')
 
-# make series for plotting purpose
-fitted_series = pd.Series(fitted, index=index_of_fc)
-lower_series = pd.Series(confint[:, 0], index=index_of_fc)
-upper_series = pd.Series(confint[:, 1], index=index_of_fc)
+# # make series for plotting purpose
+# fitted_series = pd.Series(fitted, index=index_of_fc)
+# lower_series = pd.Series(confint[:, 0], index=index_of_fc)
+# upper_series = pd.Series(confint[:, 1], index=index_of_fc)
 
-# Plot
-pyplot.plot(time_series_df)
-pyplot.plot(fitted_series, color='darkgreen')
-pyplot.fill_between(lower_series.index, 
-                 lower_series, 
-                 upper_series, 
-                 color='k', alpha=.15)
+# # Plot
+# pyplot.plot(time_series_df)
+# pyplot.plot(fitted_series, color='darkgreen')
+# pyplot.fill_between(lower_series.index, 
+#                  lower_series, 
+#                  upper_series, 
+#                  color='k', alpha=.15)
 
-pyplot.title("SARIMA - User Story Quality Forecast - XD")
-pyplot.show()
+# pyplot.title("SARIMA - User Story Quality Forecast - XD")
+# pyplot.show()
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -328,19 +344,33 @@ pyplot.show()
 
 #Fitting the ARIMA model
 mod = sm.tsa.statespace.SARIMAX(time_series_df,
-                                order=(0, 1, 1), #xd
-                                seasonal_order=(0, 1, 1, 12), #xd
+                                # order=(0, 1, 1), #xd
+                                # seasonal_order=(0, 1, 1, 12), #xd
+                                # order=(1, 0, 1), #dnn
+                                # seasonal_order=(1, 1, 0, 12), #dnn
+                                # order=(2, 1, 1), #compass
+                                # seasonal_order=(0, 1, 1, 6), #compass
+                                # order=(0, 2, 2), #apstud
+                                # seasonal_order=(2, 1, 0, 6), #apstud
+                                # order=(1, 2, 1), #mule
+                                # seasonal_order=(0, 1, 1, 6), #mule
+                                # order=(1, 2, 0), #nexus
+                                # seasonal_order=(0, 1, 0, 3), #nexus
+                                # order=(0, 1, 1), #timob
+                                # seasonal_order=(0, 1, 1, 12), #timob
+                                order=(0, 1, 2), #tistud
+                                seasonal_order=(0, 1, 1, 12), #tistud
                                 enforce_stationarity=False,
                                 enforce_invertibility=False)
 results = mod.fit()
 print(results.summary())
 #print(results.summary().tables[1])
 
-results.plot_diagnostics(figsize=(16, 8))
-pyplot.show()
+# results.plot_diagnostics(figsize=(16, 8))
+# pyplot.show()
 
 #xd first date in 2015 is 2015-01-04T09:29:27.000+0000
-# results = results.tz_localize(None)
+#results = results.tz_localize(None)
 # time_series_df = time_series_df.tz_localize(None)
 
 #reference: https://stackoverflow.com/questions/31818050/round-number-to-nearest-integer
@@ -354,12 +384,41 @@ def proper_round(num, dec=0):
 ##VALIDATING FORECAST
 # printing_df = time_series_df['20130101':'20150104']
 # print(printing_df) 
-
+print(time_series_df)
 #XD
-pred = results.get_prediction(start=pd.to_datetime('2014-12-31 00:00:00+00:00'), dynamic=False)
+# pred = results.get_prediction(start=pd.to_datetime('2014-12-31 00:00:00+00:00'), dynamic=False)
+#DNN
+#pred = results.get_prediction(start=pd.to_datetime('2015-03-15 00:00:00+00:00'), dynamic=False)
+#APSTUD
+#pred = results.get_prediction(start=pd.to_datetime('2012-01-15 00:00:00+00:00'), dynamic=False)
+#MULE
+#pred = results.get_prediction(start=pd.to_datetime('2014-01-15 00:00:00+00:00'), dynamic=False)
+#NEXUS
+#pred = results.get_prediction(start=pd.to_datetime('2015-01-15 00:00:00+00:00'), dynamic=False)
+#TIMOB
+# pred = results.get_prediction(start=pd.to_datetime('2014-06-15 00:00:00+00:00'), dynamic=False)
+#TISTUD
+pred = results.get_prediction(start=pd.to_datetime('2013-10-15 00:00:00+00:00'), dynamic=False)
+#COMPASS
+# pred = results.get_prediction(start=pd.to_datetime('2018-05-15 00:00:00+00:00'), dynamic=False)
+
 pred_ci = pred.conf_int()
 #XD
-ax = time_series_df['2013':].plot(label='observed')
+# ax = time_series_df['2013':].plot(label='observed')
+#DNN
+#ax = time_series_df['2013':].plot(label='observed')
+#APSTUD
+#ax = time_series_df['2011':].plot(label='observed')
+#MULE
+#ax = time_series_df['2013':].plot(label='observed')
+#NEXUS
+#ax = time_series_df['2014':].plot(label='observed')
+#TIMOB
+#ax = time_series_df['2012':].plot(label='observed')
+#TISTUD
+ax = time_series_df['2011':].plot(label='observed')
+#COMPASS
+# ax = time_series_df['2017':].plot(label='observed')
 
 pred.predicted_mean.plot(ax=ax, label='One-step ahead Forecast', alpha=.7, figsize=(14, 7))
 ax.fill_between(pred_ci.index,
@@ -375,7 +434,21 @@ pyplot.show()
 y_forecasted = pred.predicted_mean
 
 #XD
-y_truth = time_series_df['2014-12-31 00:00:00+00:00':]
+# y_truth = time_series_df['2014-12-31 00:00:00+00:00':]
+#DNN
+#y_truth = time_series_df['2015-03-15 00:00:00+00:00':]
+#APSTUD
+#y_truth = time_series_df['2012-01-15 00:00:00+00:00':]
+#MULE
+#y_truth = time_series_df['2014-01-15 00:00:00+00:00':]
+#NEXUS
+#y_truth = time_series_df['2015-01-15 00:00:00+00:00':]
+#TIMOB
+# y_truth = time_series_df['2014-06-15 00:00:00+00:00':]
+#TISTUD
+y_truth = time_series_df['2013-10-15 00:00:00+00:00':]
+#COMPASS
+#y_truth = time_series_df['2018-05-15 00:00:00+00:00':]
 
 # Accuracy metrics
 print('VALIDATION METRICS')
@@ -415,7 +488,6 @@ ax.set_ylabel('User Story quality')
 pyplot.title("SARIMAX - User Story Quality Forecast - XD")
 pyplot.legend()
 pyplot.show()
-
 
 
 
