@@ -14,7 +14,7 @@ import matplotlib.ticker as plticker
 #nexus
 #timob
 #tistud
-project = 'xd'
+project = 'tistud'
 
 #Read the quality scores
 df = pd.read_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/quality_scores_data/{0}-quality-scores.csv".format(project))
@@ -39,7 +39,7 @@ project_up = project.upper()
 pyplot.title(project_up, fontsize=20)
 pyplot.xticks(rotation='horizontal')
 pyplot.ylabel('Intervals', fontsize=12)
-pyplot.ylabel('Percentage', fontsize=12)
+pyplot.ylabel('percentage', fontsize=12)
 pyplot.show()
 
 interval_values.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")

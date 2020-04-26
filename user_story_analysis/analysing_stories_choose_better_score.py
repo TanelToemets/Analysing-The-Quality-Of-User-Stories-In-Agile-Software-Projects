@@ -13,6 +13,7 @@ import warnings
 import itertools
 import pmdarima as pm
 from statsmodels.tsa.stattools import acf
+from statsmodels.tsa.stattools import adfuller
 warnings.filterwarnings("ignore")
 pyplot.style.use('fivethirtyeight')
 
@@ -28,7 +29,7 @@ pyplot.style.use('fivethirtyeight')
 #tistud
 #mesos -> excluded from analysis because of not enough stories
 
-project = "tistud"
+project = "xd"
 
 projects = {
     "xd":      ("fields.issuetype.name",  "fields.status.name",                 "Done",      "jiradataset_issues.csv",        "project",    "fields.created"),
@@ -171,6 +172,10 @@ def choose_active_development_periods(quality, project):
         return quality
 
 quality = choose_active_development_periods(quality, project)
+# quality = quality.drop_duplicates()
+# print('nr of stories during active development period')
+# print(len(quality))
+# #print(quality)
 
 # #PLOTTING QUALITY OVER TWO WEEKS
 # #Below is a list of resampling possibilities
@@ -194,97 +199,71 @@ time_series_df = quality.resample('SM')['quality'].mean().ffill()
 # pyplot.gcf().autofmt_xdate()
 # pyplot.show()
 
-# def manage_compass_field_names(quality, project):
-#     if project == 'COMPASS':
-#         quality = quality.rename(columns={'created': 'fields.created'})
-#         return quality
-#     else:
-#         return quality
-
-# quality = manage_compass_field_names(quality, project)
-
-# ##TIME SERIES ANAYSIS
-# ##ANALYSING THE CHANGE OF USER STORY QUALITY OVER TIME
-# print(quality)
-
-# def set_active_development_periods(quality, project):
-#     if project == 'dnn':
-#         quality = quality['20130701':'20160101']
-#         return quality
-#     elif project == 'COMPASS':
-#         #quality.index.names = ['fields.created']
-#         #quality = quality[['fields.created', 'quality']]
-#         quality = quality['20170101':'20190101']
-#         #quality[(quality['date'] > '2013-01-01') & (quality['date'] < '2013-02-01')]
-#         return quality
-#     else:
-#         return quality
-# # quality = set_active_development_periods(quality, project)
-
-# print(quality)
-
-# time_series_df = quality[['fields.created', 'quality']]
-# print(time_series_df)
-# time_series_df = set_active_development_periods(time_series_df, project)
-# #Removing outliers
-# time_series_df = time_series_df[time_series_df['quality'] > 0]
-# #Indexing date
-# #time_series_df = time_series_df.set_index('fields.created')
-# time_series_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test2.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
-# fig = pyplot.figure()
-# #time_series_df.resample('D')['quality'].mean().ffill().plot()
-# time_series_df.resample('SM')['quality'].mean().plot()
-# project_up = project.upper()
-# fig.suptitle(project_up, fontsize=20)
-# pyplot.xlabel('Date', fontsize=12)
-# pyplot.ylabel('Quality score', fontsize=12)
-# pyplot.show()
-# time_series_df = time_series_df.resample('SM')['quality'].mean().ffill()
 
 
 
 
-# ### FORECASTING
-# ##DECOMPOSING TIMESERIES
-# # Analysing base level, trend, seasonality and error
-# # freq is the number of days I am considering # multiplicative or additive
-# decomposition = sm.tsa.seasonal_decompose(time_series_df, freq=7, model = 'additive')
-# #Plotting decomposition
-# result = decomposition.plot()
-# #reversing x axis
-# # ax=pyplot.gca()
-# # ax.invert_xaxis()
-# #pyplot.rcParams['figure.figsize'] = [9.0, 5.0]
-# pyplot.show()
+
+
+### FORECASTING
+##DECOMPOSING TIMESERIES
+# Analysing base level, trend, seasonality and error
+# freq is the number of days I am considering # multiplicative or additive
+decomposition = sm.tsa.seasonal_decompose(time_series_df, freq=14, model = 'additive')
+#Plotting decomposition
+result = decomposition.plot()
+pyplot.show()
+
+#reference: https://medium.com/datadriveninvestor/time-series-prediction-using-sarimax-a6604f258c56
+from statsmodels.tsa.stattools import adfuller
+def test_adf(series, title=''):
+    dfout={}
+    dftest=sm.tsa.adfuller(series.dropna(), autolag='AIC', regression='ct')
+    for key,val in dftest[4].items():
+        dfout[f'critical value ({key})']=val
+    if dftest[1]<=0.05:
+        print("Strong evidence against Null Hypothesis")
+        print("Reject Null Hypothesis - Data is Stationary")
+        print("Data is Stationary", title)
+    else:
+        print("Strong evidence for  Null Hypothesis")
+        print("Accept Null Hypothesis - Data is not Stationary")
+        print("Data is NOT Stationary for", title)
+
+test_adf(time_series_df, "Augmented Dickey-Fuller TEST RESULTS FOR PROJECT")
 
 
 
 #reference: https://www.machinelearningplus.com/time-series/arima-model-time-series-forecasting-python/
-#SARIMA model using pmdarima‘s auto_arima()
-#Seasonal - fit stepwise auto-ARIMA
+# SARIMA model using pmdarima‘s auto_arima()
+# Seasonal - fit stepwise auto-ARIMA
 
-# smodel = pm.auto_arima(time_series_df, start_p=1, start_q=1,
-#                          test='adf',
-#                          max_p=3, max_q=3, 
-#                          #m=12, #XD & DNN & TIMOB & TISTUD
-#                          #n=3, #NEXUS
-#                          m=6, #COMPASS & APSTUD & MULE
-#                          start_P=0, seasonal=True,
-#                          d=None, D=1, trace=True,
-#                          error_action='ignore',  
-#                          suppress_warnings=True, 
-#                          stepwise=True)
+smodel = pm.auto_arima(time_series_df, 
+                         start_p=1, start_q=1,
+                         test='adf',
+                         max_p=3, max_q=3, 
+                         m=12, #XD & DNN & TIMOB & TISTUD
+                         #m=3, #NEXUS
+                         #m=6, #COMPASS & APSTUD & MULE
+                         start_P=0, seasonal=True,
+                         d=None, 
+                         D=1, #because we have strong seasonal patterns
+                         trace=True,
+                         error_action='ignore',  
+                         suppress_warnings=True, 
+                         stepwise=True)
 
-# smodel.summary()
-# print(smodel.summary())
+smodel.summary()
+print(smodel.summary())
 
 # smodel.plot_diagnostics(figsize=(7,5))
 # pyplot.show()
 
 # # Forecast
-# Wn_periods = 24 #XD & DNN & TIMOB & TISTUD
+# #n_periods = 24 #XD & DNN & TIMOB & TISTUD
 # #n_periods = 6 #NEXUS
 # n_periods = 12 #COMPASS & APSTUD & MULE
+
 # fitted, confint = smodel.predict(n_periods=n_periods, return_conf_int=True)
 # index_of_fc = pd.date_range(time_series_df.index[-1], periods = n_periods, freq='MS')
 
@@ -301,53 +280,20 @@ time_series_df = quality.resample('SM')['quality'].mean().ffill()
 #                  upper_series, 
 #                  color='k', alpha=.15)
 
-# pyplot.title("SARIMA - User Story Quality Forecast - XD")
+# pyplot.title("SARIMA - User Story Quality Forecast")
 # pyplot.show()
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# # ARIMA (Autoregressive Integrated Moving Average)
-# # reference: https://towardsdatascience.com/an-end-to-end-project-on-time-series-analysis-and-forecasting-with-python-4835e6bf050b
-# p = d = q = range(0, 2)
-# pdq = list(itertools.product(p, d, q))
-# seasonal_pdq = [(x[0], x[1], x[2], 12) for x in list(itertools.product(p, d, q))]
-
-# #Performing "Grid search” to find the optimal set of parameters that yields the best performance for our model
-# for param in pdq:
-#     for param_seasonal in seasonal_pdq:
-#         try:
-#             mod = sm.tsa.statespace.SARIMAX(time_series_df,
-#                                             order=param,
-#                                             seasonal_order=param_seasonal,
-#                                             enforce_stationarity=False,
-#                                             enforce_invertibility=False)
-
-#             results = mod.fit()
-#             print('ARIMA{}x{}12 - AIC:{}'.format(param, param_seasonal, results.aic))
-#         except:
-#             continue
-
 #Fitting the ARIMA model
+#reference: https://towardsdatascience.com/an-end-to-end-project-on-time-series-analysis-and-forecasting-with-python-4835e6bf050b
 mod = sm.tsa.statespace.SARIMAX(time_series_df,
-                                # order=(0, 1, 1), #xd
-                                # seasonal_order=(0, 1, 1, 12), #xd
-                                # order=(1, 0, 1), #dnn
-                                # seasonal_order=(1, 1, 0, 12), #dnn
+                                exog=None, #we are not setting exogenous, therefore running SARIMA model instead of SARIMAX
+                                order=(0, 1, 1), #xd
+                                seasonal_order=(0, 1, 1, 12), #xd
+                                #order=(1, 0, 1), #dnn
+                                #seasonal_order=(1, 1, 0, 12), #dnn
                                 # order=(2, 1, 1), #compass
                                 # seasonal_order=(0, 1, 1, 6), #compass
                                 # order=(0, 2, 2), #apstud
@@ -358,20 +304,17 @@ mod = sm.tsa.statespace.SARIMAX(time_series_df,
                                 # seasonal_order=(0, 1, 0, 3), #nexus
                                 # order=(0, 1, 1), #timob
                                 # seasonal_order=(0, 1, 1, 12), #timob
-                                order=(0, 1, 2), #tistud
-                                seasonal_order=(0, 1, 1, 12), #tistud
+                                #order=(0, 1, 2), #tistud
+                                #seasonal_order=(0, 1, 1, 12), #tistud
                                 enforce_stationarity=False,
                                 enforce_invertibility=False)
 results = mod.fit()
+
 print(results.summary())
-#print(results.summary().tables[1])
 
-# results.plot_diagnostics(figsize=(16, 8))
-# pyplot.show()
-
-#xd first date in 2015 is 2015-01-04T09:29:27.000+0000
-#results = results.tz_localize(None)
-# time_series_df = time_series_df.tz_localize(None)
+#Diagnostic plots
+results.plot_diagnostics(figsize=(16, 8))
+pyplot.show()
 
 #reference: https://stackoverflow.com/questions/31818050/round-number-to-nearest-integer
 def proper_round(num, dec=0):
@@ -382,11 +325,9 @@ def proper_round(num, dec=0):
 
 
 ##VALIDATING FORECAST
-# printing_df = time_series_df['20130101':'20150104']
-# print(printing_df) 
-print(time_series_df)
+###PREDICTIONS
 #XD
-# pred = results.get_prediction(start=pd.to_datetime('2014-12-31 00:00:00+00:00'), dynamic=False)
+pred = results.get_prediction(start=pd.to_datetime('2014-12-31 00:00:00+00:00'), dynamic=False)
 #DNN
 #pred = results.get_prediction(start=pd.to_datetime('2015-03-15 00:00:00+00:00'), dynamic=False)
 #APSTUD
@@ -398,13 +339,14 @@ print(time_series_df)
 #TIMOB
 # pred = results.get_prediction(start=pd.to_datetime('2014-06-15 00:00:00+00:00'), dynamic=False)
 #TISTUD
-pred = results.get_prediction(start=pd.to_datetime('2013-10-15 00:00:00+00:00'), dynamic=False)
+#pred = results.get_prediction(start=pd.to_datetime('2013-10-15 00:00:00+00:00'), dynamic=False)
 #COMPASS
 # pred = results.get_prediction(start=pd.to_datetime('2018-05-15 00:00:00+00:00'), dynamic=False)
-
 pred_ci = pred.conf_int()
+
+##OBSERVED VALUES
 #XD
-# ax = time_series_df['2013':].plot(label='observed')
+ax = time_series_df['2013':].plot(label='Actual')
 #DNN
 #ax = time_series_df['2013':].plot(label='observed')
 #APSTUD
@@ -416,11 +358,11 @@ pred_ci = pred.conf_int()
 #TIMOB
 #ax = time_series_df['2012':].plot(label='observed')
 #TISTUD
-ax = time_series_df['2011':].plot(label='observed')
+#ax = time_series_df['2011':].plot(label='observed')
 #COMPASS
 # ax = time_series_df['2017':].plot(label='observed')
 
-pred.predicted_mean.plot(ax=ax, label='One-step ahead Forecast', alpha=.7, figsize=(14, 7))
+pred.predicted_mean.plot(ax=ax, label='Forecasted', alpha=.7, figsize=(14, 7))
 ax.fill_between(pred_ci.index,
                 pred_ci.iloc[:, 0],
                 pred_ci.iloc[:, 1], color='k', alpha=.2)
@@ -430,51 +372,49 @@ ax.set_ylabel('User Story quality')
 pyplot.legend()
 pyplot.show()
 
-
+#forcasted value
 y_forecasted = pred.predicted_mean
 
+#actual value
 #XD
-# y_truth = time_series_df['2014-12-31 00:00:00+00:00':]
+y_actual = time_series_df['2014-12-31 00:00:00+00:00':]
 #DNN
-#y_truth = time_series_df['2015-03-15 00:00:00+00:00':]
+#y_actual = time_series_df['2015-03-15 00:00:00+00:00':]
 #APSTUD
-#y_truth = time_series_df['2012-01-15 00:00:00+00:00':]
+#y_actual = time_series_df['2012-01-15 00:00:00+00:00':]
 #MULE
-#y_truth = time_series_df['2014-01-15 00:00:00+00:00':]
+#y_actual = time_series_df['2014-01-15 00:00:00+00:00':]
 #NEXUS
-#y_truth = time_series_df['2015-01-15 00:00:00+00:00':]
+#y_actual = time_series_df['2015-01-15 00:00:00+00:00':]
 #TIMOB
-# y_truth = time_series_df['2014-06-15 00:00:00+00:00':]
+# y_actual = time_series_df['2014-06-15 00:00:00+00:00':]
 #TISTUD
-y_truth = time_series_df['2013-10-15 00:00:00+00:00':]
+#y_actual = time_series_df['2013-10-15 00:00:00+00:00':]
 #COMPASS
-#y_truth = time_series_df['2018-05-15 00:00:00+00:00':]
+#y_actual = time_series_df['2018-05-15 00:00:00+00:00':]
 
-# Accuracy metrics
+# ACCURACY METRICS
 print('VALIDATION METRICS')
 print(project_up)
-print('MSE')
-mse = ((y_forecasted - y_truth) ** 2).mean()
-print('The Mean Squared Error of our forecasts is {}'.format(round(mse, 2)))
-
-# print('MAE')
-# mae = np.mean(np.abs(y_forecasted - y_truth))    # MAE
-# print(mae)
-
+# print('MSE')
+# mse = ((y_forecasted - y_actual) ** 2).mean()
+# print('The Mean Squared Error of our forecasts is {}'.format(round(mse, 2)))
+# # print('MAE')
+# # mae = np.mean(np.abs(y_forecasted - y_actual))    # MAE
+# # print(mae)
 print('MAPE')
-mape = np.mean(np.abs(y_forecasted - y_truth)/np.abs(y_truth))  # MAPE
+mape = np.mean(np.abs(y_forecasted - y_actual)/np.abs(y_actual))  # MAPE
 print(mape)
 print('CORR')
-corr = np.corrcoef(y_forecasted, y_truth)[0,1]   # corr
+corr = np.corrcoef(y_forecasted, y_actual)[0,1]   # corr
 print(corr)
-
 print('MINMAX')
-mins = np.amin(np.hstack([y_forecasted[:,None], y_truth[:,None]]), axis=1)
-maxs = np.amax(np.hstack([y_forecasted[:,None], y_truth[:,None]]), axis=1)
+mins = np.amin(np.hstack([y_forecasted[:,None], y_actual[:,None]]), axis=1)
+maxs = np.amax(np.hstack([y_forecasted[:,None], y_actual[:,None]]), axis=1)
 minmax = 1 - np.mean(mins/maxs) # minmax
 print(minmax)
 
-
+#Plotting forecast
 pred_uc = results.get_forecast(steps=100)
 pred_ci = pred_uc.conf_int()
 ax = time_series_df.plot(label='observed', figsize=(14, 7))

@@ -81,6 +81,9 @@ rework_df = manage_special_filters(project)
 rework_df['created'] = pd.to_datetime(rework_df['created'], utc=True)
 rework_df = rework_df.set_index(pd.DatetimeIndex(rework_df['created']))
 
+#Printing nr of rework cases
+print ("{0} {1} {2}".format(project, "Nr of rework cases after pre-processing:", len(rework_df)))
+
 def choose_active_development_periods(quality, project):
     if project == 'dnn':
         quality = quality['20130701':'20160101']
@@ -110,6 +113,9 @@ WTLCC_input = rework_df
 WTLCC_input['rework_nr'] = 1
 WTLCC_input[['key','rework_nr','created']].to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/data/WTLCC_input_data/{0}-rework-for-WTLCC.csv".format(project), sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
 
+#Printing nr of rework cases
+print ("{0} {1} {2}".format(project, "Nr of rework cases during active development period:", len(rework_df)))
+
 #Adding a row showing the percentage of each separate story 
 #rework_df['rework_nr'] = 1/len(stories_df)
 rework_df['rework_nr'] = 1
@@ -128,9 +134,6 @@ rework_df['rework_nr'] = 1
 # print(len(sprints_rework_df))
 # sprints_rework_df.to_csv("C:/Users/Tanel/Documents/Ylikool/Magister/Master Thesis/Analysing ASP Repo/test.csv", sep=',', encoding='utf-8', doublequote = True, header=True, index=False, line_terminator=",\n")
 
-
-#Printing nr of rework cases
-print ("{0} {1} {2}".format(project, "Nr of rework cases:", len(rework_df)))
 
 #Plotting
 fig = pyplot.figure()

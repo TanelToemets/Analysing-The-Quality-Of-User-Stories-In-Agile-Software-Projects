@@ -39,6 +39,9 @@ df2[projects['{0}'.format(project)][4]] = pd.to_datetime(df2[projects['{0}'.form
 df3 = df2.set_index(pd.DatetimeIndex(df2[projects['{0}'.format(project)][4]]))
 df3['bugnr'] = 1
 
+print('nr of bugs after preprocessing')
+print(len(df3))
+
 def choose_active_development_periods(quality, project):
     if project == 'dnn':
         quality = quality['20130701':'20160101']
@@ -62,6 +65,9 @@ def choose_active_development_periods(quality, project):
         return quality
 
 df3 = choose_active_development_periods(df3, project)
+
+print('nr of bugs after selecting active development period')
+print(len(df3))
 
 #Plotting bugs
 fig = pyplot.figure()

@@ -16,7 +16,7 @@ import matplotlib.ticker as ticker
 #timob        +     
 #tistud       +
 
-project = "tistud"
+project = "dnn"
 
 projects = {
     "xd":           ("fields.resolutiondate",  "key", "project",      "fields.created", "jiradataset_issues.csv"), 
