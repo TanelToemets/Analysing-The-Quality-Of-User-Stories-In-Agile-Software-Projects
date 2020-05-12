@@ -1,4 +1,4 @@
-# Analysing-The-Quality-Of-User-Stories-In-Agile-Software-Projects
+# Analysing-The-Quality-Of-User-Stories-In-Open-Source-Projects
 
 <h3>Data</h3>
 All of the data is located in the data folder as follows:
